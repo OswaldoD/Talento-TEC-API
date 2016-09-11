@@ -15,7 +15,7 @@ namespace Talento_TEC_API.Controllers
         {
 
         }
-        public HttpResponseMessage Post([FromBody] InfoEmpresa empresa)
+        public HttpResponseMessage Post([FromBody] InfoEmpresa empresa )
         {
             /* Método que obtiene la información de la cuenta */
             /* {"Id":1,"TipoCuenta":"empresa"} */
@@ -36,7 +36,7 @@ namespace Talento_TEC_API.Controllers
                                                         empresa.nombreContactoEmpresa,
                                                         empresa.emailContacto,
                                                         empresa.puestoContacto,
-                                                        empresa.telefonoEmpresa,
+                                                        empresa.telefonoContacto,
                                                         empresa.descripcionActividades,
                                                         empresa.nombreUsuario,
                                                         empresa.passwordUsuario,

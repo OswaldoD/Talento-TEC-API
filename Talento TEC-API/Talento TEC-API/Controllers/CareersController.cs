@@ -21,6 +21,7 @@ namespace Talento_TEC_API.Controllers.talentotec
                     connect.Configuration.ProxyCreationEnabled = false;
 
                     var item = connect.ObtenerListaCarreras().ToList();
+              
                     if (item != null)
                     {
                         return Request.CreateResponse(HttpStatusCode.OK, item);

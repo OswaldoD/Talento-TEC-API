@@ -1,0 +1,1018 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TalentoTECModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'TalentoTEC.dbo.AplicanteXOferta' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="AplicanteXOferta">
+          <Key>
+            <PropertyRef Name="FK_ID_OFERTA" />
+            <PropertyRef Name="FK_ID_APLICANTE" />
+            <PropertyRef Name="FECHA_APLICACION" />
+            <PropertyRef Name="ESTADO" />
+          </Key>
+          <Property Name="FK_ID_OFERTA" Type="int" Nullable="false" />
+          <Property Name="FK_ID_APLICANTE" Type="int" Nullable="false" />
+          <Property Name="FECHA_APLICACION" Type="datetime" Nullable="false" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'TalentoTEC.dbo.CarreraProfesionalXOferta' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="CarreraProfesionalXOferta">
+          <Key>
+            <PropertyRef Name="FK_ID_OFERTA" />
+            <PropertyRef Name="FK_ID_CARRERA" />
+          </Key>
+          <Property Name="FK_ID_OFERTA" Type="int" Nullable="false" />
+          <Property Name="FK_ID_CARRERA" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CarrerasProfesionales">
+          <Key>
+            <PropertyRef Name="ID_CARRERA" />
+          </Key>
+          <Property Name="ID_CARRERA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_CARRERA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NOMBRE_ESPECIALIDAD" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CoordinadoresEscuelas">
+          <Key>
+            <PropertyRef Name="ID_ESCUELA" />
+          </Key>
+          <Property Name="ID_ESCUELA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_ESCUELA" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="NOMBRE_COORDINADOR" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMAIL_COORDINADOR" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TELEFONO_COORDINADOR" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'TalentoTEC.dbo.CuentasUsuarios' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="CuentasUsuarios">
+          <Key>
+            <PropertyRef Name="FK_ID_USUARIO" />
+            <PropertyRef Name="NOMBRE_USUARIO" />
+            <PropertyRef Name="PASSWORD_USUARIO" />
+            <PropertyRef Name="TIPO_CUENTA" />
+          </Key>
+          <Property Name="FK_ID_USUARIO" Type="int" Nullable="false" />
+          <Property Name="NOMBRE_USUARIO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PASSWORD_USUARIO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="TIPO_CUENTA" Type="varchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empresas">
+          <Key>
+            <PropertyRef Name="ID_EMPRESA" />
+          </Key>
+          <Property Name="ID_EMPRESA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_EMPRESA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CEDULA_JURIDICA_EMPRESA" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DIRECCION_EMPRESA" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PROVINCIA_EMPRESA" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="FK_ID_PAIS" Type="int" Nullable="false" />
+          <Property Name="TELEFONO_EMPRESA" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="EMAIL_EMPRESA" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DIRECCION_WEB_EMPRESA" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="NOMBRE_CONTACTO_EMPRESA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMAIL_CONTACTO_EMPRESA" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CARGO_CONTACTO_EMPRESA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TELEFONO_CONTACTO_EMPRESA" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="DESC_ACTIVIDADES_EMPRESA" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="ESTADO_EMPRESA" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OfertasLaborales">
+          <Key>
+            <PropertyRef Name="ID_OFERTA" />
+          </Key>
+          <Property Name="ID_OFERTA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_ID_EMPRESA" Type="int" Nullable="false" />
+          <Property Name="NOMBRE_PUESTO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DESCRIPCION_PUESTO" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="REQUISITOS_PUESTO" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="MONTO_SALARIO" Type="float" Nullable="false" />
+          <Property Name="FK_ID_TIPO_MONEDA" Type="int" Nullable="false" />
+          <Property Name="FECHA_INICIO_OFERTA" Type="datetime" Nullable="false" />
+          <Property Name="FECHA_FINAL_OFERTA" Type="datetime" Nullable="false" />
+          <Property Name="FK_ID_TIPO_OFERTA" Type="int" Nullable="false" />
+          <Property Name="NOMBRE_CONTACTO_OFERTA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMAIL_CONTACTO_OFERTA" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TELEFONO_CONTACTO_EMPRESA" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="ESTADO_OFERTA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ESTADO_CONFIDENCIALIDAD_OFERTA" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CANTIDAD_PLAZAS" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Paises">
+          <Key>
+            <PropertyRef Name="ID_PAIS" />
+          </Key>
+          <Property Name="ID_PAIS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_PAIS" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SectoresProductivos">
+          <Key>
+            <PropertyRef Name="ID_SECTOR_PRODUCTIVO" />
+          </Key>
+          <Property Name="ID_SECTOR_PRODUCTIVO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_SECTOR_PRODUCTIVO" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="SectorProductivoXEmpresa">
+          <Key>
+            <PropertyRef Name="FK_ID_EMPRESA" />
+            <PropertyRef Name="FK_ID_SECTOR_PRODUCTIVO" />
+          </Key>
+          <Property Name="FK_ID_EMPRESA" Type="int" Nullable="false" />
+          <Property Name="FK_ID_SECTOR_PRODUCTIVO" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoMoneda">
+          <Key>
+            <PropertyRef Name="ID_TIPO_MONEDA" />
+          </Key>
+          <Property Name="ID_TIPO_MONEDA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_TIPO_MONEDA" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoOferta">
+          <Key>
+            <PropertyRef Name="ID_TIPO_OFERTA" />
+          </Key>
+          <Property Name="ID_TIPO_OFERTA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_TIPO_OFERTA" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AplicanteXOferta_OfertasLaborales">
+          <End Role="OfertasLaborales" Type="Self.OfertasLaborales" Multiplicity="1" />
+          <End Role="AplicanteXOferta" Type="Self.AplicanteXOferta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OfertasLaborales">
+              <PropertyRef Name="ID_OFERTA" />
+            </Principal>
+            <Dependent Role="AplicanteXOferta">
+              <PropertyRef Name="FK_ID_OFERTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarreraProfesionalXOferta_CarrerasProfesionales">
+          <End Role="CarrerasProfesionales" Type="Self.CarrerasProfesionales" Multiplicity="1" />
+          <End Role="CarreraProfesionalXOferta" Type="Self.CarreraProfesionalXOferta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarrerasProfesionales">
+              <PropertyRef Name="ID_CARRERA" />
+            </Principal>
+            <Dependent Role="CarreraProfesionalXOferta">
+              <PropertyRef Name="FK_ID_CARRERA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarreraProfesionalXOferta_OfertasLaborales">
+          <End Role="OfertasLaborales" Type="Self.OfertasLaborales" Multiplicity="1" />
+          <End Role="CarreraProfesionalXOferta" Type="Self.CarreraProfesionalXOferta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OfertasLaborales">
+              <PropertyRef Name="ID_OFERTA" />
+            </Principal>
+            <Dependent Role="CarreraProfesionalXOferta">
+              <PropertyRef Name="FK_ID_OFERTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CuentasUsuarios_Empresas">
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="1" />
+          <End Role="CuentasUsuarios" Type="Self.CuentasUsuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresas">
+              <PropertyRef Name="ID_EMPRESA" />
+            </Principal>
+            <Dependent Role="CuentasUsuarios">
+              <PropertyRef Name="FK_ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empresas_Paises">
+          <End Role="Paises" Type="Self.Paises" Multiplicity="1" />
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paises">
+              <PropertyRef Name="ID_PAIS" />
+            </Principal>
+            <Dependent Role="Empresas">
+              <PropertyRef Name="FK_ID_PAIS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OfertasLaborales_Empresas1">
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="1" />
+          <End Role="OfertasLaborales" Type="Self.OfertasLaborales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresas">
+              <PropertyRef Name="ID_EMPRESA" />
+            </Principal>
+            <Dependent Role="OfertasLaborales">
+              <PropertyRef Name="FK_ID_EMPRESA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OfertasLaborales_TipoMoneda">
+          <End Role="TipoMoneda" Type="Self.TipoMoneda" Multiplicity="1" />
+          <End Role="OfertasLaborales" Type="Self.OfertasLaborales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoMoneda">
+              <PropertyRef Name="ID_TIPO_MONEDA" />
+            </Principal>
+            <Dependent Role="OfertasLaborales">
+              <PropertyRef Name="FK_ID_TIPO_MONEDA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OfertasLaborales_TipoOferta">
+          <End Role="TipoOferta" Type="Self.TipoOferta" Multiplicity="1" />
+          <End Role="OfertasLaborales" Type="Self.OfertasLaborales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoOferta">
+              <PropertyRef Name="ID_TIPO_OFERTA" />
+            </Principal>
+            <Dependent Role="OfertasLaborales">
+              <PropertyRef Name="FK_ID_TIPO_OFERTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SectorProductivoXEmpresa_Empresas">
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="1" />
+          <End Role="SectorProductivoXEmpresa" Type="Self.SectorProductivoXEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresas">
+              <PropertyRef Name="ID_EMPRESA" />
+            </Principal>
+            <Dependent Role="SectorProductivoXEmpresa">
+              <PropertyRef Name="FK_ID_EMPRESA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SectorProductivoXEmpresa_SectoresProductivos">
+          <End Role="SectoresProductivos" Type="Self.SectoresProductivos" Multiplicity="1" />
+          <End Role="SectorProductivoXEmpresa" Type="Self.SectorProductivoXEmpresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SectoresProductivos">
+              <PropertyRef Name="ID_SECTOR_PRODUCTIVO" />
+            </Principal>
+            <Dependent Role="SectorProductivoXEmpresa">
+              <PropertyRef Name="FK_ID_SECTOR_PRODUCTIVO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="ActualizarEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDEmpresa" Type="int" Mode="In" />
+          <Parameter Name="nombreEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="cedulaJuridica" Type="varchar" Mode="In" />
+          <Parameter Name="direccion" Type="varchar" Mode="In" />
+          <Parameter Name="provincia" Type="varchar" Mode="In" />
+          <Parameter Name="nombrePais" Type="varchar" Mode="In" />
+          <Parameter Name="telefonoEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="emailEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="URL_Empresa" Type="varchar" Mode="In" />
+          <Parameter Name="nombreContactoEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="emailContacto" Type="varchar" Mode="In" />
+          <Parameter Name="puestoContacto" Type="varchar" Mode="In" />
+          <Parameter Name="telefonoContacto" Type="varchar" Mode="In" />
+          <Parameter Name="descripcionActividades" Type="varchar" Mode="In" />
+          <Parameter Name="nombreUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="passwordUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="nombreSectores" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Insertar_Empresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombreEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="cedulaJuridica" Type="varchar" Mode="In" />
+          <Parameter Name="direccion" Type="varchar" Mode="In" />
+          <Parameter Name="provincia" Type="varchar" Mode="In" />
+          <Parameter Name="nombrePais" Type="varchar" Mode="In" />
+          <Parameter Name="telefonoEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="emailEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="URL_Empresa" Type="varchar" Mode="In" />
+          <Parameter Name="nombreContactoEmpresa" Type="varchar" Mode="In" />
+          <Parameter Name="emailContacto" Type="varchar" Mode="In" />
+          <Parameter Name="puestoContacto" Type="varchar" Mode="In" />
+          <Parameter Name="telefonoContacto" Type="varchar" Mode="In" />
+          <Parameter Name="descripcionActividades" Type="varchar" Mode="In" />
+          <Parameter Name="nombreUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="passwordUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="nombreSectores" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Insertar_OfertasLaborales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDEmpresa" Type="int" Mode="In" />
+          <Parameter Name="nombrePuesto" Type="varchar" Mode="In" />
+          <Parameter Name="descripcionPuesto" Type="varchar" Mode="In" />
+          <Parameter Name="RequisitosPuesto" Type="varchar" Mode="In" />
+          <Parameter Name="montoSalario" Type="float" Mode="In" />
+          <Parameter Name="nombreTipoMoneda" Type="varchar" Mode="In" />
+          <Parameter Name="fechaInicioOferta" Type="datetime" Mode="In" />
+          <Parameter Name="fechaFinalOferta" Type="datetime" Mode="In" />
+          <Parameter Name="nombreTipoOferta" Type="varchar" Mode="In" />
+          <Parameter Name="nombreContacto" Type="varchar" Mode="In" />
+          <Parameter Name="emailContacto" Type="varchar" Mode="In" />
+          <Parameter Name="telefonoContacto" Type="varchar" Mode="In" />
+          <Parameter Name="estadoOferta" Type="varchar" Mode="In" />
+          <Parameter Name="estadoConfidencialidad" Type="varchar" Mode="In" />
+          <Parameter Name="cantidadPlazas" Type="int" Mode="In" />
+          <Parameter Name="carrerasProfesionales" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ObtenerDatosEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDEmpresa" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ObtenerIDCarreraProfesional" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombreCarrera" Type="varchar" Mode="In" />
+          <Parameter Name="nombreEspecialidad" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ObtenerIDPais" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombrePais" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ObtenerIDSectorProductivo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombreSectorProductivo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ObtenerIDTipoMoneda" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombreMoneda" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ObtenerIDTipoOferta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombreOferta" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ObtenerListaCarreras" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ObtenerListaCoordinadoresXEscuela" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombreEscuela" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ObtenerListaEscuelas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ObtenerListaEspecialidades" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombreCarrera" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ObtenerListaSectoresProductivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ObtenerNombreUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Usuario" Type="int" Mode="In" />
+          <Parameter Name="TipoCuenta" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Verificacion_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre_Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="Password_Usuario" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="TalentoTECModelStoreContainer">
+          <EntitySet Name="CarrerasProfesionales" EntityType="Self.CarrerasProfesionales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CoordinadoresEscuelas" EntityType="Self.CoordinadoresEscuelas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empresas" EntityType="Self.Empresas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OfertasLaborales" EntityType="Self.OfertasLaborales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paises" EntityType="Self.Paises" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SectoresProductivos" EntityType="Self.SectoresProductivos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoMoneda" EntityType="Self.TipoMoneda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoOferta" EntityType="Self.TipoOferta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AplicanteXOferta" EntityType="Self.AplicanteXOferta" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AplicanteXOferta].[FK_ID_OFERTA] AS [FK_ID_OFERTA], 
+    [AplicanteXOferta].[FK_ID_APLICANTE] AS [FK_ID_APLICANTE], 
+    [AplicanteXOferta].[FECHA_APLICACION] AS [FECHA_APLICACION], 
+    [AplicanteXOferta].[ESTADO] AS [ESTADO]
+    FROM [dbo].[AplicanteXOferta] AS [AplicanteXOferta]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CarreraProfesionalXOferta" EntityType="Self.CarreraProfesionalXOferta" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CarreraProfesionalXOferta].[FK_ID_OFERTA] AS [FK_ID_OFERTA], 
+    [CarreraProfesionalXOferta].[FK_ID_CARRERA] AS [FK_ID_CARRERA]
+    FROM [dbo].[CarreraProfesionalXOferta] AS [CarreraProfesionalXOferta]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CuentasUsuarios" EntityType="Self.CuentasUsuarios" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CuentasUsuarios].[FK_ID_USUARIO] AS [FK_ID_USUARIO], 
+    [CuentasUsuarios].[NOMBRE_USUARIO] AS [NOMBRE_USUARIO], 
+    [CuentasUsuarios].[PASSWORD_USUARIO] AS [PASSWORD_USUARIO], 
+    [CuentasUsuarios].[TIPO_CUENTA] AS [TIPO_CUENTA]
+    FROM [dbo].[CuentasUsuarios] AS [CuentasUsuarios]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SectorProductivoXEmpresa" EntityType="Self.SectorProductivoXEmpresa" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SectorProductivoXEmpresa].[FK_ID_EMPRESA] AS [FK_ID_EMPRESA], 
+    [SectorProductivoXEmpresa].[FK_ID_SECTOR_PRODUCTIVO] AS [FK_ID_SECTOR_PRODUCTIVO]
+    FROM [dbo].[SectorProductivoXEmpresa] AS [SectorProductivoXEmpresa]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_AplicanteXOferta_OfertasLaborales" Association="Self.FK_AplicanteXOferta_OfertasLaborales">
+            <End Role="OfertasLaborales" EntitySet="OfertasLaborales" />
+            <End Role="AplicanteXOferta" EntitySet="AplicanteXOferta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarreraProfesionalXOferta_CarrerasProfesionales" Association="Self.FK_CarreraProfesionalXOferta_CarrerasProfesionales">
+            <End Role="CarrerasProfesionales" EntitySet="CarrerasProfesionales" />
+            <End Role="CarreraProfesionalXOferta" EntitySet="CarreraProfesionalXOferta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarreraProfesionalXOferta_OfertasLaborales" Association="Self.FK_CarreraProfesionalXOferta_OfertasLaborales">
+            <End Role="OfertasLaborales" EntitySet="OfertasLaborales" />
+            <End Role="CarreraProfesionalXOferta" EntitySet="CarreraProfesionalXOferta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CuentasUsuarios_Empresas" Association="Self.FK_CuentasUsuarios_Empresas">
+            <End Role="Empresas" EntitySet="Empresas" />
+            <End Role="CuentasUsuarios" EntitySet="CuentasUsuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empresas_Paises" Association="Self.FK_Empresas_Paises">
+            <End Role="Paises" EntitySet="Paises" />
+            <End Role="Empresas" EntitySet="Empresas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OfertasLaborales_Empresas1" Association="Self.FK_OfertasLaborales_Empresas1">
+            <End Role="Empresas" EntitySet="Empresas" />
+            <End Role="OfertasLaborales" EntitySet="OfertasLaborales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OfertasLaborales_TipoMoneda" Association="Self.FK_OfertasLaborales_TipoMoneda">
+            <End Role="TipoMoneda" EntitySet="TipoMoneda" />
+            <End Role="OfertasLaborales" EntitySet="OfertasLaborales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OfertasLaborales_TipoOferta" Association="Self.FK_OfertasLaborales_TipoOferta">
+            <End Role="TipoOferta" EntitySet="TipoOferta" />
+            <End Role="OfertasLaborales" EntitySet="OfertasLaborales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SectorProductivoXEmpresa_Empresas" Association="Self.FK_SectorProductivoXEmpresa_Empresas">
+            <End Role="Empresas" EntitySet="Empresas" />
+            <End Role="SectorProductivoXEmpresa" EntitySet="SectorProductivoXEmpresa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SectorProductivoXEmpresa_SectoresProductivos" Association="Self.FK_SectorProductivoXEmpresa_SectoresProductivos">
+            <End Role="SectoresProductivos" EntitySet="SectoresProductivos" />
+            <End Role="SectorProductivoXEmpresa" EntitySet="SectorProductivoXEmpresa" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TalentoTECModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CarrerasProfesionale">
+          <Key>
+            <PropertyRef Name="ID_CARRERA" />
+          </Key>
+          <Property Name="ID_CARRERA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_CARRERA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE_ESPECIALIDAD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="OfertasLaborales" Relationship="Self.CarreraProfesionalXOferta" FromRole="CarrerasProfesionales" ToRole="OfertasLaborales" />
+        </EntityType>
+        <EntityType Name="CoordinadoresEscuela">
+          <Key>
+            <PropertyRef Name="ID_ESCUELA" />
+          </Key>
+          <Property Name="ID_ESCUELA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_ESCUELA" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE_COORDINADOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL_COORDINADOR" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEFONO_COORDINADOR" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="ID_EMPRESA" />
+          </Key>
+          <Property Name="ID_EMPRESA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_EMPRESA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CEDULA_JURIDICA_EMPRESA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DIRECCION_EMPRESA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PROVINCIA_EMPRESA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FK_ID_PAIS" Type="Int32" Nullable="false" />
+          <Property Name="TELEFONO_EMPRESA" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL_EMPRESA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DIRECCION_WEB_EMPRESA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE_CONTACTO_EMPRESA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL_CONTACTO_EMPRESA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CARGO_CONTACTO_EMPRESA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEFONO_CONTACTO_EMPRESA" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESC_ACTIVIDADES_EMPRESA" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ESTADO_EMPRESA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CuentasUsuarios" Relationship="Self.FK_CuentasUsuarios_Empresas" FromRole="Empresas" ToRole="CuentasUsuarios" />
+          <NavigationProperty Name="Pais" Relationship="Self.FK_Empresas_Paises" FromRole="Empresas" ToRole="Paises" />
+          <NavigationProperty Name="OfertasLaborales" Relationship="Self.FK_OfertasLaborales_Empresas1" FromRole="Empresas" ToRole="OfertasLaborales" />
+          <NavigationProperty Name="SectoresProductivos" Relationship="Self.SectorProductivoXEmpresa" FromRole="Empresas" ToRole="SectoresProductivos" />
+        </EntityType>
+        <EntityType Name="OfertasLaborale">
+          <Key>
+            <PropertyRef Name="ID_OFERTA" />
+          </Key>
+          <Property Name="ID_OFERTA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_ID_EMPRESA" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE_PUESTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPCION_PUESTO" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REQUISITOS_PUESTO" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MONTO_SALARIO" Type="Double" Nullable="false" />
+          <Property Name="FK_ID_TIPO_MONEDA" Type="Int32" Nullable="false" />
+          <Property Name="FECHA_INICIO_OFERTA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FECHA_FINAL_OFERTA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FK_ID_TIPO_OFERTA" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE_CONTACTO_OFERTA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL_CONTACTO_OFERTA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEFONO_CONTACTO_EMPRESA" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ESTADO_OFERTA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ESTADO_CONFIDENCIALIDAD_OFERTA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CANTIDAD_PLAZAS" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Empresa" Relationship="Self.FK_OfertasLaborales_Empresas1" FromRole="OfertasLaborales" ToRole="Empresas" />
+          <NavigationProperty Name="AplicanteXOfertas" Relationship="Self.FK_AplicanteXOferta_OfertasLaborales" FromRole="OfertasLaborales" ToRole="AplicanteXOferta" />
+          <NavigationProperty Name="TipoMoneda" Relationship="Self.FK_OfertasLaborales_TipoMoneda" FromRole="OfertasLaborales" ToRole="TipoMoneda" />
+          <NavigationProperty Name="TipoOferta" Relationship="Self.FK_OfertasLaborales_TipoOferta" FromRole="OfertasLaborales" ToRole="TipoOferta" />
+          <NavigationProperty Name="CarrerasProfesionales" Relationship="Self.CarreraProfesionalXOferta" FromRole="OfertasLaborales" ToRole="CarrerasProfesionales" />
+        </EntityType>
+        <EntityType Name="Pais">
+          <Key>
+            <PropertyRef Name="ID_PAIS" />
+          </Key>
+          <Property Name="ID_PAIS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_PAIS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Empresas" Relationship="Self.FK_Empresas_Paises" FromRole="Paises" ToRole="Empresas" />
+        </EntityType>
+        <EntityType Name="SectoresProductivo">
+          <Key>
+            <PropertyRef Name="ID_SECTOR_PRODUCTIVO" />
+          </Key>
+          <Property Name="ID_SECTOR_PRODUCTIVO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_SECTOR_PRODUCTIVO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Empresas" Relationship="Self.SectorProductivoXEmpresa" FromRole="SectoresProductivos" ToRole="Empresas" />
+        </EntityType>
+        <EntityType Name="TipoMoneda">
+          <Key>
+            <PropertyRef Name="ID_TIPO_MONEDA" />
+          </Key>
+          <Property Name="ID_TIPO_MONEDA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_TIPO_MONEDA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="OfertasLaborales" Relationship="Self.FK_OfertasLaborales_TipoMoneda" FromRole="TipoMoneda" ToRole="OfertasLaborales" />
+        </EntityType>
+        <EntityType Name="TipoOferta">
+          <Key>
+            <PropertyRef Name="ID_TIPO_OFERTA" />
+          </Key>
+          <Property Name="ID_TIPO_OFERTA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_TIPO_OFERTA" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="OfertasLaborales" Relationship="Self.FK_OfertasLaborales_TipoOferta" FromRole="TipoOferta" ToRole="OfertasLaborales" />
+        </EntityType>
+        <EntityType Name="AplicanteXOferta">
+          <Key>
+            <PropertyRef Name="FK_ID_OFERTA" />
+            <PropertyRef Name="FK_ID_APLICANTE" />
+            <PropertyRef Name="FECHA_APLICACION" />
+            <PropertyRef Name="ESTADO" />
+          </Key>
+          <Property Name="FK_ID_OFERTA" Type="Int32" Nullable="false" />
+          <Property Name="FK_ID_APLICANTE" Type="Int32" Nullable="false" />
+          <Property Name="FECHA_APLICACION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ESTADO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="OfertasLaborale" Relationship="Self.FK_AplicanteXOferta_OfertasLaborales" FromRole="AplicanteXOferta" ToRole="OfertasLaborales" />
+        </EntityType>
+        <EntityType Name="CuentasUsuario">
+          <Key>
+            <PropertyRef Name="FK_ID_USUARIO" />
+            <PropertyRef Name="NOMBRE_USUARIO" />
+            <PropertyRef Name="PASSWORD_USUARIO" />
+            <PropertyRef Name="TIPO_CUENTA" />
+          </Key>
+          <Property Name="FK_ID_USUARIO" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE_USUARIO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PASSWORD_USUARIO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TIPO_CUENTA" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Empresa" Relationship="Self.FK_CuentasUsuarios_Empresas" FromRole="CuentasUsuarios" ToRole="Empresas" />
+        </EntityType>
+        <Association Name="FK_CuentasUsuarios_Empresas">
+          <End Role="Empresas" Type="Self.Empresa" Multiplicity="1" />
+          <End Role="CuentasUsuarios" Type="Self.CuentasUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresas">
+              <PropertyRef Name="ID_EMPRESA" />
+            </Principal>
+            <Dependent Role="CuentasUsuarios">
+              <PropertyRef Name="FK_ID_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empresas_Paises">
+          <End Role="Paises" Type="Self.Pais" Multiplicity="1" />
+          <End Role="Empresas" Type="Self.Empresa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paises">
+              <PropertyRef Name="ID_PAIS" />
+            </Principal>
+            <Dependent Role="Empresas">
+              <PropertyRef Name="FK_ID_PAIS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OfertasLaborales_Empresas1">
+          <End Role="Empresas" Type="Self.Empresa" Multiplicity="1" />
+          <End Role="OfertasLaborales" Type="Self.OfertasLaborale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresas">
+              <PropertyRef Name="ID_EMPRESA" />
+            </Principal>
+            <Dependent Role="OfertasLaborales">
+              <PropertyRef Name="FK_ID_EMPRESA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AplicanteXOferta_OfertasLaborales">
+          <End Role="OfertasLaborales" Type="Self.OfertasLaborale" Multiplicity="1" />
+          <End Role="AplicanteXOferta" Type="Self.AplicanteXOferta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OfertasLaborales">
+              <PropertyRef Name="ID_OFERTA" />
+            </Principal>
+            <Dependent Role="AplicanteXOferta">
+              <PropertyRef Name="FK_ID_OFERTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OfertasLaborales_TipoMoneda">
+          <End Role="TipoMoneda" Type="Self.TipoMoneda" Multiplicity="1" />
+          <End Role="OfertasLaborales" Type="Self.OfertasLaborale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoMoneda">
+              <PropertyRef Name="ID_TIPO_MONEDA" />
+            </Principal>
+            <Dependent Role="OfertasLaborales">
+              <PropertyRef Name="FK_ID_TIPO_MONEDA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OfertasLaborales_TipoOferta">
+          <End Role="TipoOferta" Type="Self.TipoOferta" Multiplicity="1" />
+          <End Role="OfertasLaborales" Type="Self.OfertasLaborale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoOferta">
+              <PropertyRef Name="ID_TIPO_OFERTA" />
+            </Principal>
+            <Dependent Role="OfertasLaborales">
+              <PropertyRef Name="FK_ID_TIPO_OFERTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CarreraProfesionalXOferta">
+          <End Role="CarrerasProfesionales" Type="Self.CarrerasProfesionale" Multiplicity="*" />
+          <End Role="OfertasLaborales" Type="Self.OfertasLaborale" Multiplicity="*" />
+        </Association>
+        <Association Name="SectorProductivoXEmpresa">
+          <End Role="Empresas" Type="Self.Empresa" Multiplicity="*" />
+          <End Role="SectoresProductivos" Type="Self.SectoresProductivo" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="TalentoTECEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CarrerasProfesionales" EntityType="Self.CarrerasProfesionale" />
+          <EntitySet Name="CoordinadoresEscuelas" EntityType="Self.CoordinadoresEscuela" />
+          <EntitySet Name="Empresas" EntityType="Self.Empresa" />
+          <EntitySet Name="OfertasLaborales" EntityType="Self.OfertasLaborale" />
+          <EntitySet Name="Paises" EntityType="Self.Pais" />
+          <EntitySet Name="SectoresProductivos" EntityType="Self.SectoresProductivo" />
+          <EntitySet Name="TipoMonedas" EntityType="Self.TipoMoneda" />
+          <EntitySet Name="TipoOfertas" EntityType="Self.TipoOferta" />
+          <EntitySet Name="AplicanteXOfertas" EntityType="Self.AplicanteXOferta" />
+          <EntitySet Name="CuentasUsuarios" EntityType="Self.CuentasUsuario" />
+          <AssociationSet Name="FK_CuentasUsuarios_Empresas" Association="Self.FK_CuentasUsuarios_Empresas">
+            <End Role="Empresas" EntitySet="Empresas" />
+            <End Role="CuentasUsuarios" EntitySet="CuentasUsuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empresas_Paises" Association="Self.FK_Empresas_Paises">
+            <End Role="Paises" EntitySet="Paises" />
+            <End Role="Empresas" EntitySet="Empresas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OfertasLaborales_Empresas1" Association="Self.FK_OfertasLaborales_Empresas1">
+            <End Role="Empresas" EntitySet="Empresas" />
+            <End Role="OfertasLaborales" EntitySet="OfertasLaborales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AplicanteXOferta_OfertasLaborales" Association="Self.FK_AplicanteXOferta_OfertasLaborales">
+            <End Role="OfertasLaborales" EntitySet="OfertasLaborales" />
+            <End Role="AplicanteXOferta" EntitySet="AplicanteXOfertas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OfertasLaborales_TipoMoneda" Association="Self.FK_OfertasLaborales_TipoMoneda">
+            <End Role="TipoMoneda" EntitySet="TipoMonedas" />
+            <End Role="OfertasLaborales" EntitySet="OfertasLaborales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OfertasLaborales_TipoOferta" Association="Self.FK_OfertasLaborales_TipoOferta">
+            <End Role="TipoOferta" EntitySet="TipoOfertas" />
+            <End Role="OfertasLaborales" EntitySet="OfertasLaborales" />
+          </AssociationSet>
+          <AssociationSet Name="CarreraProfesionalXOferta" Association="Self.CarreraProfesionalXOferta">
+            <End Role="CarrerasProfesionales" EntitySet="CarrerasProfesionales" />
+            <End Role="OfertasLaborales" EntitySet="OfertasLaborales" />
+          </AssociationSet>
+          <AssociationSet Name="SectorProductivoXEmpresa" Association="Self.SectorProductivoXEmpresa">
+            <End Role="Empresas" EntitySet="Empresas" />
+            <End Role="SectoresProductivos" EntitySet="SectoresProductivos" />
+          </AssociationSet>
+          <FunctionImport Name="ActualizarEmpresa" ReturnType="Collection(Int32)">
+            <Parameter Name="IDEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="nombreEmpresa" Mode="In" Type="String" />
+            <Parameter Name="cedulaJuridica" Mode="In" Type="String" />
+            <Parameter Name="direccion" Mode="In" Type="String" />
+            <Parameter Name="provincia" Mode="In" Type="String" />
+            <Parameter Name="nombrePais" Mode="In" Type="String" />
+            <Parameter Name="telefonoEmpresa" Mode="In" Type="String" />
+            <Parameter Name="emailEmpresa" Mode="In" Type="String" />
+            <Parameter Name="URL_Empresa" Mode="In" Type="String" />
+            <Parameter Name="nombreContactoEmpresa" Mode="In" Type="String" />
+            <Parameter Name="emailContacto" Mode="In" Type="String" />
+            <Parameter Name="puestoContacto" Mode="In" Type="String" />
+            <Parameter Name="telefonoContacto" Mode="In" Type="String" />
+            <Parameter Name="descripcionActividades" Mode="In" Type="String" />
+            <Parameter Name="nombreUsuario" Mode="In" Type="String" />
+            <Parameter Name="passwordUsuario" Mode="In" Type="String" />
+            <Parameter Name="nombreSectores" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Insertar_Empresa" ReturnType="Collection(Int32)">
+            <Parameter Name="nombreEmpresa" Mode="In" Type="String" />
+            <Parameter Name="cedulaJuridica" Mode="In" Type="String" />
+            <Parameter Name="direccion" Mode="In" Type="String" />
+            <Parameter Name="provincia" Mode="In" Type="String" />
+            <Parameter Name="nombrePais" Mode="In" Type="String" />
+            <Parameter Name="telefonoEmpresa" Mode="In" Type="String" />
+            <Parameter Name="emailEmpresa" Mode="In" Type="String" />
+            <Parameter Name="URL_Empresa" Mode="In" Type="String" />
+            <Parameter Name="nombreContactoEmpresa" Mode="In" Type="String" />
+            <Parameter Name="emailContacto" Mode="In" Type="String" />
+            <Parameter Name="puestoContacto" Mode="In" Type="String" />
+            <Parameter Name="telefonoContacto" Mode="In" Type="String" />
+            <Parameter Name="descripcionActividades" Mode="In" Type="String" />
+            <Parameter Name="nombreUsuario" Mode="In" Type="String" />
+            <Parameter Name="passwordUsuario" Mode="In" Type="String" />
+            <Parameter Name="nombreSectores" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Insertar_OfertasLaborales" ReturnType="Collection(Int32)">
+            <Parameter Name="IDEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="nombrePuesto" Mode="In" Type="String" />
+            <Parameter Name="descripcionPuesto" Mode="In" Type="String" />
+            <Parameter Name="RequisitosPuesto" Mode="In" Type="String" />
+            <Parameter Name="montoSalario" Mode="In" Type="Double" />
+            <Parameter Name="nombreTipoMoneda" Mode="In" Type="String" />
+            <Parameter Name="fechaInicioOferta" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaFinalOferta" Mode="In" Type="DateTime" />
+            <Parameter Name="nombreTipoOferta" Mode="In" Type="String" />
+            <Parameter Name="nombreContacto" Mode="In" Type="String" />
+            <Parameter Name="emailContacto" Mode="In" Type="String" />
+            <Parameter Name="telefonoContacto" Mode="In" Type="String" />
+            <Parameter Name="estadoOferta" Mode="In" Type="String" />
+            <Parameter Name="estadoConfidencialidad" Mode="In" Type="String" />
+            <Parameter Name="cantidadPlazas" Mode="In" Type="Int32" />
+            <Parameter Name="carrerasProfesionales" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ObtenerDatosEmpresa" ReturnType="Collection(TalentoTECModel.ObtenerDatosEmpresa_Result)">
+            <Parameter Name="IDEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ObtenerIDCarreraProfesional" ReturnType="Collection(Int32)">
+            <Parameter Name="nombreCarrera" Mode="In" Type="String" />
+            <Parameter Name="nombreEspecialidad" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ObtenerIDPais" ReturnType="Collection(Int32)">
+            <Parameter Name="nombrePais" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ObtenerIDSectorProductivo" ReturnType="Collection(Int32)">
+            <Parameter Name="nombreSectorProductivo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ObtenerIDTipoMoneda" ReturnType="Collection(Int32)">
+            <Parameter Name="nombreMoneda" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ObtenerIDTipoOferta" ReturnType="Collection(Int32)">
+            <Parameter Name="nombreOferta" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ObtenerListaCarreras" ReturnType="Collection(String)" />
+          <FunctionImport Name="ObtenerListaCoordinadoresXEscuela" ReturnType="Collection(TalentoTECModel.ObtenerListaCoordinadoresXEscuela_Result)">
+            <Parameter Name="nombreEscuela" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ObtenerListaEscuelas" ReturnType="Collection(String)" />
+          <FunctionImport Name="ObtenerListaEspecialidades" ReturnType="Collection(String)">
+            <Parameter Name="nombreCarrera" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ObtenerListaSectoresProductivos" ReturnType="Collection(String)" />
+          <FunctionImport Name="ObtenerNombreUsuario" ReturnType="Collection(String)">
+            <Parameter Name="ID_Usuario" Mode="In" Type="Int32" />
+            <Parameter Name="TipoCuenta" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Verificacion_Login" ReturnType="Collection(TalentoTECModel.Verificacion_Login_Result)">
+            <Parameter Name="Nombre_Usuario" Mode="In" Type="String" />
+            <Parameter Name="Password_Usuario" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="ObtenerDatosEmpresa_Result">
+          <Property Type="String" Name="NombreEmpresa" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CedulaJuridica" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Direccion" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="PROVINCIA_EMPRESA" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Pais" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TelefonoEmpresa" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="EmailEmpresa" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="URL" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="NombreContacto" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EmailContacto" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="CargoContacto" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TelefonoContacto" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="DescripcionActividades" Nullable="false" MaxLength="1024" />
+          <Property Type="String" Name="Sectores" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Usuario" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Contrasena" Nullable="false" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="ObtenerListaCoordinadoresXEscuela_Result">
+          <Property Type="String" Name="NombreCoordinador" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EmailCoordinador" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="TelefonoCoordinador" Nullable="false" MaxLength="15" />
+        </ComplexType>
+        <ComplexType Name="Verificacion_Login_Result">
+          <Property Type="Int32" Name="ID_Usuario" Nullable="false" />
+          <Property Type="String" Name="Tipo_Cuenta" Nullable="false" MaxLength="11" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TalentoTECModelStoreContainer" CdmEntityContainer="TalentoTECEntities">
+          <EntitySetMapping Name="CarrerasProfesionales">
+            <EntityTypeMapping TypeName="TalentoTECModel.CarrerasProfesionale">
+              <MappingFragment StoreEntitySet="CarrerasProfesionales">
+                <ScalarProperty Name="ID_CARRERA" ColumnName="ID_CARRERA" />
+                <ScalarProperty Name="NOMBRE_CARRERA" ColumnName="NOMBRE_CARRERA" />
+                <ScalarProperty Name="NOMBRE_ESPECIALIDAD" ColumnName="NOMBRE_ESPECIALIDAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CoordinadoresEscuelas">
+            <EntityTypeMapping TypeName="TalentoTECModel.CoordinadoresEscuela">
+              <MappingFragment StoreEntitySet="CoordinadoresEscuelas">
+                <ScalarProperty Name="ID_ESCUELA" ColumnName="ID_ESCUELA" />
+                <ScalarProperty Name="NOMBRE_ESCUELA" ColumnName="NOMBRE_ESCUELA" />
+                <ScalarProperty Name="NOMBRE_COORDINADOR" ColumnName="NOMBRE_COORDINADOR" />
+                <ScalarProperty Name="EMAIL_COORDINADOR" ColumnName="EMAIL_COORDINADOR" />
+                <ScalarProperty Name="TELEFONO_COORDINADOR" ColumnName="TELEFONO_COORDINADOR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empresas">
+            <EntityTypeMapping TypeName="TalentoTECModel.Empresa">
+              <MappingFragment StoreEntitySet="Empresas">
+                <ScalarProperty Name="ID_EMPRESA" ColumnName="ID_EMPRESA" />
+                <ScalarProperty Name="NOMBRE_EMPRESA" ColumnName="NOMBRE_EMPRESA" />
+                <ScalarProperty Name="CEDULA_JURIDICA_EMPRESA" ColumnName="CEDULA_JURIDICA_EMPRESA" />
+                <ScalarProperty Name="DIRECCION_EMPRESA" ColumnName="DIRECCION_EMPRESA" />
+                <ScalarProperty Name="PROVINCIA_EMPRESA" ColumnName="PROVINCIA_EMPRESA" />
+                <ScalarProperty Name="FK_ID_PAIS" ColumnName="FK_ID_PAIS" />
+                <ScalarProperty Name="TELEFONO_EMPRESA" ColumnName="TELEFONO_EMPRESA" />
+                <ScalarProperty Name="EMAIL_EMPRESA" ColumnName="EMAIL_EMPRESA" />
+                <ScalarProperty Name="DIRECCION_WEB_EMPRESA" ColumnName="DIRECCION_WEB_EMPRESA" />
+                <ScalarProperty Name="NOMBRE_CONTACTO_EMPRESA" ColumnName="NOMBRE_CONTACTO_EMPRESA" />
+                <ScalarProperty Name="EMAIL_CONTACTO_EMPRESA" ColumnName="EMAIL_CONTACTO_EMPRESA" />
+                <ScalarProperty Name="CARGO_CONTACTO_EMPRESA" ColumnName="CARGO_CONTACTO_EMPRESA" />
+                <ScalarProperty Name="TELEFONO_CONTACTO_EMPRESA" ColumnName="TELEFONO_CONTACTO_EMPRESA" />
+                <ScalarProperty Name="DESC_ACTIVIDADES_EMPRESA" ColumnName="DESC_ACTIVIDADES_EMPRESA" />
+                <ScalarProperty Name="ESTADO_EMPRESA" ColumnName="ESTADO_EMPRESA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OfertasLaborales">
+            <EntityTypeMapping TypeName="TalentoTECModel.OfertasLaborale">
+              <MappingFragment StoreEntitySet="OfertasLaborales">
+                <ScalarProperty Name="ID_OFERTA" ColumnName="ID_OFERTA" />
+                <ScalarProperty Name="FK_ID_EMPRESA" ColumnName="FK_ID_EMPRESA" />
+                <ScalarProperty Name="NOMBRE_PUESTO" ColumnName="NOMBRE_PUESTO" />
+                <ScalarProperty Name="DESCRIPCION_PUESTO" ColumnName="DESCRIPCION_PUESTO" />
+                <ScalarProperty Name="REQUISITOS_PUESTO" ColumnName="REQUISITOS_PUESTO" />
+                <ScalarProperty Name="MONTO_SALARIO" ColumnName="MONTO_SALARIO" />
+                <ScalarProperty Name="FK_ID_TIPO_MONEDA" ColumnName="FK_ID_TIPO_MONEDA" />
+                <ScalarProperty Name="FECHA_INICIO_OFERTA" ColumnName="FECHA_INICIO_OFERTA" />
+                <ScalarProperty Name="FECHA_FINAL_OFERTA" ColumnName="FECHA_FINAL_OFERTA" />
+                <ScalarProperty Name="FK_ID_TIPO_OFERTA" ColumnName="FK_ID_TIPO_OFERTA" />
+                <ScalarProperty Name="NOMBRE_CONTACTO_OFERTA" ColumnName="NOMBRE_CONTACTO_OFERTA" />
+                <ScalarProperty Name="EMAIL_CONTACTO_OFERTA" ColumnName="EMAIL_CONTACTO_OFERTA" />
+                <ScalarProperty Name="TELEFONO_CONTACTO_EMPRESA" ColumnName="TELEFONO_CONTACTO_EMPRESA" />
+                <ScalarProperty Name="ESTADO_OFERTA" ColumnName="ESTADO_OFERTA" />
+                <ScalarProperty Name="ESTADO_CONFIDENCIALIDAD_OFERTA" ColumnName="ESTADO_CONFIDENCIALIDAD_OFERTA" />
+                <ScalarProperty Name="CANTIDAD_PLAZAS" ColumnName="CANTIDAD_PLAZAS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paises">
+            <EntityTypeMapping TypeName="TalentoTECModel.Pais">
+              <MappingFragment StoreEntitySet="Paises">
+                <ScalarProperty Name="ID_PAIS" ColumnName="ID_PAIS" />
+                <ScalarProperty Name="NOMBRE_PAIS" ColumnName="NOMBRE_PAIS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SectoresProductivos">
+            <EntityTypeMapping TypeName="TalentoTECModel.SectoresProductivo">
+              <MappingFragment StoreEntitySet="SectoresProductivos">
+                <ScalarProperty Name="ID_SECTOR_PRODUCTIVO" ColumnName="ID_SECTOR_PRODUCTIVO" />
+                <ScalarProperty Name="NOMBRE_SECTOR_PRODUCTIVO" ColumnName="NOMBRE_SECTOR_PRODUCTIVO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoMonedas">
+            <EntityTypeMapping TypeName="TalentoTECModel.TipoMoneda">
+              <MappingFragment StoreEntitySet="TipoMoneda">
+                <ScalarProperty Name="ID_TIPO_MONEDA" ColumnName="ID_TIPO_MONEDA" />
+                <ScalarProperty Name="NOMBRE_TIPO_MONEDA" ColumnName="NOMBRE_TIPO_MONEDA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoOfertas">
+            <EntityTypeMapping TypeName="TalentoTECModel.TipoOferta">
+              <MappingFragment StoreEntitySet="TipoOferta">
+                <ScalarProperty Name="ID_TIPO_OFERTA" ColumnName="ID_TIPO_OFERTA" />
+                <ScalarProperty Name="NOMBRE_TIPO_OFERTA" ColumnName="NOMBRE_TIPO_OFERTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AplicanteXOfertas">
+            <EntityTypeMapping TypeName="TalentoTECModel.AplicanteXOferta">
+              <MappingFragment StoreEntitySet="AplicanteXOferta">
+                <ScalarProperty Name="FK_ID_OFERTA" ColumnName="FK_ID_OFERTA" />
+                <ScalarProperty Name="FK_ID_APLICANTE" ColumnName="FK_ID_APLICANTE" />
+                <ScalarProperty Name="FECHA_APLICACION" ColumnName="FECHA_APLICACION" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CuentasUsuarios">
+            <EntityTypeMapping TypeName="TalentoTECModel.CuentasUsuario">
+              <MappingFragment StoreEntitySet="CuentasUsuarios">
+                <ScalarProperty Name="FK_ID_USUARIO" ColumnName="FK_ID_USUARIO" />
+                <ScalarProperty Name="NOMBRE_USUARIO" ColumnName="NOMBRE_USUARIO" />
+                <ScalarProperty Name="PASSWORD_USUARIO" ColumnName="PASSWORD_USUARIO" />
+                <ScalarProperty Name="TIPO_CUENTA" ColumnName="TIPO_CUENTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CarreraProfesionalXOferta" TypeName="TalentoTECModel.CarreraProfesionalXOferta" StoreEntitySet="CarreraProfesionalXOferta">
+            <EndProperty Name="CarrerasProfesionales">
+              <ScalarProperty Name="ID_CARRERA" ColumnName="FK_ID_CARRERA" />
+            </EndProperty>
+            <EndProperty Name="OfertasLaborales">
+              <ScalarProperty Name="ID_OFERTA" ColumnName="FK_ID_OFERTA" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SectorProductivoXEmpresa" TypeName="TalentoTECModel.SectorProductivoXEmpresa" StoreEntitySet="SectorProductivoXEmpresa">
+            <EndProperty Name="Empresas">
+              <ScalarProperty Name="ID_EMPRESA" ColumnName="FK_ID_EMPRESA" />
+            </EndProperty>
+            <EndProperty Name="SectoresProductivos">
+              <ScalarProperty Name="ID_SECTOR_PRODUCTIVO" ColumnName="FK_ID_SECTOR_PRODUCTIVO" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="ActualizarEmpresa" FunctionName="TalentoTECModel.Store.ActualizarEmpresa" />
+          <FunctionImportMapping FunctionImportName="Insertar_Empresa" FunctionName="TalentoTECModel.Store.Insertar_Empresa" />
+          <FunctionImportMapping FunctionImportName="Insertar_OfertasLaborales" FunctionName="TalentoTECModel.Store.Insertar_OfertasLaborales" />
+          <FunctionImportMapping FunctionImportName="ObtenerDatosEmpresa" FunctionName="TalentoTECModel.Store.ObtenerDatosEmpresa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TalentoTECModel.ObtenerDatosEmpresa_Result">
+                <ScalarProperty Name="NombreEmpresa" ColumnName="NombreEmpresa" />
+                <ScalarProperty Name="CedulaJuridica" ColumnName="CedulaJuridica" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="PROVINCIA_EMPRESA" ColumnName="PROVINCIA_EMPRESA" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="TelefonoEmpresa" ColumnName="TelefonoEmpresa" />
+                <ScalarProperty Name="EmailEmpresa" ColumnName="EmailEmpresa" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="NombreContacto" ColumnName="NombreContacto" />
+                <ScalarProperty Name="EmailContacto" ColumnName="EmailContacto" />
+                <ScalarProperty Name="CargoContacto" ColumnName="CargoContacto" />
+                <ScalarProperty Name="TelefonoContacto" ColumnName="TelefonoContacto" />
+                <ScalarProperty Name="DescripcionActividades" ColumnName="DescripcionActividades" />
+                <ScalarProperty Name="Sectores" ColumnName="Sectores" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ObtenerIDCarreraProfesional" FunctionName="TalentoTECModel.Store.ObtenerIDCarreraProfesional" />
+          <FunctionImportMapping FunctionImportName="ObtenerIDPais" FunctionName="TalentoTECModel.Store.ObtenerIDPais" />
+          <FunctionImportMapping FunctionImportName="ObtenerIDSectorProductivo" FunctionName="TalentoTECModel.Store.ObtenerIDSectorProductivo" />
+          <FunctionImportMapping FunctionImportName="ObtenerIDTipoMoneda" FunctionName="TalentoTECModel.Store.ObtenerIDTipoMoneda" />
+          <FunctionImportMapping FunctionImportName="ObtenerIDTipoOferta" FunctionName="TalentoTECModel.Store.ObtenerIDTipoOferta" />
+          <FunctionImportMapping FunctionImportName="ObtenerListaCarreras" FunctionName="TalentoTECModel.Store.ObtenerListaCarreras" />
+          <FunctionImportMapping FunctionImportName="ObtenerListaCoordinadoresXEscuela" FunctionName="TalentoTECModel.Store.ObtenerListaCoordinadoresXEscuela">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TalentoTECModel.ObtenerListaCoordinadoresXEscuela_Result">
+                <ScalarProperty Name="NombreCoordinador" ColumnName="NombreCoordinador" />
+                <ScalarProperty Name="EmailCoordinador" ColumnName="EmailCoordinador" />
+                <ScalarProperty Name="TelefonoCoordinador" ColumnName="TelefonoCoordinador" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ObtenerListaEscuelas" FunctionName="TalentoTECModel.Store.ObtenerListaEscuelas" />
+          <FunctionImportMapping FunctionImportName="ObtenerListaEspecialidades" FunctionName="TalentoTECModel.Store.ObtenerListaEspecialidades" />
+          <FunctionImportMapping FunctionImportName="ObtenerListaSectoresProductivos" FunctionName="TalentoTECModel.Store.ObtenerListaSectoresProductivos" />
+          <FunctionImportMapping FunctionImportName="ObtenerNombreUsuario" FunctionName="TalentoTECModel.Store.ObtenerNombreUsuario" />
+          <FunctionImportMapping FunctionImportName="Verificacion_Login" FunctionName="TalentoTECModel.Store.Verificacion_Login">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TalentoTECModel.Verificacion_Login_Result">
+                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+                <ScalarProperty Name="Tipo_Cuenta" ColumnName="Tipo_Cuenta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

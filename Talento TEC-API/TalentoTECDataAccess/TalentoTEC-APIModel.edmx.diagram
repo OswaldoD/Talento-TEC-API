@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e18843b1c10448bba6eae307a97f08f3" Name="Diagram1">
+        <EntityTypeShape EntityType="TalentoTECModel.CarrerasProfesionale" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.CoordinadoresEscuela" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.Empresa" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.OfertasLaborale" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.Pais" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.SectoresProductivo" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.TipoMoneda" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.TipoOferta" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.AplicanteXOferta" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.CuentasUsuario" Width="1.5" PointX="5.25" PointY="12.375" IsExpanded="true" />
+        <AssociationConnector Association="TalentoTECModel.FK_CuentasUsuarios_Empresas" ManuallyRouted="false" />
+        <AssociationConnector Association="TalentoTECModel.FK_Empresas_Paises" ManuallyRouted="false" />
+        <AssociationConnector Association="TalentoTECModel.FK_OfertasLaborales_Empresas1" ManuallyRouted="false" />
+        <AssociationConnector Association="TalentoTECModel.FK_AplicanteXOferta_OfertasLaborales" ManuallyRouted="false" />
+        <AssociationConnector Association="TalentoTECModel.FK_OfertasLaborales_TipoMoneda" ManuallyRouted="false" />
+        <AssociationConnector Association="TalentoTECModel.FK_OfertasLaborales_TipoOferta" ManuallyRouted="false" />
+        <AssociationConnector Association="TalentoTECModel.CarreraProfesionalXOferta" ManuallyRouted="false" />
+        <AssociationConnector Association="TalentoTECModel.SectorProductivoXEmpresa" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

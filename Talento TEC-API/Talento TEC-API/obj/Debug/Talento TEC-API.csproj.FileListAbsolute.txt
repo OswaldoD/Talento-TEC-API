@@ -95,3 +95,8 @@ C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\Talento TEC-API\bi
 C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\Talento TEC-API\bin\roslyn\System.IO.FileSystem.Primitives.dll
 C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\Talento TEC-API\bin\roslyn\vbc.exe.config
 C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\Talento TEC-API\bin\roslyn\vbc.rsp
+C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\Talento TEC-API\bin\Microsoft.Azure.AppService.ApiApps.Service.dll
+C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\Talento TEC-API\bin\Swashbuckle.Core.dll
+C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\Talento TEC-API\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\Talento TEC-API\bin\WebActivatorEx.dll
+C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\Talento TEC-API\bin\System.IdentityModel.Tokens.Jwt.xml

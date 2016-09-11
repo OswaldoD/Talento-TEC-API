@@ -19,6 +19,8 @@ namespace Talento_TEC_API
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
         }
     }
 }

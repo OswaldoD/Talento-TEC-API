@@ -11,6 +11,7 @@ namespace Talento_TEC_API
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();

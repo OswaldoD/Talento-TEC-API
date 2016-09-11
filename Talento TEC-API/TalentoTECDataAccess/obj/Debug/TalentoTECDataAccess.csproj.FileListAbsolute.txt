@@ -1,0 +1,10 @@
+C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\TalentoTECDataAccess\bin\Debug\TalentoTECDataAccess.dll.config
+C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\TalentoTECDataAccess\bin\Debug\TalentoTECDataAccess.dll
+C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\TalentoTECDataAccess\bin\Debug\TalentoTECDataAccess.pdb
+C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\TalentoTECDataAccess\bin\Debug\EntityFramework.dll
+C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\TalentoTECDataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\TalentoTECDataAccess\bin\Debug\EntityFramework.xml
+C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\TalentoTECDataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\TalentoTECDataAccess\obj\Debug\TalentoTECDataAccess.csprojResolveAssemblyReference.cache
+C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\TalentoTECDataAccess\obj\Debug\TalentoTECDataAccess.dll
+C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\TalentoTECDataAccess\obj\Debug\TalentoTECDataAccess.pdb

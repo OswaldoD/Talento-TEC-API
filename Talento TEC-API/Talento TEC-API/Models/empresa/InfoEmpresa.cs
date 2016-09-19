@@ -9,7 +9,7 @@ namespace Talento_TEC_API.Models
     {   /* Clase para que coincida el sp con Json */
         public string nombreEmpresa { get; set; }
 
-        public string cedulaJurídica { get; set; }
+        public string cedulaJuridica { get; set; }
 
         public string direccion { get; set; }
 

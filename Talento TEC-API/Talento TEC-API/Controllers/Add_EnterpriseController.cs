@@ -26,7 +26,7 @@ namespace Talento_TEC_API.Controllers
                     connect.Configuration.ProxyCreationEnabled = false;
 
                     var item = connect.Insertar_Empresa(empresa.nombreEmpresa,
-                                                        empresa.cedulaJurídica,
+                                                        empresa.cedulaJuridica,
                                                         empresa.direccion,
                                                         empresa.provincia,
                                                         empresa.nombrePais,

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TalentoTECModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TalentoTECModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'TalentoTEC.dbo.AplicanteXOferta' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="AplicanteXOferta">
@@ -42,8 +42,8 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.CarreraProfesionalXOferta' no
             <PropertyRef Name="ID_ESCUELA" />
           </Key>
           <Property Name="ID_ESCUELA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NOMBRE_ESCUELA" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="NOMBRE_COORDINADOR" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NOMBRE_ESCUELA" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="NOMBRE_COORDINADOR" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="EMAIL_COORDINADOR" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="TELEFONO_COORDINADOR" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
@@ -304,8 +304,8 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Parameter Name="RequisitosPuesto" Type="varchar" Mode="In" />
           <Parameter Name="montoSalario" Type="float" Mode="In" />
           <Parameter Name="nombreTipoMoneda" Type="varchar" Mode="In" />
-          <Parameter Name="fechaInicioOferta" Type="datetime" Mode="In" />
-          <Parameter Name="fechaFinalOferta" Type="datetime" Mode="In" />
+          <Parameter Name="fechaInicioOferta" Type="varchar" Mode="In" />
+          <Parameter Name="fechaFinalOferta" Type="varchar" Mode="In" />
           <Parameter Name="nombreTipoOferta" Type="varchar" Mode="In" />
           <Parameter Name="nombreContacto" Type="varchar" Mode="In" />
           <Parameter Name="emailContacto" Type="varchar" Mode="In" />
@@ -429,8 +429,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <End Role="SectorProductivoXEmpresa" EntitySet="SectorProductivoXEmpresa" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TalentoTECModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -448,8 +447,8 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <PropertyRef Name="ID_ESCUELA" />
           </Key>
           <Property Name="ID_ESCUELA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NOMBRE_ESCUELA" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NOMBRE_COORDINADOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE_ESCUELA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE_COORDINADOR" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EMAIL_COORDINADOR" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TELEFONO_COORDINADOR" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
@@ -728,8 +727,8 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <Parameter Name="RequisitosPuesto" Mode="In" Type="String" />
             <Parameter Name="montoSalario" Mode="In" Type="Double" />
             <Parameter Name="nombreTipoMoneda" Mode="In" Type="String" />
-            <Parameter Name="fechaInicioOferta" Mode="In" Type="DateTime" />
-            <Parameter Name="fechaFinalOferta" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaInicioOferta" Mode="In" Type="String" />
+            <Parameter Name="fechaFinalOferta" Mode="In" Type="String" />
             <Parameter Name="nombreTipoOferta" Mode="In" Type="String" />
             <Parameter Name="nombreContacto" Mode="In" Type="String" />
             <Parameter Name="emailContacto" Mode="In" Type="String" />
@@ -740,31 +739,31 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <Parameter Name="carrerasProfesionales" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ObtenerDatosEmpresa" ReturnType="Collection(TalentoTECModel.ObtenerDatosEmpresa_Result)">
-            <Parameter Name="IDEmpresa" Mode="In" Type="Int32" />
+          <Parameter Name="IDEmpresa" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ObtenerIDCarreraProfesional" ReturnType="Collection(Int32)">
             <Parameter Name="nombreCarrera" Mode="In" Type="String" />
             <Parameter Name="nombreEspecialidad" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ObtenerIDPais" ReturnType="Collection(Int32)">
-            <Parameter Name="nombrePais" Mode="In" Type="String" />
+          <Parameter Name="nombrePais" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ObtenerIDSectorProductivo" ReturnType="Collection(Int32)">
-            <Parameter Name="nombreSectorProductivo" Mode="In" Type="String" />
+          <Parameter Name="nombreSectorProductivo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ObtenerIDTipoMoneda" ReturnType="Collection(Int32)">
-            <Parameter Name="nombreMoneda" Mode="In" Type="String" />
+          <Parameter Name="nombreMoneda" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ObtenerIDTipoOferta" ReturnType="Collection(Int32)">
-            <Parameter Name="nombreOferta" Mode="In" Type="String" />
+          <Parameter Name="nombreOferta" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ObtenerListaCarreras" ReturnType="Collection(String)" />
           <FunctionImport Name="ObtenerListaCoordinadoresXEscuela" ReturnType="Collection(TalentoTECModel.ObtenerListaCoordinadoresXEscuela_Result)">
-            <Parameter Name="nombreEscuela" Mode="In" Type="String" />
+          <Parameter Name="nombreEscuela" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ObtenerListaEscuelas" ReturnType="Collection(String)" />
           <FunctionImport Name="ObtenerListaEspecialidades" ReturnType="Collection(String)">
-            <Parameter Name="nombreCarrera" Mode="In" Type="String" />
+          <Parameter Name="nombreCarrera" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ObtenerListaSectoresProductivos" ReturnType="Collection(String)" />
           <FunctionImport Name="ObtenerNombreUsuario" ReturnType="Collection(TalentoTECModel.ObtenerNombreUsuario_Result)">

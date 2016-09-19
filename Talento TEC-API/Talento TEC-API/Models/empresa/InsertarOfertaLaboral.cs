@@ -13,8 +13,8 @@ namespace Talento_TEC_API.Models.empresa
         public string RequisitosPuesto { get; set; }
         public float montoSalario { get; set; }
         public string nombreTipoMoneda { get; set; }
-        public DateTime fechaInicioOferta { get; set; }
-        public DateTime fechaFinalOferta { get; set; }
+        public string fechaInicioOferta { get; set; }
+        public string fechaFinalOferta { get; set; }
         public string nombreTipoOferta { get; set; }
         public string nombreContacto { get; set; }
         public string emailContacto { get; set; }

@@ -14,8 +14,8 @@
       <PropertyRef Name="ID_ESCUELA" />
     </Key>
     <Property Name="ID_ESCUELA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="NOMBRE_ESCUELA" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="NOMBRE_COORDINADOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NOMBRE_ESCUELA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NOMBRE_COORDINADOR" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="EMAIL_COORDINADOR" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="TELEFONO_COORDINADOR" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
@@ -294,8 +294,8 @@
       <Parameter Name="RequisitosPuesto" Mode="In" Type="String" />
       <Parameter Name="montoSalario" Mode="In" Type="Double" />
       <Parameter Name="nombreTipoMoneda" Mode="In" Type="String" />
-      <Parameter Name="fechaInicioOferta" Mode="In" Type="DateTime" />
-      <Parameter Name="fechaFinalOferta" Mode="In" Type="DateTime" />
+      <Parameter Name="fechaInicioOferta" Mode="In" Type="String" />
+      <Parameter Name="fechaFinalOferta" Mode="In" Type="String" />
       <Parameter Name="nombreTipoOferta" Mode="In" Type="String" />
       <Parameter Name="nombreContacto" Mode="In" Type="String" />
       <Parameter Name="emailContacto" Mode="In" Type="String" />

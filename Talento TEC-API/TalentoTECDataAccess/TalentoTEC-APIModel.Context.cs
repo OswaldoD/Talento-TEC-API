@@ -180,7 +180,7 @@ namespace TalentoTECDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Insertar_Empresa", nombreEmpresaParameter, cedulaJuridicaParameter, direccionParameter, provinciaParameter, nombrePaisParameter, telefonoEmpresaParameter, emailEmpresaParameter, uRL_EmpresaParameter, nombreContactoEmpresaParameter, emailContactoParameter, puestoContactoParameter, telefonoContactoParameter, descripcionActividadesParameter, nombreUsuarioParameter, passwordUsuarioParameter, nombreSectoresParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> Insertar_OfertasLaborales(Nullable<int> iDEmpresa, string nombrePuesto, string descripcionPuesto, string requisitosPuesto, Nullable<double> montoSalario, string nombreTipoMoneda, Nullable<System.DateTime> fechaInicioOferta, Nullable<System.DateTime> fechaFinalOferta, string nombreTipoOferta, string nombreContacto, string emailContacto, string telefonoContacto, string estadoOferta, string estadoConfidencialidad, Nullable<int> cantidadPlazas, string carrerasProfesionales)
+        public virtual ObjectResult<Nullable<int>> Insertar_OfertasLaborales(Nullable<int> iDEmpresa, string nombrePuesto, string descripcionPuesto, string requisitosPuesto, Nullable<double> montoSalario, string nombreTipoMoneda, string fechaInicioOferta, string fechaFinalOferta, string nombreTipoOferta, string nombreContacto, string emailContacto, string telefonoContacto, string estadoOferta, string estadoConfidencialidad, Nullable<int> cantidadPlazas, string carrerasProfesionales)
         {
             var iDEmpresaParameter = iDEmpresa.HasValue ?
                 new ObjectParameter("IDEmpresa", iDEmpresa) :
@@ -206,13 +206,13 @@ namespace TalentoTECDataAccess
                 new ObjectParameter("nombreTipoMoneda", nombreTipoMoneda) :
                 new ObjectParameter("nombreTipoMoneda", typeof(string));
     
-            var fechaInicioOfertaParameter = fechaInicioOferta.HasValue ?
+            var fechaInicioOfertaParameter = fechaInicioOferta != null ?
                 new ObjectParameter("fechaInicioOferta", fechaInicioOferta) :
-                new ObjectParameter("fechaInicioOferta", typeof(System.DateTime));
+                new ObjectParameter("fechaInicioOferta", typeof(string));
     
-            var fechaFinalOfertaParameter = fechaFinalOferta.HasValue ?
+            var fechaFinalOfertaParameter = fechaFinalOferta != null ?
                 new ObjectParameter("fechaFinalOferta", fechaFinalOferta) :
-                new ObjectParameter("fechaFinalOferta", typeof(System.DateTime));
+                new ObjectParameter("fechaFinalOferta", typeof(string));
     
             var nombreTipoOfertaParameter = nombreTipoOferta != null ?
                 new ObjectParameter("nombreTipoOferta", nombreTipoOferta) :

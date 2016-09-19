@@ -37,8 +37,8 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.CarreraProfesionalXOferta' no
       <PropertyRef Name="ID_ESCUELA" />
     </Key>
     <Property Name="ID_ESCUELA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="NOMBRE_ESCUELA" Type="varchar" MaxLength="40" Nullable="false" />
-    <Property Name="NOMBRE_COORDINADOR" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="NOMBRE_ESCUELA" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="NOMBRE_COORDINADOR" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="EMAIL_COORDINADOR" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="TELEFONO_COORDINADOR" Type="varchar" MaxLength="15" Nullable="false" />
   </EntityType>
@@ -299,8 +299,8 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
     <Parameter Name="RequisitosPuesto" Type="varchar" Mode="In" />
     <Parameter Name="montoSalario" Type="float" Mode="In" />
     <Parameter Name="nombreTipoMoneda" Type="varchar" Mode="In" />
-    <Parameter Name="fechaInicioOferta" Type="datetime" Mode="In" />
-    <Parameter Name="fechaFinalOferta" Type="datetime" Mode="In" />
+    <Parameter Name="fechaInicioOferta" Type="varchar" Mode="In" />
+    <Parameter Name="fechaFinalOferta" Type="varchar" Mode="In" />
     <Parameter Name="nombreTipoOferta" Type="varchar" Mode="In" />
     <Parameter Name="nombreContacto" Type="varchar" Mode="In" />
     <Parameter Name="emailContacto" Type="varchar" Mode="In" />

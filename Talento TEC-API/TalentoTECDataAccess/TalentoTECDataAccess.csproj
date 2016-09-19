@@ -72,6 +72,9 @@
     <Compile Include="ObtenerListaCoordinadoresXEscuela_Result.cs">
       <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ObtenerNombreUsuario_Result.cs">
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="OfertasLaborale.cs">
       <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
@@ -108,17 +111,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
     <EntityDeploy Include="TalentoTEC-APIModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TalentoTEC-APIModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
-    <None Include="packages.config" />
     <None Include="TalentoTEC-APIModel.edmx.diagram">
       <DependentUpon>TalentoTEC-APIModel.edmx</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TalentoTEC-APIModel.Context.tt">
@@ -131,9 +135,6 @@
       <DependentUpon>TalentoTEC-APIModel.edmx</DependentUpon>
       <LastGenOutput>TalentoTEC-APIModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

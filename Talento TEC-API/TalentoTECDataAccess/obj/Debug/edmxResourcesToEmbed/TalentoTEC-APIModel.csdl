@@ -333,7 +333,7 @@
       <Parameter Name="nombreCarrera" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="ObtenerListaSectoresProductivos" ReturnType="Collection(String)" />
-    <FunctionImport Name="ObtenerNombreUsuario" ReturnType="Collection(String)">
+    <FunctionImport Name="ObtenerNombreUsuario" ReturnType="Collection(TalentoTECModel.ObtenerNombreUsuario_Result)">
       <Parameter Name="ID_Usuario" Mode="In" Type="Int32" />
       <Parameter Name="TipoCuenta" Mode="In" Type="String" />
     </FunctionImport>
@@ -364,6 +364,10 @@
     <Property Type="String" Name="NombreCoordinador" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="EmailCoordinador" Nullable="false" MaxLength="100" />
     <Property Type="String" Name="TelefonoCoordinador" Nullable="false" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="ObtenerNombreUsuario_Result">
+    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="String" Name="nombreEmpresa" Nullable="false" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="Verificacion_Login_Result">
     <Property Type="Int32" Name="ID_Usuario" Nullable="false" />

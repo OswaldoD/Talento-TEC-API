@@ -340,7 +340,7 @@ namespace TalentoTECDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("ObtenerListaSectoresProductivos");
         }
     
-        public virtual ObjectResult<string> ObtenerNombreUsuario(Nullable<int> iD_Usuario, string tipoCuenta)
+        public virtual ObjectResult<ObtenerNombreUsuario_Result> ObtenerNombreUsuario(Nullable<int> iD_Usuario, string tipoCuenta)
         {
             var iD_UsuarioParameter = iD_Usuario.HasValue ?
                 new ObjectParameter("ID_Usuario", iD_Usuario) :
@@ -350,7 +350,7 @@ namespace TalentoTECDataAccess
                 new ObjectParameter("TipoCuenta", tipoCuenta) :
                 new ObjectParameter("TipoCuenta", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("ObtenerNombreUsuario", iD_UsuarioParameter, tipoCuentaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerNombreUsuario_Result>("ObtenerNombreUsuario", iD_UsuarioParameter, tipoCuentaParameter);
         }
     
         public virtual ObjectResult<Verificacion_Login_Result> Verificacion_Login(string nombre_Usuario, string password_Usuario)

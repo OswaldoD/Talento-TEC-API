@@ -175,7 +175,14 @@
     <FunctionImportMapping FunctionImportName="ObtenerListaEscuelas" FunctionName="TalentoTECModel.Store.ObtenerListaEscuelas" />
     <FunctionImportMapping FunctionImportName="ObtenerListaEspecialidades" FunctionName="TalentoTECModel.Store.ObtenerListaEspecialidades" />
     <FunctionImportMapping FunctionImportName="ObtenerListaSectoresProductivos" FunctionName="TalentoTECModel.Store.ObtenerListaSectoresProductivos" />
-    <FunctionImportMapping FunctionImportName="ObtenerNombreUsuario" FunctionName="TalentoTECModel.Store.ObtenerNombreUsuario" />
+    <FunctionImportMapping FunctionImportName="ObtenerNombreUsuario" FunctionName="TalentoTECModel.Store.ObtenerNombreUsuario">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TalentoTECModel.ObtenerNombreUsuario_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="nombreEmpresa" ColumnName="nombreEmpresa" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="Verificacion_Login" FunctionName="TalentoTECModel.Store.Verificacion_Login">
       <ResultMapping>
         <ComplexTypeMapping TypeName="TalentoTECModel.Verificacion_Login_Result">

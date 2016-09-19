@@ -361,7 +361,7 @@
     <Property Type="String" Name="Contrasena" Nullable="false" MaxLength="30" />
   </ComplexType>
   <ComplexType Name="ObtenerListaCoordinadoresXEscuela_Result">
-    <Property Type="String" Name="NombreCoordinador" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="NombreCoordinador" Nullable="false" MaxLength="100" />
     <Property Type="String" Name="EmailCoordinador" Nullable="false" MaxLength="100" />
     <Property Type="String" Name="TelefonoCoordinador" Nullable="false" MaxLength="15" />
   </ComplexType>

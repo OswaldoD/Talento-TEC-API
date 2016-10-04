@@ -1,6 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="TalentoTECModelStoreContainer" CdmEntityContainer="TalentoTECEntities">
+    <EntitySetMapping Name="Administradors">
+      <EntityTypeMapping TypeName="TalentoTECModel.Administrador">
+        <MappingFragment StoreEntitySet="Administrador">
+          <ScalarProperty Name="ID_ADMINISTRADOR" ColumnName="ID_ADMINISTRADOR" />
+          <ScalarProperty Name="NOMBRE_USUARIO_ADMINISTRADOR" ColumnName="NOMBRE_USUARIO_ADMINISTRADOR" />
+          <ScalarProperty Name="PASSWORD_USUARIO_ADMINISTRADOR" ColumnName="PASSWORD_USUARIO_ADMINISTRADOR" />
+          <ScalarProperty Name="TIPO_CUENTA" ColumnName="TIPO_CUENTA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="CarrerasProfesionales">
       <EntityTypeMapping TypeName="TalentoTECModel.CarrerasProfesionale">
         <MappingFragment StoreEntitySet="CarrerasProfesionales">
@@ -133,8 +143,17 @@
       </EndProperty>
     </AssociationSetMapping>
     <FunctionImportMapping FunctionImportName="ActualizarEmpresa" FunctionName="TalentoTECModel.Store.ActualizarEmpresa" />
+    <FunctionImportMapping FunctionImportName="CambiarEstadoEmpresa" FunctionName="TalentoTECModel.Store.CambiarEstadoEmpresa" />
+    <FunctionImportMapping FunctionImportName="CambiarEstadoOferta" FunctionName="TalentoTECModel.Store.CambiarEstadoOferta" />
     <FunctionImportMapping FunctionImportName="Insertar_Empresa" FunctionName="TalentoTECModel.Store.Insertar_Empresa" />
-    <FunctionImportMapping FunctionImportName="Insertar_OfertasLaborales" FunctionName="TalentoTECModel.Store.Insertar_OfertasLaborales" />
+    <FunctionImportMapping FunctionImportName="Insertar_OfertasLaborales" FunctionName="TalentoTECModel.Store.Insertar_OfertasLaborales">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TalentoTECModel.Insertar_OfertasLaborales_Result">
+          <ScalarProperty Name="FK_ID_OFERTA" ColumnName="FK_ID_OFERTA" />
+          <ScalarProperty Name="FK_ID_CARRERA" ColumnName="FK_ID_CARRERA" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="ObtenerDatosEmpresa" FunctionName="TalentoTECModel.Store.ObtenerDatosEmpresa">
       <ResultMapping>
         <ComplexTypeMapping TypeName="TalentoTECModel.ObtenerDatosEmpresa_Result">
@@ -154,6 +173,14 @@
           <ScalarProperty Name="Sectores" ColumnName="Sectores" />
           <ScalarProperty Name="Usuario" ColumnName="Usuario" />
           <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ObtenerEmpresasXEstado" FunctionName="TalentoTECModel.Store.ObtenerEmpresasXEstado">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TalentoTECModel.ObtenerEmpresasXEstado_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NombreEmpresa" ColumnName="NombreEmpresa" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -183,11 +210,40 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ObtenerOfertasXEmpresa" FunctionName="TalentoTECModel.Store.ObtenerOfertasXEmpresa">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TalentoTECModel.ObtenerOfertasXEmpresa_Result">
+          <ScalarProperty Name="ID_Oferta" ColumnName="ID_Oferta" />
+          <ScalarProperty Name="Nombre_Puesto" ColumnName="Nombre_Puesto" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="Verificacion_Login" FunctionName="TalentoTECModel.Store.Verificacion_Login">
       <ResultMapping>
         <ComplexTypeMapping TypeName="TalentoTECModel.Verificacion_Login_Result">
           <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
           <ScalarProperty Name="Tipo_Cuenta" ColumnName="Tipo_Cuenta" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="VerificarLoginAdministrador" FunctionName="TalentoTECModel.Store.VerificarLoginAdministrador" />
+    <FunctionImportMapping FunctionImportName="ObtenerDatosOfertas" FunctionName="TalentoTECModel.Store.ObtenerDatosOfertas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TalentoTECModel.ObtenerDatosOfertas_Result">
+          <ScalarProperty Name="NombrePuesto" ColumnName="NombrePuesto" />
+          <ScalarProperty Name="DescripcionPuesto" ColumnName="DescripcionPuesto" />
+          <ScalarProperty Name="RequisitosPuesto" ColumnName="RequisitosPuesto" />
+          <ScalarProperty Name="MontoSalario" ColumnName="MontoSalario" />
+          <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+          <ScalarProperty Name="FechaInicioOferta" ColumnName="FechaInicioOferta" />
+          <ScalarProperty Name="FechaFinOferta" ColumnName="FechaFinOferta" />
+          <ScalarProperty Name="TipoOferta" ColumnName="TipoOferta" />
+          <ScalarProperty Name="NombreContacto" ColumnName="NombreContacto" />
+          <ScalarProperty Name="EmailContacto" ColumnName="EmailContacto" />
+          <ScalarProperty Name="TelefonoContacto" ColumnName="TelefonoContacto" />
+          <ScalarProperty Name="EstadoOferta" ColumnName="EstadoOferta" />
+          <ScalarProperty Name="EstadoConfidencialidad" ColumnName="EstadoConfidencialidad" />
+          <ScalarProperty Name="CantidadPlazas" ColumnName="CantidadPlazas" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

@@ -5,23 +5,34 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using TalentoTECDataAccess;
+using Talento_TEC_API.Models.empresa;
 
-
-namespace Talento_TEC_API.Controllers.empresa
+namespace Talento_TEC_API.Controllers
 {
-    public class Get_EnterpriseController : ApiController
+    public class Change_State_OfferController : ApiController
     {
-        public HttpResponseMessage Get(int id)
+        // GET: api/Change_State_Offer
+        public IEnumerable<string> Get()
         {
-            /* Método que obtiene la información de una empresa */
-            /*{"user":"any", "password":"any2"}*/
+            return new string[] { "value1", "value2" };
+        }
+
+        // GET: api/Change_State_Offer/5
+        public string Get(int id)
+        {
+            return "value";
+        }
+
+        // POST: api/Change_State_Offer
+        public HttpResponseMessage Post([FromBody]EstadoOferta parametros)
+        {
             try
             {
                 using (TalentoTECEntities connect = new TalentoTECEntities())
                 {
                     connect.Configuration.ProxyCreationEnabled = false;
 
-                    var item = connect.ObtenerDatosEmpresa(id).ToList(); // cambiar el ""
+                    var item = connect.CambiarEstadoOferta(parametros.IDOferta, parametros.NuevoEstado).ToString();
                     if (item != null)
                     {
                         return Request.CreateResponse(HttpStatusCode.OK, item);
@@ -40,7 +51,16 @@ namespace Talento_TEC_API.Controllers.empresa
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, error);
             }
+        }
 
+        // PUT: api/Change_State_Offer/5
+        public void Put(int id, [FromBody]string value)
+        {
+        }
+
+        // DELETE: api/Change_State_Offer/5
+        public void Delete(int id)
+        {
         }
     }
 }

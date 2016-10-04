@@ -51,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administrador.cs">
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="AplicanteXOferta.cs">
       <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
@@ -66,13 +69,25 @@
     <Compile Include="Empresa.cs">
       <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Insertar_OfertasLaborales_Result.cs">
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ObtenerDatosEmpresa_Result.cs">
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ObtenerDatosOfertas_Result.cs">
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ObtenerEmpresasXEstado_Result.cs">
       <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ObtenerListaCoordinadoresXEscuela_Result.cs">
       <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ObtenerNombreUsuario_Result.cs">
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ObtenerOfertasXEmpresa_Result.cs">
       <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="OfertasLaborale.cs">

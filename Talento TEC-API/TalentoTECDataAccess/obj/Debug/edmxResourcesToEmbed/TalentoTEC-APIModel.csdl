@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="TalentoTECModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Administrador">
+    <Key>
+      <PropertyRef Name="ID_ADMINISTRADOR" />
+    </Key>
+    <Property Name="ID_ADMINISTRADOR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOMBRE_USUARIO_ADMINISTRADOR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PASSWORD_USUARIO_ADMINISTRADOR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TIPO_CUENTA" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
   <EntityType Name="CarrerasProfesionale">
     <Key>
       <PropertyRef Name="ID_CARRERA" />
@@ -52,7 +61,7 @@
     <Property Name="NOMBRE_PUESTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="DESCRIPCION_PUESTO" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="REQUISITOS_PUESTO" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="MONTO_SALARIO" Type="Double" Nullable="false" />
+    <Property Name="MONTO_SALARIO" Type="Int32" Nullable="false" />
     <Property Name="FK_ID_TIPO_MONEDA" Type="Int32" Nullable="false" />
     <Property Name="FECHA_INICIO_OFERTA" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="FECHA_FINAL_OFERTA" Type="DateTime" Nullable="false" Precision="3" />
@@ -208,6 +217,7 @@
     <End Role="SectoresProductivos" Type="Self.SectoresProductivo" Multiplicity="*" />
   </Association>
   <EntityContainer Name="TalentoTECEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Administradors" EntityType="Self.Administrador" />
     <EntitySet Name="CarrerasProfesionales" EntityType="Self.CarrerasProfesionale" />
     <EntitySet Name="CoordinadoresEscuelas" EntityType="Self.CoordinadoresEscuela" />
     <EntitySet Name="Empresas" EntityType="Self.Empresa" />
@@ -269,6 +279,14 @@
       <Parameter Name="passwordUsuario" Mode="In" Type="String" />
       <Parameter Name="nombreSectores" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="CambiarEstadoEmpresa">
+      <Parameter Name="IDEmpresa" Mode="In" Type="Int32" />
+      <Parameter Name="NuevoEstado" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CambiarEstadoOferta">
+      <Parameter Name="IDOferta" Mode="In" Type="Int32" />
+      <Parameter Name="NuevoEstado" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="Insertar_Empresa" ReturnType="Collection(Int32)">
       <Parameter Name="nombreEmpresa" Mode="In" Type="String" />
       <Parameter Name="cedulaJuridica" Mode="In" Type="String" />
@@ -287,15 +305,15 @@
       <Parameter Name="passwordUsuario" Mode="In" Type="String" />
       <Parameter Name="nombreSectores" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="Insertar_OfertasLaborales" ReturnType="Collection(Int32)">
+    <FunctionImport Name="Insertar_OfertasLaborales" ReturnType="Collection(TalentoTECModel.Insertar_OfertasLaborales_Result)">
       <Parameter Name="IDEmpresa" Mode="In" Type="Int32" />
       <Parameter Name="nombrePuesto" Mode="In" Type="String" />
       <Parameter Name="descripcionPuesto" Mode="In" Type="String" />
       <Parameter Name="RequisitosPuesto" Mode="In" Type="String" />
-      <Parameter Name="montoSalario" Mode="In" Type="Double" />
+      <Parameter Name="montoSalario" Mode="In" Type="Int32" />
       <Parameter Name="nombreTipoMoneda" Mode="In" Type="String" />
-      <Parameter Name="fechaInicioOferta" Mode="In" Type="String" />
-      <Parameter Name="fechaFinalOferta" Mode="In" Type="String" />
+      <Parameter Name="fechaInicioOferta" Mode="In" Type="DateTime" />
+      <Parameter Name="fechaFinalOferta" Mode="In" Type="DateTime" />
       <Parameter Name="nombreTipoOferta" Mode="In" Type="String" />
       <Parameter Name="nombreContacto" Mode="In" Type="String" />
       <Parameter Name="emailContacto" Mode="In" Type="String" />
@@ -307,6 +325,9 @@
     </FunctionImport>
     <FunctionImport Name="ObtenerDatosEmpresa" ReturnType="Collection(TalentoTECModel.ObtenerDatosEmpresa_Result)">
       <Parameter Name="IDEmpresa" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ObtenerEmpresasXEstado" ReturnType="Collection(TalentoTECModel.ObtenerEmpresasXEstado_Result)">
+      <Parameter Name="nombreEstado" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="ObtenerIDCarreraProfesional" ReturnType="Collection(Int32)">
       <Parameter Name="nombreCarrera" Mode="In" Type="String" />
@@ -337,11 +358,25 @@
       <Parameter Name="ID_Usuario" Mode="In" Type="Int32" />
       <Parameter Name="TipoCuenta" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="ObtenerOfertasXEmpresa" ReturnType="Collection(TalentoTECModel.ObtenerOfertasXEmpresa_Result)">
+      <Parameter Name="ID_Empresa" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="Verificacion_Login" ReturnType="Collection(TalentoTECModel.Verificacion_Login_Result)">
       <Parameter Name="Nombre_Usuario" Mode="In" Type="String" />
       <Parameter Name="Password_Usuario" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="VerificarLoginAdministrador" ReturnType="Collection(Int32)">
+      <Parameter Name="Nombre_Usuario" Mode="In" Type="String" />
+      <Parameter Name="Password_Usuario" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ObtenerDatosOfertas" ReturnType="Collection(TalentoTECModel.ObtenerDatosOfertas_Result)">
+      <Parameter Name="IDOferta" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="Insertar_OfertasLaborales_Result">
+    <Property Type="Int32" Name="FK_ID_OFERTA" Nullable="false" />
+    <Property Type="Int32" Name="FK_ID_CARRERA" Nullable="false" />
+  </ComplexType>
   <ComplexType Name="ObtenerDatosEmpresa_Result">
     <Property Type="String" Name="NombreEmpresa" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="CedulaJuridica" Nullable="false" MaxLength="100" />
@@ -360,6 +395,10 @@
     <Property Type="String" Name="Usuario" Nullable="false" MaxLength="30" />
     <Property Type="String" Name="Contrasena" Nullable="false" MaxLength="30" />
   </ComplexType>
+  <ComplexType Name="ObtenerEmpresasXEstado_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="NombreEmpresa" Nullable="false" MaxLength="50" />
+  </ComplexType>
   <ComplexType Name="ObtenerListaCoordinadoresXEscuela_Result">
     <Property Type="String" Name="NombreCoordinador" Nullable="false" MaxLength="100" />
     <Property Type="String" Name="EmailCoordinador" Nullable="false" MaxLength="100" />
@@ -369,8 +408,28 @@
     <Property Type="Int32" Name="ID" Nullable="true" />
     <Property Type="String" Name="nombreEmpresa" Nullable="false" MaxLength="50" />
   </ComplexType>
+  <ComplexType Name="ObtenerOfertasXEmpresa_Result">
+    <Property Type="Int32" Name="ID_Oferta" Nullable="false" />
+    <Property Type="String" Name="Nombre_Puesto" Nullable="false" MaxLength="50" />
+  </ComplexType>
   <ComplexType Name="Verificacion_Login_Result">
     <Property Type="Int32" Name="ID_Usuario" Nullable="false" />
     <Property Type="String" Name="Tipo_Cuenta" Nullable="false" MaxLength="11" />
+  </ComplexType>
+  <ComplexType Name="ObtenerDatosOfertas_Result">
+    <Property Type="String" Name="NombrePuesto" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DescripcionPuesto" Nullable="false" MaxLength="1024" />
+    <Property Type="String" Name="RequisitosPuesto" Nullable="false" MaxLength="1024" />
+    <Property Type="Int32" Name="MontoSalario" Nullable="false" />
+    <Property Type="String" Name="Moneda" Nullable="false" MaxLength="20" />
+    <Property Type="DateTime" Name="FechaInicioOferta" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="FechaFinOferta" Nullable="false" Precision="23" />
+    <Property Type="String" Name="TipoOferta" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="NombreContacto" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="EmailContacto" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="TelefonoContacto" Nullable="false" MaxLength="15" />
+    <Property Type="String" Name="EstadoOferta" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="EstadoConfidencialidad" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="CantidadPlazas" Nullable="false" />
   </ComplexType>
 </Schema>

@@ -26,7 +26,7 @@ namespace TalentoTECDataAccess
         public string NOMBRE_PUESTO { get; set; }
         public string DESCRIPCION_PUESTO { get; set; }
         public string REQUISITOS_PUESTO { get; set; }
-        public double MONTO_SALARIO { get; set; }
+        public int MONTO_SALARIO { get; set; }
         public int FK_ID_TIPO_MONEDA { get; set; }
         public System.DateTime FECHA_INICIO_OFERTA { get; set; }
         public System.DateTime FECHA_FINAL_OFERTA { get; set; }

@@ -4,7 +4,16 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TalentoTECModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TalentoTECModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administrador">
+          <Key>
+            <PropertyRef Name="ID_ADMINISTRADOR" />
+          </Key>
+          <Property Name="ID_ADMINISTRADOR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRE_USUARIO_ADMINISTRADOR" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PASSWORD_USUARIO_ADMINISTRADOR" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="TIPO_CUENTA" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'TalentoTEC.dbo.AplicanteXOferta' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="AplicanteXOferta">
@@ -90,7 +99,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.CuentasUsuarios' no tiene def
           <Property Name="NOMBRE_PUESTO" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="DESCRIPCION_PUESTO" Type="varchar" MaxLength="1024" Nullable="false" />
           <Property Name="REQUISITOS_PUESTO" Type="varchar" MaxLength="1024" Nullable="false" />
-          <Property Name="MONTO_SALARIO" Type="float" Nullable="false" />
+          <Property Name="MONTO_SALARIO" Type="int" Nullable="false" />
           <Property Name="FK_ID_TIPO_MONEDA" Type="int" Nullable="false" />
           <Property Name="FECHA_INICIO_OFERTA" Type="datetime" Nullable="false" />
           <Property Name="FECHA_FINAL_OFERTA" Type="datetime" Nullable="false" />
@@ -279,6 +288,14 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Parameter Name="passwordUsuario" Type="varchar" Mode="In" />
           <Parameter Name="nombreSectores" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="CambiarEstadoEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDEmpresa" Type="int" Mode="In" />
+          <Parameter Name="NuevoEstado" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="CambiarEstadoOferta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDOferta" Type="int" Mode="In" />
+          <Parameter Name="NuevoEstado" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="Insertar_Empresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nombreEmpresa" Type="varchar" Mode="In" />
           <Parameter Name="cedulaJuridica" Type="varchar" Mode="In" />
@@ -302,10 +319,10 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Parameter Name="nombrePuesto" Type="varchar" Mode="In" />
           <Parameter Name="descripcionPuesto" Type="varchar" Mode="In" />
           <Parameter Name="RequisitosPuesto" Type="varchar" Mode="In" />
-          <Parameter Name="montoSalario" Type="float" Mode="In" />
+          <Parameter Name="montoSalario" Type="int" Mode="In" />
           <Parameter Name="nombreTipoMoneda" Type="varchar" Mode="In" />
-          <Parameter Name="fechaInicioOferta" Type="varchar" Mode="In" />
-          <Parameter Name="fechaFinalOferta" Type="varchar" Mode="In" />
+          <Parameter Name="fechaInicioOferta" Type="datetime" Mode="In" />
+          <Parameter Name="fechaFinalOferta" Type="datetime" Mode="In" />
           <Parameter Name="nombreTipoOferta" Type="varchar" Mode="In" />
           <Parameter Name="nombreContacto" Type="varchar" Mode="In" />
           <Parameter Name="emailContacto" Type="varchar" Mode="In" />
@@ -317,6 +334,12 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
         </Function>
         <Function Name="ObtenerDatosEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IDEmpresa" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ObtenerDatosOfertas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDOferta" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ObtenerEmpresasXEstado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombreEstado" Type="varchar" Mode="In" />
         </Function>
         <Function Name="ObtenerIDCarreraProfesional" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nombreCarrera" Type="varchar" Mode="In" />
@@ -347,11 +370,19 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Parameter Name="ID_Usuario" Type="int" Mode="In" />
           <Parameter Name="TipoCuenta" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="ObtenerOfertasXEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_Empresa" Type="int" Mode="In" />
+        </Function>
         <Function Name="Verificacion_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre_Usuario" Type="varchar" Mode="In" />
           <Parameter Name="Password_Usuario" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="VerificarLoginAdministrador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre_Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="Password_Usuario" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="TalentoTECModelStoreContainer">
+          <EntitySet Name="Administrador" EntityType="Self.Administrador" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CarrerasProfesionales" EntityType="Self.CarrerasProfesionales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CoordinadoresEscuelas" EntityType="Self.CoordinadoresEscuelas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empresas" EntityType="Self.Empresas" Schema="dbo" store:Type="Tables" />
@@ -429,11 +460,19 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <End Role="SectorProductivoXEmpresa" EntitySet="SectorProductivoXEmpresa" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TalentoTECModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Administrador">
+          <Key>
+            <PropertyRef Name="ID_ADMINISTRADOR" />
+          </Key>
+          <Property Name="ID_ADMINISTRADOR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_USUARIO_ADMINISTRADOR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PASSWORD_USUARIO_ADMINISTRADOR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TIPO_CUENTA" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
         <EntityType Name="CarrerasProfesionale">
           <Key>
             <PropertyRef Name="ID_CARRERA" />
@@ -486,7 +525,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Property Name="NOMBRE_PUESTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DESCRIPCION_PUESTO" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="REQUISITOS_PUESTO" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MONTO_SALARIO" Type="Double" Nullable="false" />
+          <Property Name="MONTO_SALARIO" Type="Int32" Nullable="false" />
           <Property Name="FK_ID_TIPO_MONEDA" Type="Int32" Nullable="false" />
           <Property Name="FECHA_INICIO_OFERTA" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FECHA_FINAL_OFERTA" Type="DateTime" Nullable="false" Precision="3" />
@@ -642,6 +681,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <End Role="SectoresProductivos" Type="Self.SectoresProductivo" Multiplicity="*" />
         </Association>
         <EntityContainer Name="TalentoTECEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administradors" EntityType="Self.Administrador" />
           <EntitySet Name="CarrerasProfesionales" EntityType="Self.CarrerasProfesionale" />
           <EntitySet Name="CoordinadoresEscuelas" EntityType="Self.CoordinadoresEscuela" />
           <EntitySet Name="Empresas" EntityType="Self.Empresa" />
@@ -703,6 +743,14 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <Parameter Name="passwordUsuario" Mode="In" Type="String" />
             <Parameter Name="nombreSectores" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="CambiarEstadoEmpresa">
+            <Parameter Name="IDEmpresa" Mode="In" Type="Int32" />
+            <Parameter Name="NuevoEstado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CambiarEstadoOferta">
+            <Parameter Name="IDOferta" Mode="In" Type="Int32" />
+            <Parameter Name="NuevoEstado" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="Insertar_Empresa" ReturnType="Collection(Int32)">
             <Parameter Name="nombreEmpresa" Mode="In" Type="String" />
             <Parameter Name="cedulaJuridica" Mode="In" Type="String" />
@@ -721,15 +769,15 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <Parameter Name="passwordUsuario" Mode="In" Type="String" />
             <Parameter Name="nombreSectores" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="Insertar_OfertasLaborales" ReturnType="Collection(Int32)">
+          <FunctionImport Name="Insertar_OfertasLaborales" ReturnType="Collection(TalentoTECModel.Insertar_OfertasLaborales_Result)">
             <Parameter Name="IDEmpresa" Mode="In" Type="Int32" />
             <Parameter Name="nombrePuesto" Mode="In" Type="String" />
             <Parameter Name="descripcionPuesto" Mode="In" Type="String" />
             <Parameter Name="RequisitosPuesto" Mode="In" Type="String" />
-            <Parameter Name="montoSalario" Mode="In" Type="Double" />
+            <Parameter Name="montoSalario" Mode="In" Type="Int32" />
             <Parameter Name="nombreTipoMoneda" Mode="In" Type="String" />
-            <Parameter Name="fechaInicioOferta" Mode="In" Type="String" />
-            <Parameter Name="fechaFinalOferta" Mode="In" Type="String" />
+            <Parameter Name="fechaInicioOferta" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaFinalOferta" Mode="In" Type="DateTime" />
             <Parameter Name="nombreTipoOferta" Mode="In" Type="String" />
             <Parameter Name="nombreContacto" Mode="In" Type="String" />
             <Parameter Name="emailContacto" Mode="In" Type="String" />
@@ -740,42 +788,59 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <Parameter Name="carrerasProfesionales" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ObtenerDatosEmpresa" ReturnType="Collection(TalentoTECModel.ObtenerDatosEmpresa_Result)">
-            <Parameter Name="IDEmpresa" Mode="In" Type="Int32" />
+          <Parameter Name="IDEmpresa" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ObtenerEmpresasXEstado" ReturnType="Collection(TalentoTECModel.ObtenerEmpresasXEstado_Result)">
+          <Parameter Name="nombreEstado" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ObtenerIDCarreraProfesional" ReturnType="Collection(Int32)">
             <Parameter Name="nombreCarrera" Mode="In" Type="String" />
             <Parameter Name="nombreEspecialidad" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ObtenerIDPais" ReturnType="Collection(Int32)">
-            <Parameter Name="nombrePais" Mode="In" Type="String" />
+          <Parameter Name="nombrePais" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ObtenerIDSectorProductivo" ReturnType="Collection(Int32)">
-            <Parameter Name="nombreSectorProductivo" Mode="In" Type="String" />
+          <Parameter Name="nombreSectorProductivo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ObtenerIDTipoMoneda" ReturnType="Collection(Int32)">
-            <Parameter Name="nombreMoneda" Mode="In" Type="String" />
+          <Parameter Name="nombreMoneda" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ObtenerIDTipoOferta" ReturnType="Collection(Int32)">
-            <Parameter Name="nombreOferta" Mode="In" Type="String" />
+          <Parameter Name="nombreOferta" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ObtenerListaCarreras" ReturnType="Collection(String)" />
           <FunctionImport Name="ObtenerListaCoordinadoresXEscuela" ReturnType="Collection(TalentoTECModel.ObtenerListaCoordinadoresXEscuela_Result)">
-            <Parameter Name="nombreEscuela" Mode="In" Type="String" />
+          <Parameter Name="nombreEscuela" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ObtenerListaEscuelas" ReturnType="Collection(String)" />
           <FunctionImport Name="ObtenerListaEspecialidades" ReturnType="Collection(String)">
-            <Parameter Name="nombreCarrera" Mode="In" Type="String" />
+          <Parameter Name="nombreCarrera" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ObtenerListaSectoresProductivos" ReturnType="Collection(String)" />
           <FunctionImport Name="ObtenerNombreUsuario" ReturnType="Collection(TalentoTECModel.ObtenerNombreUsuario_Result)">
             <Parameter Name="ID_Usuario" Mode="In" Type="Int32" />
             <Parameter Name="TipoCuenta" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="ObtenerOfertasXEmpresa" ReturnType="Collection(TalentoTECModel.ObtenerOfertasXEmpresa_Result)">
+          <Parameter Name="ID_Empresa" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="Verificacion_Login" ReturnType="Collection(TalentoTECModel.Verificacion_Login_Result)">
             <Parameter Name="Nombre_Usuario" Mode="In" Type="String" />
             <Parameter Name="Password_Usuario" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="VerificarLoginAdministrador" ReturnType="Collection(Int32)">
+            <Parameter Name="Nombre_Usuario" Mode="In" Type="String" />
+            <Parameter Name="Password_Usuario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ObtenerDatosOfertas" ReturnType="Collection(TalentoTECModel.ObtenerDatosOfertas_Result)">
+            <Parameter Name="IDOferta" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="Insertar_OfertasLaborales_Result">
+          <Property Type="Int32" Name="FK_ID_OFERTA" Nullable="false" />
+          <Property Type="Int32" Name="FK_ID_CARRERA" Nullable="false" />
+        </ComplexType>
         <ComplexType Name="ObtenerDatosEmpresa_Result">
           <Property Type="String" Name="NombreEmpresa" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="CedulaJuridica" Nullable="false" MaxLength="100" />
@@ -794,6 +859,10 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Property Type="String" Name="Usuario" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="Contrasena" Nullable="false" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="ObtenerEmpresasXEstado_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="NombreEmpresa" Nullable="false" MaxLength="50" />
+        </ComplexType>
         <ComplexType Name="ObtenerListaCoordinadoresXEscuela_Result">
           <Property Type="String" Name="NombreCoordinador" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="EmailCoordinador" Nullable="false" MaxLength="100" />
@@ -803,9 +872,29 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Property Type="Int32" Name="ID" Nullable="true" />
           <Property Type="String" Name="nombreEmpresa" Nullable="false" MaxLength="50" />
         </ComplexType>
+        <ComplexType Name="ObtenerOfertasXEmpresa_Result">
+          <Property Type="Int32" Name="ID_Oferta" Nullable="false" />
+          <Property Type="String" Name="Nombre_Puesto" Nullable="false" MaxLength="50" />
+        </ComplexType>
         <ComplexType Name="Verificacion_Login_Result">
           <Property Type="Int32" Name="ID_Usuario" Nullable="false" />
           <Property Type="String" Name="Tipo_Cuenta" Nullable="false" MaxLength="11" />
+        </ComplexType>
+        <ComplexType Name="ObtenerDatosOfertas_Result">
+          <Property Type="String" Name="NombrePuesto" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DescripcionPuesto" Nullable="false" MaxLength="1024" />
+          <Property Type="String" Name="RequisitosPuesto" Nullable="false" MaxLength="1024" />
+          <Property Type="Int32" Name="MontoSalario" Nullable="false" />
+          <Property Type="String" Name="Moneda" Nullable="false" MaxLength="20" />
+          <Property Type="DateTime" Name="FechaInicioOferta" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="FechaFinOferta" Nullable="false" Precision="23" />
+          <Property Type="String" Name="TipoOferta" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="NombreContacto" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EmailContacto" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="TelefonoContacto" Nullable="false" MaxLength="15" />
+          <Property Type="String" Name="EstadoOferta" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EstadoConfidencialidad" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="CantidadPlazas" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -813,6 +902,16 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="TalentoTECModelStoreContainer" CdmEntityContainer="TalentoTECEntities">
+          <EntitySetMapping Name="Administradors">
+            <EntityTypeMapping TypeName="TalentoTECModel.Administrador">
+              <MappingFragment StoreEntitySet="Administrador">
+                <ScalarProperty Name="ID_ADMINISTRADOR" ColumnName="ID_ADMINISTRADOR" />
+                <ScalarProperty Name="NOMBRE_USUARIO_ADMINISTRADOR" ColumnName="NOMBRE_USUARIO_ADMINISTRADOR" />
+                <ScalarProperty Name="PASSWORD_USUARIO_ADMINISTRADOR" ColumnName="PASSWORD_USUARIO_ADMINISTRADOR" />
+                <ScalarProperty Name="TIPO_CUENTA" ColumnName="TIPO_CUENTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CarrerasProfesionales">
             <EntityTypeMapping TypeName="TalentoTECModel.CarrerasProfesionale">
               <MappingFragment StoreEntitySet="CarrerasProfesionales">
@@ -945,8 +1044,17 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             </EndProperty>
           </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="ActualizarEmpresa" FunctionName="TalentoTECModel.Store.ActualizarEmpresa" />
+          <FunctionImportMapping FunctionImportName="CambiarEstadoEmpresa" FunctionName="TalentoTECModel.Store.CambiarEstadoEmpresa" />
+          <FunctionImportMapping FunctionImportName="CambiarEstadoOferta" FunctionName="TalentoTECModel.Store.CambiarEstadoOferta" />
           <FunctionImportMapping FunctionImportName="Insertar_Empresa" FunctionName="TalentoTECModel.Store.Insertar_Empresa" />
-          <FunctionImportMapping FunctionImportName="Insertar_OfertasLaborales" FunctionName="TalentoTECModel.Store.Insertar_OfertasLaborales" />
+          <FunctionImportMapping FunctionImportName="Insertar_OfertasLaborales" FunctionName="TalentoTECModel.Store.Insertar_OfertasLaborales">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TalentoTECModel.Insertar_OfertasLaborales_Result">
+                <ScalarProperty Name="FK_ID_OFERTA" ColumnName="FK_ID_OFERTA" />
+                <ScalarProperty Name="FK_ID_CARRERA" ColumnName="FK_ID_CARRERA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ObtenerDatosEmpresa" FunctionName="TalentoTECModel.Store.ObtenerDatosEmpresa">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TalentoTECModel.ObtenerDatosEmpresa_Result">
@@ -966,6 +1074,14 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
                 <ScalarProperty Name="Sectores" ColumnName="Sectores" />
                 <ScalarProperty Name="Usuario" ColumnName="Usuario" />
                 <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ObtenerEmpresasXEstado" FunctionName="TalentoTECModel.Store.ObtenerEmpresasXEstado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TalentoTECModel.ObtenerEmpresasXEstado_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NombreEmpresa" ColumnName="NombreEmpresa" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -995,11 +1111,40 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ObtenerOfertasXEmpresa" FunctionName="TalentoTECModel.Store.ObtenerOfertasXEmpresa">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TalentoTECModel.ObtenerOfertasXEmpresa_Result">
+                <ScalarProperty Name="ID_Oferta" ColumnName="ID_Oferta" />
+                <ScalarProperty Name="Nombre_Puesto" ColumnName="Nombre_Puesto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Verificacion_Login" FunctionName="TalentoTECModel.Store.Verificacion_Login">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TalentoTECModel.Verificacion_Login_Result">
                 <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
                 <ScalarProperty Name="Tipo_Cuenta" ColumnName="Tipo_Cuenta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VerificarLoginAdministrador" FunctionName="TalentoTECModel.Store.VerificarLoginAdministrador" />
+          <FunctionImportMapping FunctionImportName="ObtenerDatosOfertas" FunctionName="TalentoTECModel.Store.ObtenerDatosOfertas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TalentoTECModel.ObtenerDatosOfertas_Result">
+                <ScalarProperty Name="NombrePuesto" ColumnName="NombrePuesto" />
+                <ScalarProperty Name="DescripcionPuesto" ColumnName="DescripcionPuesto" />
+                <ScalarProperty Name="RequisitosPuesto" ColumnName="RequisitosPuesto" />
+                <ScalarProperty Name="MontoSalario" ColumnName="MontoSalario" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="FechaInicioOferta" ColumnName="FechaInicioOferta" />
+                <ScalarProperty Name="FechaFinOferta" ColumnName="FechaFinOferta" />
+                <ScalarProperty Name="TipoOferta" ColumnName="TipoOferta" />
+                <ScalarProperty Name="NombreContacto" ColumnName="NombreContacto" />
+                <ScalarProperty Name="EmailContacto" ColumnName="EmailContacto" />
+                <ScalarProperty Name="TelefonoContacto" ColumnName="TelefonoContacto" />
+                <ScalarProperty Name="EstadoOferta" ColumnName="EstadoOferta" />
+                <ScalarProperty Name="EstadoConfidencialidad" ColumnName="EstadoConfidencialidad" />
+                <ScalarProperty Name="CantidadPlazas" ColumnName="CantidadPlazas" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

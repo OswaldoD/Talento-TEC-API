@@ -27,6 +27,7 @@ namespace TalentoTECDataAccess
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Administrador> Administradors { get; set; }
         public virtual DbSet<CarrerasProfesionale> CarrerasProfesionales { get; set; }
         public virtual DbSet<CoordinadoresEscuela> CoordinadoresEscuelas { get; set; }
         public virtual DbSet<Empresa> Empresas { get; set; }
@@ -111,6 +112,32 @@ namespace TalentoTECDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("ActualizarEmpresa", iDEmpresaParameter, nombreEmpresaParameter, cedulaJuridicaParameter, direccionParameter, provinciaParameter, nombrePaisParameter, telefonoEmpresaParameter, emailEmpresaParameter, uRL_EmpresaParameter, nombreContactoEmpresaParameter, emailContactoParameter, puestoContactoParameter, telefonoContactoParameter, descripcionActividadesParameter, nombreUsuarioParameter, passwordUsuarioParameter, nombreSectoresParameter);
         }
     
+        public virtual int CambiarEstadoEmpresa(Nullable<int> iDEmpresa, string nuevoEstado)
+        {
+            var iDEmpresaParameter = iDEmpresa.HasValue ?
+                new ObjectParameter("IDEmpresa", iDEmpresa) :
+                new ObjectParameter("IDEmpresa", typeof(int));
+    
+            var nuevoEstadoParameter = nuevoEstado != null ?
+                new ObjectParameter("NuevoEstado", nuevoEstado) :
+                new ObjectParameter("NuevoEstado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambiarEstadoEmpresa", iDEmpresaParameter, nuevoEstadoParameter);
+        }
+    
+        public virtual int CambiarEstadoOferta(Nullable<int> iDOferta, string nuevoEstado)
+        {
+            var iDOfertaParameter = iDOferta.HasValue ?
+                new ObjectParameter("IDOferta", iDOferta) :
+                new ObjectParameter("IDOferta", typeof(int));
+    
+            var nuevoEstadoParameter = nuevoEstado != null ?
+                new ObjectParameter("NuevoEstado", nuevoEstado) :
+                new ObjectParameter("NuevoEstado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambiarEstadoOferta", iDOfertaParameter, nuevoEstadoParameter);
+        }
+    
         public virtual ObjectResult<Nullable<int>> Insertar_Empresa(string nombreEmpresa, string cedulaJuridica, string direccion, string provincia, string nombrePais, string telefonoEmpresa, string emailEmpresa, string uRL_Empresa, string nombreContactoEmpresa, string emailContacto, string puestoContacto, string telefonoContacto, string descripcionActividades, string nombreUsuario, string passwordUsuario, string nombreSectores)
         {
             var nombreEmpresaParameter = nombreEmpresa != null ?
@@ -180,7 +207,7 @@ namespace TalentoTECDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Insertar_Empresa", nombreEmpresaParameter, cedulaJuridicaParameter, direccionParameter, provinciaParameter, nombrePaisParameter, telefonoEmpresaParameter, emailEmpresaParameter, uRL_EmpresaParameter, nombreContactoEmpresaParameter, emailContactoParameter, puestoContactoParameter, telefonoContactoParameter, descripcionActividadesParameter, nombreUsuarioParameter, passwordUsuarioParameter, nombreSectoresParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> Insertar_OfertasLaborales(Nullable<int> iDEmpresa, string nombrePuesto, string descripcionPuesto, string requisitosPuesto, Nullable<double> montoSalario, string nombreTipoMoneda, string fechaInicioOferta, string fechaFinalOferta, string nombreTipoOferta, string nombreContacto, string emailContacto, string telefonoContacto, string estadoOferta, string estadoConfidencialidad, Nullable<int> cantidadPlazas, string carrerasProfesionales)
+        public virtual ObjectResult<Insertar_OfertasLaborales_Result> Insertar_OfertasLaborales(Nullable<int> iDEmpresa, string nombrePuesto, string descripcionPuesto, string requisitosPuesto, Nullable<int> montoSalario, string nombreTipoMoneda, Nullable<System.DateTime> fechaInicioOferta, Nullable<System.DateTime> fechaFinalOferta, string nombreTipoOferta, string nombreContacto, string emailContacto, string telefonoContacto, string estadoOferta, string estadoConfidencialidad, Nullable<int> cantidadPlazas, string carrerasProfesionales)
         {
             var iDEmpresaParameter = iDEmpresa.HasValue ?
                 new ObjectParameter("IDEmpresa", iDEmpresa) :
@@ -200,19 +227,19 @@ namespace TalentoTECDataAccess
     
             var montoSalarioParameter = montoSalario.HasValue ?
                 new ObjectParameter("montoSalario", montoSalario) :
-                new ObjectParameter("montoSalario", typeof(double));
+                new ObjectParameter("montoSalario", typeof(int));
     
             var nombreTipoMonedaParameter = nombreTipoMoneda != null ?
                 new ObjectParameter("nombreTipoMoneda", nombreTipoMoneda) :
                 new ObjectParameter("nombreTipoMoneda", typeof(string));
     
-            var fechaInicioOfertaParameter = fechaInicioOferta != null ?
+            var fechaInicioOfertaParameter = fechaInicioOferta.HasValue ?
                 new ObjectParameter("fechaInicioOferta", fechaInicioOferta) :
-                new ObjectParameter("fechaInicioOferta", typeof(string));
+                new ObjectParameter("fechaInicioOferta", typeof(System.DateTime));
     
-            var fechaFinalOfertaParameter = fechaFinalOferta != null ?
+            var fechaFinalOfertaParameter = fechaFinalOferta.HasValue ?
                 new ObjectParameter("fechaFinalOferta", fechaFinalOferta) :
-                new ObjectParameter("fechaFinalOferta", typeof(string));
+                new ObjectParameter("fechaFinalOferta", typeof(System.DateTime));
     
             var nombreTipoOfertaParameter = nombreTipoOferta != null ?
                 new ObjectParameter("nombreTipoOferta", nombreTipoOferta) :
@@ -246,7 +273,7 @@ namespace TalentoTECDataAccess
                 new ObjectParameter("carrerasProfesionales", carrerasProfesionales) :
                 new ObjectParameter("carrerasProfesionales", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Insertar_OfertasLaborales", iDEmpresaParameter, nombrePuestoParameter, descripcionPuestoParameter, requisitosPuestoParameter, montoSalarioParameter, nombreTipoMonedaParameter, fechaInicioOfertaParameter, fechaFinalOfertaParameter, nombreTipoOfertaParameter, nombreContactoParameter, emailContactoParameter, telefonoContactoParameter, estadoOfertaParameter, estadoConfidencialidadParameter, cantidadPlazasParameter, carrerasProfesionalesParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Insertar_OfertasLaborales_Result>("Insertar_OfertasLaborales", iDEmpresaParameter, nombrePuestoParameter, descripcionPuestoParameter, requisitosPuestoParameter, montoSalarioParameter, nombreTipoMonedaParameter, fechaInicioOfertaParameter, fechaFinalOfertaParameter, nombreTipoOfertaParameter, nombreContactoParameter, emailContactoParameter, telefonoContactoParameter, estadoOfertaParameter, estadoConfidencialidadParameter, cantidadPlazasParameter, carrerasProfesionalesParameter);
         }
     
         public virtual ObjectResult<ObtenerDatosEmpresa_Result> ObtenerDatosEmpresa(Nullable<int> iDEmpresa)
@@ -256,6 +283,15 @@ namespace TalentoTECDataAccess
                 new ObjectParameter("IDEmpresa", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerDatosEmpresa_Result>("ObtenerDatosEmpresa", iDEmpresaParameter);
+        }
+    
+        public virtual ObjectResult<ObtenerEmpresasXEstado_Result> ObtenerEmpresasXEstado(string nombreEstado)
+        {
+            var nombreEstadoParameter = nombreEstado != null ?
+                new ObjectParameter("nombreEstado", nombreEstado) :
+                new ObjectParameter("nombreEstado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerEmpresasXEstado_Result>("ObtenerEmpresasXEstado", nombreEstadoParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> ObtenerIDCarreraProfesional(string nombreCarrera, string nombreEspecialidad)
@@ -353,6 +389,15 @@ namespace TalentoTECDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerNombreUsuario_Result>("ObtenerNombreUsuario", iD_UsuarioParameter, tipoCuentaParameter);
         }
     
+        public virtual ObjectResult<ObtenerOfertasXEmpresa_Result> ObtenerOfertasXEmpresa(Nullable<int> iD_Empresa)
+        {
+            var iD_EmpresaParameter = iD_Empresa.HasValue ?
+                new ObjectParameter("ID_Empresa", iD_Empresa) :
+                new ObjectParameter("ID_Empresa", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerOfertasXEmpresa_Result>("ObtenerOfertasXEmpresa", iD_EmpresaParameter);
+        }
+    
         public virtual ObjectResult<Verificacion_Login_Result> Verificacion_Login(string nombre_Usuario, string password_Usuario)
         {
             var nombre_UsuarioParameter = nombre_Usuario != null ?
@@ -364,6 +409,28 @@ namespace TalentoTECDataAccess
                 new ObjectParameter("Password_Usuario", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Verificacion_Login_Result>("Verificacion_Login", nombre_UsuarioParameter, password_UsuarioParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> VerificarLoginAdministrador(string nombre_Usuario, string password_Usuario)
+        {
+            var nombre_UsuarioParameter = nombre_Usuario != null ?
+                new ObjectParameter("Nombre_Usuario", nombre_Usuario) :
+                new ObjectParameter("Nombre_Usuario", typeof(string));
+    
+            var password_UsuarioParameter = password_Usuario != null ?
+                new ObjectParameter("Password_Usuario", password_Usuario) :
+                new ObjectParameter("Password_Usuario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("VerificarLoginAdministrador", nombre_UsuarioParameter, password_UsuarioParameter);
+        }
+    
+        public virtual ObjectResult<ObtenerDatosOfertas_Result> ObtenerDatosOfertas(Nullable<int> iDOferta)
+        {
+            var iDOfertaParameter = iDOferta.HasValue ?
+                new ObjectParameter("IDOferta", iDOferta) :
+                new ObjectParameter("IDOferta", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerDatosOfertas_Result>("ObtenerDatosOfertas", iDOfertaParameter);
         }
     }
 }

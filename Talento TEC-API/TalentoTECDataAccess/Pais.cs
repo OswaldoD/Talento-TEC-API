@@ -17,13 +17,28 @@ namespace TalentoTECDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Pais()
         {
+            this.Aplicantes = new HashSet<Aplicante>();
+            this.Aplicantes1 = new HashSet<Aplicante>();
             this.Empresas = new HashSet<Empresa>();
+            this.CapacitacionesXAplicantes = new HashSet<CapacitacionesXAplicante>();
+            this.EducacionFormalXAplicantes = new HashSet<EducacionFormalXAplicante>();
+            this.ExperienciaLaboralXAplicantes = new HashSet<ExperienciaLaboralXAplicante>();
         }
     
         public int ID_PAIS { get; set; }
         public string NOMBRE_PAIS { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Aplicante> Aplicantes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Aplicante> Aplicantes1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Empresa> Empresas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CapacitacionesXAplicante> CapacitacionesXAplicantes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EducacionFormalXAplicante> EducacionFormalXAplicantes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ExperienciaLaboralXAplicante> ExperienciaLaboralXAplicantes { get; set; }
     }
 }

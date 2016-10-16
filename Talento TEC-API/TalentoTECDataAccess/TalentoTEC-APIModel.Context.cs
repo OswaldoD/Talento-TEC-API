@@ -28,16 +28,28 @@ namespace TalentoTECDataAccess
         }
     
         public virtual DbSet<Administrador> Administradors { get; set; }
+        public virtual DbSet<Aplicante> Aplicantes { get; set; }
         public virtual DbSet<CarrerasProfesionale> CarrerasProfesionales { get; set; }
         public virtual DbSet<CoordinadoresEscuela> CoordinadoresEscuelas { get; set; }
         public virtual DbSet<Empresa> Empresas { get; set; }
+        public virtual DbSet<GradoEstudioFormal> GradoEstudioFormals { get; set; }
+        public virtual DbSet<Idioma> Idiomas { get; set; }
+        public virtual DbSet<Nacionalidade> Nacionalidades { get; set; }
+        public virtual DbSet<NivelDominioIdioma> NivelDominioIdiomas { get; set; }
         public virtual DbSet<OfertasLaborale> OfertasLaborales { get; set; }
         public virtual DbSet<Pais> Paises { get; set; }
         public virtual DbSet<SectoresProductivo> SectoresProductivos { get; set; }
+        public virtual DbSet<TipoAplicante> TipoAplicantes { get; set; }
+        public virtual DbSet<TipoIdentificacion> TipoIdentificacions { get; set; }
         public virtual DbSet<TipoMoneda> TipoMonedas { get; set; }
         public virtual DbSet<TipoOferta> TipoOfertas { get; set; }
         public virtual DbSet<AplicanteXOferta> AplicanteXOfertas { get; set; }
+        public virtual DbSet<CapacitacionesXAplicante> CapacitacionesXAplicantes { get; set; }
         public virtual DbSet<CuentasUsuario> CuentasUsuarios { get; set; }
+        public virtual DbSet<EducacionFormalXAplicante> EducacionFormalXAplicantes { get; set; }
+        public virtual DbSet<ExperienciaLaboralXAplicante> ExperienciaLaboralXAplicantes { get; set; }
+        public virtual DbSet<IdiomaXAplicante> IdiomaXAplicantes { get; set; }
+        public virtual DbSet<ReferenciasXAplicante> ReferenciasXAplicantes { get; set; }
     
         public virtual ObjectResult<Nullable<int>> ActualizarEmpresa(Nullable<int> iDEmpresa, string nombreEmpresa, string cedulaJuridica, string direccion, string provincia, string nombrePais, string telefonoEmpresa, string emailEmpresa, string uRL_Empresa, string nombreContactoEmpresa, string emailContacto, string puestoContacto, string telefonoContacto, string descripcionActividades, string nombreUsuario, string passwordUsuario, string nombreSectores)
         {
@@ -285,6 +297,15 @@ namespace TalentoTECDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerDatosEmpresa_Result>("ObtenerDatosEmpresa", iDEmpresaParameter);
         }
     
+        public virtual ObjectResult<ObtenerDatosOfertas_Result> ObtenerDatosOfertas(Nullable<int> iDOferta)
+        {
+            var iDOfertaParameter = iDOferta.HasValue ?
+                new ObjectParameter("IDOferta", iDOferta) :
+                new ObjectParameter("IDOferta", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerDatosOfertas_Result>("ObtenerDatosOfertas", iDOfertaParameter);
+        }
+    
         public virtual ObjectResult<ObtenerEmpresasXEstado_Result> ObtenerEmpresasXEstado(string nombreEstado)
         {
             var nombreEstadoParameter = nombreEstado != null ?
@@ -422,15 +443,6 @@ namespace TalentoTECDataAccess
                 new ObjectParameter("Password_Usuario", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("VerificarLoginAdministrador", nombre_UsuarioParameter, password_UsuarioParameter);
-        }
-    
-        public virtual ObjectResult<ObtenerDatosOfertas_Result> ObtenerDatosOfertas(Nullable<int> iDOferta)
-        {
-            var iDOfertaParameter = iDOferta.HasValue ?
-                new ObjectParameter("IDOferta", iDOferta) :
-                new ObjectParameter("IDOferta", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ObtenerDatosOfertas_Result>("ObtenerDatosOfertas", iDOfertaParameter);
         }
     }
 }

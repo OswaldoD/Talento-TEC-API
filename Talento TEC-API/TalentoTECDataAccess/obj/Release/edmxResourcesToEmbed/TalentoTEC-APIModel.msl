@@ -31,7 +31,9 @@
           <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />
           <ScalarProperty Name="NUMERO_CARNE" ColumnName="NUMERO_CARNE" />
           <ScalarProperty Name="FK_ID_TIPO_APLICANTE" ColumnName="FK_ID_TIPO_APLICANTE" />
+          <ScalarProperty Name="ESTADO_APLICANTE" ColumnName="ESTADO_APLICANTE" />
           <ScalarProperty Name="DESCRIPCION_CONOCIMIENTOS" ColumnName="DESCRIPCION_CONOCIMIENTOS" />
+          <ScalarProperty Name="FK_ID_CUENTA_USUARIO" ColumnName="FK_ID_CUENTA_USUARIO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -55,6 +57,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CuentasUsuarios">
+      <EntityTypeMapping TypeName="TalentoTECModel.CuentasUsuario">
+        <MappingFragment StoreEntitySet="CuentasUsuarios">
+          <ScalarProperty Name="ID_CUENTA_USUARIO" ColumnName="ID_CUENTA_USUARIO" />
+          <ScalarProperty Name="NOMBRE_USUARIO" ColumnName="NOMBRE_USUARIO" />
+          <ScalarProperty Name="PASSWORD_USUARIO" ColumnName="PASSWORD_USUARIO" />
+          <ScalarProperty Name="TIPO_CUENTA" ColumnName="TIPO_CUENTA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Empresas">
       <EntityTypeMapping TypeName="TalentoTECModel.Empresa">
         <MappingFragment StoreEntitySet="Empresas">
@@ -73,6 +85,7 @@
           <ScalarProperty Name="TELEFONO_CONTACTO_EMPRESA" ColumnName="TELEFONO_CONTACTO_EMPRESA" />
           <ScalarProperty Name="DESC_ACTIVIDADES_EMPRESA" ColumnName="DESC_ACTIVIDADES_EMPRESA" />
           <ScalarProperty Name="ESTADO_EMPRESA" ColumnName="ESTADO_EMPRESA" />
+          <ScalarProperty Name="FK_ID_CUENTA_USUARIO" ColumnName="FK_ID_CUENTA_USUARIO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -199,16 +212,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CuentasUsuarios">
-      <EntityTypeMapping TypeName="TalentoTECModel.CuentasUsuario">
-        <MappingFragment StoreEntitySet="CuentasUsuarios">
-          <ScalarProperty Name="FK_ID_USUARIO" ColumnName="FK_ID_USUARIO" />
-          <ScalarProperty Name="NOMBRE_USUARIO" ColumnName="NOMBRE_USUARIO" />
-          <ScalarProperty Name="PASSWORD_USUARIO" ColumnName="PASSWORD_USUARIO" />
-          <ScalarProperty Name="TIPO_CUENTA" ColumnName="TIPO_CUENTA" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="EducacionFormalXAplicantes">
       <EntityTypeMapping TypeName="TalentoTECModel.EducacionFormalXAplicante">
         <MappingFragment StoreEntitySet="EducacionFormalXAplicante">
@@ -272,9 +275,21 @@
         <ScalarProperty Name="ID_SECTOR_PRODUCTIVO" ColumnName="FK_ID_SECTOR_PRODUCTIVO" />
       </EndProperty>
     </AssociationSetMapping>
+    <FunctionImportMapping FunctionName="TalentoTECModel.Store.split" FunctionImportName="split">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TalentoTECModel.split_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="val" ColumnName="val" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="ActualizarEmpresa" FunctionName="TalentoTECModel.Store.ActualizarEmpresa" />
+    <FunctionImportMapping FunctionImportName="AgregarAplicante" FunctionName="TalentoTECModel.Store.AgregarAplicante" />
+    <FunctionImportMapping FunctionImportName="AplicarOferta" FunctionName="TalentoTECModel.Store.AplicarOferta" />
+    <FunctionImportMapping FunctionImportName="BuscarOfertas" FunctionName="TalentoTECModel.Store.BuscarOfertas" />
     <FunctionImportMapping FunctionImportName="CambiarEstadoEmpresa" FunctionName="TalentoTECModel.Store.CambiarEstadoEmpresa" />
     <FunctionImportMapping FunctionImportName="CambiarEstadoOferta" FunctionName="TalentoTECModel.Store.CambiarEstadoOferta" />
+    <FunctionImportMapping FunctionImportName="EliminarAplicacionOferta" FunctionName="TalentoTECModel.Store.EliminarAplicacionOferta" />
     <FunctionImportMapping FunctionImportName="Insertar_Empresa" FunctionName="TalentoTECModel.Store.Insertar_Empresa" />
     <FunctionImportMapping FunctionImportName="Insertar_OfertasLaborales" FunctionName="TalentoTECModel.Store.Insertar_OfertasLaborales">
       <ResultMapping>
@@ -284,6 +299,11 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="InsertarCapacitacionesXAplicante" FunctionName="TalentoTECModel.Store.InsertarCapacitacionesXAplicante" />
+    <FunctionImportMapping FunctionImportName="InsertarEducacionFormalXAplicante" FunctionName="TalentoTECModel.Store.InsertarEducacionFormalXAplicante" />
+    <FunctionImportMapping FunctionImportName="InsertarExperienciaLaboralXAplicante" FunctionName="TalentoTECModel.Store.InsertarExperienciaLaboralXAplicante" />
+    <FunctionImportMapping FunctionImportName="InsertarIdiomaXAplicante" FunctionName="TalentoTECModel.Store.InsertarIdiomaXAplicante" />
+    <FunctionImportMapping FunctionImportName="InsertarReferenciasXAplicante" FunctionName="TalentoTECModel.Store.InsertarReferenciasXAplicante" />
     <FunctionImportMapping FunctionImportName="ObtenerDatosEmpresa" FunctionName="TalentoTECModel.Store.ObtenerDatosEmpresa">
       <ResultMapping>
         <ComplexTypeMapping TypeName="TalentoTECModel.ObtenerDatosEmpresa_Result">
@@ -335,6 +355,8 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="ObtenerIDCarreraProfesional" FunctionName="TalentoTECModel.Store.ObtenerIDCarreraProfesional" />
+    <FunctionImportMapping FunctionImportName="ObtenerIDIdioma" FunctionName="TalentoTECModel.Store.ObtenerIDIdioma" />
+    <FunctionImportMapping FunctionImportName="ObtenerIDNacionalidad" FunctionName="TalentoTECModel.Store.ObtenerIDNacionalidad" />
     <FunctionImportMapping FunctionImportName="ObtenerIDPais" FunctionName="TalentoTECModel.Store.ObtenerIDPais" />
     <FunctionImportMapping FunctionImportName="ObtenerIDSectorProductivo" FunctionName="TalentoTECModel.Store.ObtenerIDSectorProductivo" />
     <FunctionImportMapping FunctionImportName="ObtenerIDTipoMoneda" FunctionName="TalentoTECModel.Store.ObtenerIDTipoMoneda" />
@@ -350,7 +372,10 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="ObtenerListaEscuelas" FunctionName="TalentoTECModel.Store.ObtenerListaEscuelas" />
-    <FunctionImportMapping FunctionImportName="ObtenerListaEspecialidades" FunctionName="TalentoTECModel.Store.ObtenerListaEspecialidades" />
+    <FunctionImportMapping FunctionImportName="ObtenerListaEspecialidadesXCarrera" FunctionName="TalentoTECModel.Store.ObtenerListaEspecialidadesXCarrera" />
+    <FunctionImportMapping FunctionImportName="ObtenerListaIdiomas" FunctionName="TalentoTECModel.Store.ObtenerListaIdiomas" />
+    <FunctionImportMapping FunctionImportName="ObtenerListaNacionalidades" FunctionName="TalentoTECModel.Store.ObtenerListaNacionalidades" />
+    <FunctionImportMapping FunctionImportName="ObtenerListaPaises" FunctionName="TalentoTECModel.Store.ObtenerListaPaises" />
     <FunctionImportMapping FunctionImportName="ObtenerListaSectoresProductivos" FunctionName="TalentoTECModel.Store.ObtenerListaSectoresProductivos" />
     <FunctionImportMapping FunctionImportName="ObtenerNombreUsuario" FunctionName="TalentoTECModel.Store.ObtenerNombreUsuario">
       <ResultMapping>

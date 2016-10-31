@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="TalentoTECModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="split_Result">
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="val" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </ComplexType>
   <EntityType Name="Administrador">
     <Key>
       <PropertyRef Name="ID_ADMINISTRADOR" />
@@ -19,7 +23,7 @@
     <Property Name="APELLIDO1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="APELLIDO2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="NOMBRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="FECHA_NACIMIENTO" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FECHA_NACIMIENTO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="FK_ID_PAIS_NACIMIENTO" Type="Int32" Nullable="false" />
     <Property Name="FK_ID_NACIONALIDAD" Type="Int32" Nullable="false" />
     <Property Name="FK_ID_PAIS_RESIDENCIA" Type="Int32" Nullable="false" />
@@ -28,12 +32,15 @@
     <Property Name="SEXO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="TELEFONO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="CORREO_ELECTRONICO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="NUMERO_CARNE" Type="Int32" Nullable="false" />
+    <Property Name="NUMERO_CARNE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="FK_ID_TIPO_APLICANTE" Type="Int32" Nullable="false" />
+    <Property Name="ESTADO_APLICANTE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="DESCRIPCION_CONOCIMIENTOS" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Name="FK_ID_CUENTA_USUARIO" Type="Int32" />
     <NavigationProperty Name="Nacionalidade" Relationship="Self.Aplicantes_Nacionalidades" FromRole="Aplicantes" ToRole="Nacionalidades" />
     <NavigationProperty Name="Pais" Relationship="Self.Aplicantes_Paises_Nacimiento_" FromRole="Aplicantes" ToRole="Paises" />
     <NavigationProperty Name="Pais1" Relationship="Self.Aplicantes_Paises_Residencia_" FromRole="Aplicantes" ToRole="Paises" />
+    <NavigationProperty Name="CuentasUsuario" Relationship="Self.FK_Aplicantes_CuentasUsuarios" FromRole="Aplicantes" ToRole="CuentasUsuarios" />
     <NavigationProperty Name="TipoAplicante" Relationship="Self.FK_Aplicantes_TipoAplicante" FromRole="Aplicantes" ToRole="TipoAplicante" />
     <NavigationProperty Name="TipoIdentificacion" Relationship="Self.FK_Aplicantes_TipoIdentificacion" FromRole="Aplicantes" ToRole="TipoIdentificacion" />
     <NavigationProperty Name="CapacitacionesXAplicantes" Relationship="Self.FK_CapacitacionesXAplicante_Aplicantes" FromRole="Aplicantes" ToRole="CapacitacionesXAplicante" />
@@ -41,6 +48,7 @@
     <NavigationProperty Name="ExperienciaLaboralXAplicantes" Relationship="Self.FK_ExperienciaLaboralXAplicante_Aplicantes" FromRole="Aplicantes" ToRole="ExperienciaLaboralXAplicante" />
     <NavigationProperty Name="IdiomaXAplicantes" Relationship="Self.FK_IdiomaXAplicante_Aplicantes" FromRole="Aplicantes" ToRole="IdiomaXAplicante" />
     <NavigationProperty Name="ReferenciasXAplicantes" Relationship="Self.FK_ReferenciasXAplicante_Aplicantes" FromRole="Aplicantes" ToRole="ReferenciasXAplicante" />
+    <NavigationProperty Name="AplicanteXOfertas" Relationship="Self.FKAplicanteXoferta_Aplicantes" FromRole="Aplicantes" ToRole="AplicanteXOferta" />
   </EntityType>
   <EntityType Name="CarrerasProfesionale">
     <Key>
@@ -61,6 +69,17 @@
     <Property Name="EMAIL_COORDINADOR" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="TELEFONO_COORDINADOR" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
+  <EntityType Name="CuentasUsuario">
+    <Key>
+      <PropertyRef Name="ID_CUENTA_USUARIO" />
+    </Key>
+    <Property Name="ID_CUENTA_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOMBRE_USUARIO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PASSWORD_USUARIO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TIPO_CUENTA" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Aplicantes" Relationship="Self.FK_Aplicantes_CuentasUsuarios" FromRole="CuentasUsuarios" ToRole="Aplicantes" />
+    <NavigationProperty Name="Empresas" Relationship="Self.FK_Empresas_CuentasUsuarios" FromRole="CuentasUsuarios" ToRole="Empresas" />
+  </EntityType>
   <EntityType Name="Empresa">
     <Key>
       <PropertyRef Name="ID_EMPRESA" />
@@ -80,8 +99,8 @@
     <Property Name="TELEFONO_CONTACTO_EMPRESA" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="DESC_ACTIVIDADES_EMPRESA" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="ESTADO_EMPRESA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="CuentasUsuarios" Relationship="Self.FK_CuentasUsuarios_Empresas" FromRole="Empresas" ToRole="CuentasUsuarios" />
-    <NavigationProperty Name="Pais" Relationship="Self.FK_Empresas_Paises" FromRole="Empresas" ToRole="Paises" />
+    <Property Name="FK_ID_CUENTA_USUARIO" Type="Int32" />
+    <NavigationProperty Name="CuentasUsuario" Relationship="Self.FK_Empresas_CuentasUsuarios" FromRole="Empresas" ToRole="CuentasUsuarios" />
     <NavigationProperty Name="OfertasLaborales" Relationship="Self.FK_OfertasLaborales_Empresas1" FromRole="Empresas" ToRole="OfertasLaborales" />
     <NavigationProperty Name="SectoresProductivos" Relationship="Self.SectorProductivoXEmpresa" FromRole="Empresas" ToRole="SectoresProductivos" />
   </EntityType>
@@ -90,7 +109,7 @@
       <PropertyRef Name="ID_GRADO" />
     </Key>
     <Property Name="ID_GRADO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="NOMBRE_GRADO" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NOMBRE_GRADO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="EducacionFormalXAplicantes" Relationship="Self.FK_EducacionFormalXAplicante_GradoEstudioFormal" FromRole="GradoEstudioFormal" ToRole="EducacionFormalXAplicante" />
   </EntityType>
   <EntityType Name="Idioma">
@@ -153,7 +172,6 @@
     <Property Name="NOMBRE_PAIS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Aplicantes" Relationship="Self.Aplicantes_Paises_Nacimiento_" FromRole="Paises" ToRole="Aplicantes" />
     <NavigationProperty Name="Aplicantes1" Relationship="Self.Aplicantes_Paises_Residencia_" FromRole="Paises" ToRole="Aplicantes" />
-    <NavigationProperty Name="Empresas" Relationship="Self.FK_Empresas_Paises" FromRole="Paises" ToRole="Empresas" />
     <NavigationProperty Name="CapacitacionesXAplicantes" Relationship="Self.FK_CapacitacionesXAplicante_Paises" FromRole="Paises" ToRole="CapacitacionesXAplicante" />
     <NavigationProperty Name="EducacionFormalXAplicantes" Relationship="Self.FK_EducacionFormalXAplicante_Paises" FromRole="Paises" ToRole="EducacionFormalXAplicante" />
     <NavigationProperty Name="ExperienciaLaboralXAplicantes" Relationship="Self.FK_ExperienciaLaboralXAplicante_Paises" FromRole="Paises" ToRole="ExperienciaLaboralXAplicante" />
@@ -207,8 +225,9 @@
     </Key>
     <Property Name="FK_ID_OFERTA" Type="Int32" Nullable="false" />
     <Property Name="FK_ID_APLICANTE" Type="Int32" Nullable="false" />
-    <Property Name="FECHA_APLICACION" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FECHA_APLICACION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="ESTADO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Aplicante" Relationship="Self.FKAplicanteXoferta_Aplicantes" FromRole="AplicanteXOferta" ToRole="Aplicantes" />
     <NavigationProperty Name="OfertasLaborale" Relationship="Self.FK_AplicanteXOferta_OfertasLaborales" FromRole="AplicanteXOferta" ToRole="OfertasLaborales" />
   </EntityType>
   <EntityType Name="CapacitacionesXAplicante">
@@ -223,22 +242,9 @@
     <Property Name="NOMBRE_ACTIVIDAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="NOMBRE_INSTITUCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="FK_ID_PAIS_CURSO" Type="Int32" Nullable="false" />
-    <Property Name="ANNO_CAPACITACION" Type="Int32" Nullable="false" />
+    <Property Name="ANNO_CAPACITACION" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Aplicante" Relationship="Self.FK_CapacitacionesXAplicante_Aplicantes" FromRole="CapacitacionesXAplicante" ToRole="Aplicantes" />
     <NavigationProperty Name="Pais" Relationship="Self.FK_CapacitacionesXAplicante_Paises" FromRole="CapacitacionesXAplicante" ToRole="Paises" />
-  </EntityType>
-  <EntityType Name="CuentasUsuario">
-    <Key>
-      <PropertyRef Name="FK_ID_USUARIO" />
-      <PropertyRef Name="NOMBRE_USUARIO" />
-      <PropertyRef Name="PASSWORD_USUARIO" />
-      <PropertyRef Name="TIPO_CUENTA" />
-    </Key>
-    <Property Name="FK_ID_USUARIO" Type="Int32" Nullable="false" />
-    <Property Name="NOMBRE_USUARIO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="PASSWORD_USUARIO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="TIPO_CUENTA" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Empresa" Relationship="Self.FK_CuentasUsuarios_Empresas" FromRole="CuentasUsuarios" ToRole="Empresas" />
   </EntityType>
   <EntityType Name="EducacionFormalXAplicante">
     <Key>
@@ -271,8 +277,8 @@
     <Property Name="FK_ID_APLICANTE" Type="Int32" Nullable="false" />
     <Property Name="NOMBRE_EMPRESA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="NOMBRE_PUESTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="ANNO_DESDE" Type="Int32" Nullable="false" />
-    <Property Name="ANNO_HASTA" Type="Int32" Nullable="false" />
+    <Property Name="ANNO_DESDE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ANNO_HASTA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="FK_ID_PAIS_TRABAJO" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Aplicante" Relationship="Self.FK_ExperienciaLaboralXAplicante_Aplicantes" FromRole="ExperienciaLaboralXAplicante" ToRole="Aplicantes" />
     <NavigationProperty Name="Pais" Relationship="Self.FK_ExperienciaLaboralXAplicante_Paises" FromRole="ExperienciaLaboralXAplicante" ToRole="Paises" />
@@ -346,6 +352,18 @@
       </Principal>
       <Dependent Role="Aplicantes">
         <PropertyRef Name="FK_ID_PAIS_RESIDENCIA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Aplicantes_CuentasUsuarios">
+    <End Role="CuentasUsuarios" Type="Self.CuentasUsuario" Multiplicity="0..1" />
+    <End Role="Aplicantes" Type="Self.Aplicante" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CuentasUsuarios">
+        <PropertyRef Name="ID_CUENTA_USUARIO" />
+      </Principal>
+      <Dependent Role="Aplicantes">
+        <PropertyRef Name="FK_ID_CUENTA_USUARIO" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -433,27 +451,29 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_CuentasUsuarios_Empresas">
-    <End Role="Empresas" Type="Self.Empresa" Multiplicity="1" />
-    <End Role="CuentasUsuarios" Type="Self.CuentasUsuario" Multiplicity="*" />
+  <Association Name="FKAplicanteXoferta_Aplicantes">
+    <End Role="Aplicantes" Type="Self.Aplicante" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AplicanteXOferta" Type="Self.AplicanteXOferta" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Empresas">
-        <PropertyRef Name="ID_EMPRESA" />
+      <Principal Role="Aplicantes">
+        <PropertyRef Name="ID_APLICANTE" />
       </Principal>
-      <Dependent Role="CuentasUsuarios">
-        <PropertyRef Name="FK_ID_USUARIO" />
+      <Dependent Role="AplicanteXOferta">
+        <PropertyRef Name="FK_ID_APLICANTE" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Empresas_Paises">
-    <End Role="Paises" Type="Self.Pais" Multiplicity="1" />
+  <Association Name="FK_Empresas_CuentasUsuarios">
+    <End Role="CuentasUsuarios" Type="Self.CuentasUsuario" Multiplicity="0..1" />
     <End Role="Empresas" Type="Self.Empresa" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Paises">
-        <PropertyRef Name="ID_PAIS" />
+      <Principal Role="CuentasUsuarios">
+        <PropertyRef Name="ID_CUENTA_USUARIO" />
       </Principal>
       <Dependent Role="Empresas">
-        <PropertyRef Name="FK_ID_PAIS" />
+        <PropertyRef Name="FK_ID_CUENTA_USUARIO" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -614,6 +634,7 @@
     <EntitySet Name="Aplicantes" EntityType="Self.Aplicante" />
     <EntitySet Name="CarrerasProfesionales" EntityType="Self.CarrerasProfesionale" />
     <EntitySet Name="CoordinadoresEscuelas" EntityType="Self.CoordinadoresEscuela" />
+    <EntitySet Name="CuentasUsuarios" EntityType="Self.CuentasUsuario" />
     <EntitySet Name="Empresas" EntityType="Self.Empresa" />
     <EntitySet Name="GradoEstudioFormals" EntityType="Self.GradoEstudioFormal" />
     <EntitySet Name="Idiomas" EntityType="Self.Idioma" />
@@ -628,7 +649,6 @@
     <EntitySet Name="TipoOfertas" EntityType="Self.TipoOferta" />
     <EntitySet Name="AplicanteXOfertas" EntityType="Self.AplicanteXOferta" />
     <EntitySet Name="CapacitacionesXAplicantes" EntityType="Self.CapacitacionesXAplicante" />
-    <EntitySet Name="CuentasUsuarios" EntityType="Self.CuentasUsuario" />
     <EntitySet Name="EducacionFormalXAplicantes" EntityType="Self.EducacionFormalXAplicante" />
     <EntitySet Name="ExperienciaLaboralXAplicantes" EntityType="Self.ExperienciaLaboralXAplicante" />
     <EntitySet Name="IdiomaXAplicantes" EntityType="Self.IdiomaXAplicante" />
@@ -643,6 +663,10 @@
     </AssociationSet>
     <AssociationSet Name="Aplicantes_Paises_Residencia_" Association="Self.Aplicantes_Paises_Residencia_">
       <End Role="Paises" EntitySet="Paises" />
+      <End Role="Aplicantes" EntitySet="Aplicantes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Aplicantes_CuentasUsuarios" Association="Self.FK_Aplicantes_CuentasUsuarios">
+      <End Role="CuentasUsuarios" EntitySet="CuentasUsuarios" />
       <End Role="Aplicantes" EntitySet="Aplicantes" />
     </AssociationSet>
     <AssociationSet Name="FK_Aplicantes_TipoAplicante" Association="Self.FK_Aplicantes_TipoAplicante">
@@ -673,12 +697,12 @@
       <End Role="Aplicantes" EntitySet="Aplicantes" />
       <End Role="ReferenciasXAplicante" EntitySet="ReferenciasXAplicantes" />
     </AssociationSet>
-    <AssociationSet Name="FK_CuentasUsuarios_Empresas" Association="Self.FK_CuentasUsuarios_Empresas">
-      <End Role="Empresas" EntitySet="Empresas" />
-      <End Role="CuentasUsuarios" EntitySet="CuentasUsuarios" />
+    <AssociationSet Name="FKAplicanteXoferta_Aplicantes" Association="Self.FKAplicanteXoferta_Aplicantes">
+      <End Role="Aplicantes" EntitySet="Aplicantes" />
+      <End Role="AplicanteXOferta" EntitySet="AplicanteXOfertas" />
     </AssociationSet>
-    <AssociationSet Name="FK_Empresas_Paises" Association="Self.FK_Empresas_Paises">
-      <End Role="Paises" EntitySet="Paises" />
+    <AssociationSet Name="FK_Empresas_CuentasUsuarios" Association="Self.FK_Empresas_CuentasUsuarios">
+      <End Role="CuentasUsuarios" EntitySet="CuentasUsuarios" />
       <End Role="Empresas" EntitySet="Empresas" />
     </AssociationSet>
     <AssociationSet Name="FK_OfertasLaborales_Empresas1" Association="Self.FK_OfertasLaborales_Empresas1">
@@ -737,6 +761,10 @@
       <End Role="Empresas" EntitySet="Empresas" />
       <End Role="SectoresProductivos" EntitySet="SectoresProductivos" />
     </AssociationSet>
+    <FunctionImport Name="split" IsComposable="true" ReturnType="Collection(TalentoTECModel.split_Result)">
+      <Parameter Name="delimited" Mode="In" Type="String" />
+      <Parameter Name="delimiter" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="ActualizarEmpresa" ReturnType="Collection(Int32)">
       <Parameter Name="IDEmpresa" Mode="In" Type="Int32" />
       <Parameter Name="nombreEmpresa" Mode="In" Type="String" />
@@ -756,6 +784,41 @@
       <Parameter Name="passwordUsuario" Mode="In" Type="String" />
       <Parameter Name="nombreSectores" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="AgregarAplicante" ReturnType="Collection(Int32)">
+      <Parameter Name="PrimerApellido" Mode="In" Type="String" />
+      <Parameter Name="SegundoApellido" Mode="In" Type="String" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="FechaNacimiento" Mode="In" Type="String" />
+      <Parameter Name="PaisNacimiento" Mode="In" Type="String" />
+      <Parameter Name="Nacionalidad" Mode="In" Type="String" />
+      <Parameter Name="TipoIdentificacion" Mode="In" Type="String" />
+      <Parameter Name="Identificacion" Mode="In" Type="String" />
+      <Parameter Name="Genero" Mode="In" Type="String" />
+      <Parameter Name="Carne" Mode="In" Type="String" />
+      <Parameter Name="PaisResidencia" Mode="In" Type="String" />
+      <Parameter Name="Provincia" Mode="In" Type="String" />
+      <Parameter Name="DireccionExacta" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="infoTitulos" Mode="In" Type="String" />
+      <Parameter Name="infoIdiomas" Mode="In" Type="String" />
+      <Parameter Name="infoExperienciaLaboral" Mode="In" Type="String" />
+      <Parameter Name="infoCapacitaciones" Mode="In" Type="String" />
+      <Parameter Name="Conocimientos" Mode="In" Type="String" />
+      <Parameter Name="infoReferencias" Mode="In" Type="String" />
+      <Parameter Name="TipoAplicante" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AplicarOferta">
+      <Parameter Name="IDOferta" Mode="In" Type="Int32" />
+      <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="BuscarOfertas" ReturnType="Collection(String)">
+      <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+      <Parameter Name="TipoCuenta" Mode="In" Type="String" />
+      <Parameter Name="carreraSeleccionada" Mode="In" Type="String" />
+      <Parameter Name="TipoBusqueda" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="CambiarEstadoEmpresa">
       <Parameter Name="IDEmpresa" Mode="In" Type="Int32" />
       <Parameter Name="NuevoEstado" Mode="In" Type="String" />
@@ -763,6 +826,10 @@
     <FunctionImport Name="CambiarEstadoOferta">
       <Parameter Name="IDOferta" Mode="In" Type="Int32" />
       <Parameter Name="NuevoEstado" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="EliminarAplicacionOferta">
+      <Parameter Name="IDOferta" Mode="In" Type="Int32" />
+      <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="Insertar_Empresa" ReturnType="Collection(Int32)">
       <Parameter Name="nombreEmpresa" Mode="In" Type="String" />
@@ -800,6 +867,26 @@
       <Parameter Name="cantidadPlazas" Mode="In" Type="Int32" />
       <Parameter Name="carrerasProfesionales" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="InsertarCapacitacionesXAplicante">
+      <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+      <Parameter Name="infoCapacitaciones" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertarEducacionFormalXAplicante">
+      <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+      <Parameter Name="infoTitulos" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertarExperienciaLaboralXAplicante">
+      <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+      <Parameter Name="infoExperienciaLaboral" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertarIdiomaXAplicante">
+      <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+      <Parameter Name="infoIdiomas" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertarReferenciasXAplicante">
+      <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+      <Parameter Name="infoReferencias" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="ObtenerDatosEmpresa" ReturnType="Collection(TalentoTECModel.ObtenerDatosEmpresa_Result)">
       <Parameter Name="IDEmpresa" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -812,6 +899,12 @@
     <FunctionImport Name="ObtenerIDCarreraProfesional" ReturnType="Collection(Int32)">
       <Parameter Name="nombreCarrera" Mode="In" Type="String" />
       <Parameter Name="nombreEspecialidad" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ObtenerIDIdioma" ReturnType="Collection(Int32)">
+      <Parameter Name="nombreIdioma" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ObtenerIDNacionalidad" ReturnType="Collection(Int32)">
+      <Parameter Name="nombreNacionalidad" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="ObtenerIDPais" ReturnType="Collection(Int32)">
       <Parameter Name="nombrePais" Mode="In" Type="String" />
@@ -830,9 +923,12 @@
       <Parameter Name="nombreEscuela" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="ObtenerListaEscuelas" ReturnType="Collection(String)" />
-    <FunctionImport Name="ObtenerListaEspecialidades" ReturnType="Collection(String)">
+    <FunctionImport Name="ObtenerListaEspecialidadesXCarrera" ReturnType="Collection(String)">
       <Parameter Name="nombreCarrera" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="ObtenerListaIdiomas" ReturnType="Collection(String)" />
+    <FunctionImport Name="ObtenerListaNacionalidades" ReturnType="Collection(String)" />
+    <FunctionImport Name="ObtenerListaPaises" ReturnType="Collection(String)" />
     <FunctionImport Name="ObtenerListaSectoresProductivos" ReturnType="Collection(String)" />
     <FunctionImport Name="ObtenerNombreUsuario" ReturnType="Collection(TalentoTECModel.ObtenerNombreUsuario_Result)">
       <Parameter Name="ID_Usuario" Mode="In" Type="Int32" />
@@ -898,7 +994,7 @@
     <Property Type="String" Name="TelefonoCoordinador" Nullable="false" MaxLength="15" />
   </ComplexType>
   <ComplexType Name="ObtenerNombreUsuario_Result">
-    <Property Type="Int32" Name="ID" Nullable="true" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
     <Property Type="String" Name="nombreEmpresa" Nullable="false" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="ObtenerOfertasXEmpresa_Result">

@@ -21,7 +21,7 @@ namespace Talento_TEC_API.Controllers
                 {
                     connect.Configuration.ProxyCreationEnabled = false;
 
-                    var item = connect.ObtenerListaEspecialidades(nombreCarrera).ToList();
+                    var item = connect.ObtenerListaEspecialidadesXCarrera(nombreCarrera).ToList();
                     if (item != null)
                     {
                         return Request.CreateResponse(HttpStatusCode.OK, item);

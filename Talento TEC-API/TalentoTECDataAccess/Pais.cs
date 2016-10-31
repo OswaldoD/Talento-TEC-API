@@ -19,7 +19,6 @@ namespace TalentoTECDataAccess
         {
             this.Aplicantes = new HashSet<Aplicante>();
             this.Aplicantes1 = new HashSet<Aplicante>();
-            this.Empresas = new HashSet<Empresa>();
             this.CapacitacionesXAplicantes = new HashSet<CapacitacionesXAplicante>();
             this.EducacionFormalXAplicantes = new HashSet<EducacionFormalXAplicante>();
             this.ExperienciaLaboralXAplicantes = new HashSet<ExperienciaLaboralXAplicante>();
@@ -32,8 +31,6 @@ namespace TalentoTECDataAccess
         public virtual ICollection<Aplicante> Aplicantes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Aplicante> Aplicantes1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Empresa> Empresas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CapacitacionesXAplicante> CapacitacionesXAplicantes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

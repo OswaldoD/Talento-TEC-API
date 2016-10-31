@@ -130,6 +130,9 @@
     <Compile Include="SectoresProductivo.cs">
       <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="split_Result.cs">
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="TalentoTEC-APIModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

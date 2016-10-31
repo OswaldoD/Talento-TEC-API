@@ -4,33 +4,34 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="763e67d603f34ab89dab28017c11f353" Name="Diagram1">
-        <EntityTypeShape EntityType="TalentoTECModel.Administrador" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TalentoTECModel.Aplicante" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TalentoTECModel.CarrerasProfesionale" Width="1.5" PointX="3" PointY="26.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TalentoTECModel.CoordinadoresEscuela" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TalentoTECModel.Empresa" Width="1.5" PointX="3" PointY="20.375" IsExpanded="true" />
+      <Diagram DiagramId="0f98770980d643ccbe5340f28b24e32e" Name="Diagram1">
+        <EntityTypeShape EntityType="TalentoTECModel.Administrador" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.Aplicante" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.CarrerasProfesionale" Width="1.5" PointX="0.75" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.CoordinadoresEscuela" Width="1.5" PointX="2.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.CuentasUsuario" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.Empresa" Width="1.5" PointX="0.75" PointY="24.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TalentoTECModel.GradoEstudioFormal" Width="1.5" PointX="6" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TalentoTECModel.Idioma" Width="1.5" PointX="6" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TalentoTECModel.Nacionalidade" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TalentoTECModel.NivelDominioIdioma" Width="1.5" PointX="6" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TalentoTECModel.OfertasLaborale" Width="1.5" PointX="5.25" PointY="20.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TalentoTECModel.Pais" Width="1.5" PointX="0.75" PointY="14.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TalentoTECModel.SectoresProductivo" Width="1.5" PointX="5.25" PointY="26.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TalentoTECModel.TipoAplicante" Width="1.5" PointX="0.75" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TalentoTECModel.TipoIdentificacion" Width="1.5" PointX="0.75" PointY="20.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TalentoTECModel.TipoMoneda" Width="1.5" PointX="3" PointY="29" IsExpanded="true" />
-        <EntityTypeShape EntityType="TalentoTECModel.TipoOferta" Width="1.5" PointX="3" PointY="31.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TalentoTECModel.AplicanteXOferta" Width="1.5" PointX="7.5" PointY="21.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TalentoTECModel.CapacitacionesXAplicante" Width="1.5" PointX="5.25" PointY="14.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TalentoTECModel.CuentasUsuario" Width="1.5" PointX="5.25" PointY="28.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TalentoTECModel.EducacionFormalXAplicante" Width="1.5" PointX="8.25" PointY="14.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TalentoTECModel.ExperienciaLaboralXAplicante" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TalentoTECModel.IdiomaXAplicante" Width="1.5" PointX="8.25" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TalentoTECModel.ReferenciasXAplicante" Width="1.5" PointX="5.25" PointY="32" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.Idioma" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.Nacionalidade" Width="1.5" PointX="0.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.NivelDominioIdioma" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.OfertasLaborale" Width="1.5" PointX="3" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.Pais" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.SectoresProductivo" Width="1.5" PointX="3" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.TipoAplicante" Width="1.5" PointX="0.75" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.TipoIdentificacion" Width="1.5" PointX="0.75" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.TipoMoneda" Width="1.5" PointX="0.75" PointY="29.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.TipoOferta" Width="1.5" PointX="0.75" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.AplicanteXOferta" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.CapacitacionesXAplicante" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.EducacionFormalXAplicante" Width="1.5" PointX="8.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.ExperienciaLaboralXAplicante" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.IdiomaXAplicante" Width="1.5" PointX="8.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TalentoTECModel.ReferenciasXAplicante" Width="1.5" PointX="5.25" PointY="26.875" IsExpanded="true" />
         <AssociationConnector Association="TalentoTECModel.Aplicantes_Nacionalidades" ManuallyRouted="false" />
         <AssociationConnector Association="TalentoTECModel.Aplicantes_Paises_Nacimiento_" ManuallyRouted="false" />
         <AssociationConnector Association="TalentoTECModel.Aplicantes_Paises_Residencia_" ManuallyRouted="false" />
+        <AssociationConnector Association="TalentoTECModel.FK_Aplicantes_CuentasUsuarios" ManuallyRouted="false" />
         <AssociationConnector Association="TalentoTECModel.FK_Aplicantes_TipoAplicante" ManuallyRouted="false" />
         <AssociationConnector Association="TalentoTECModel.FK_Aplicantes_TipoIdentificacion" ManuallyRouted="false" />
         <AssociationConnector Association="TalentoTECModel.FK_CapacitacionesXAplicante_Aplicantes" ManuallyRouted="false" />
@@ -38,8 +39,8 @@
         <AssociationConnector Association="TalentoTECModel.FK_ExperienciaLaboralXAplicante_Aplicantes" ManuallyRouted="false" />
         <AssociationConnector Association="TalentoTECModel.FK_IdiomaXAplicante_Aplicantes" ManuallyRouted="false" />
         <AssociationConnector Association="TalentoTECModel.FK_ReferenciasXAplicante_Aplicantes" ManuallyRouted="false" />
-        <AssociationConnector Association="TalentoTECModel.FK_CuentasUsuarios_Empresas" ManuallyRouted="false" />
-        <AssociationConnector Association="TalentoTECModel.FK_Empresas_Paises" ManuallyRouted="false" />
+        <AssociationConnector Association="TalentoTECModel.FKAplicanteXoferta_Aplicantes" ManuallyRouted="false" />
+        <AssociationConnector Association="TalentoTECModel.FK_Empresas_CuentasUsuarios" ManuallyRouted="false" />
         <AssociationConnector Association="TalentoTECModel.FK_OfertasLaborales_Empresas1" ManuallyRouted="false" />
         <AssociationConnector Association="TalentoTECModel.FK_EducacionFormalXAplicante_GradoEstudioFormal" ManuallyRouted="false" />
         <AssociationConnector Association="TalentoTECModel.FK_IdiomaXAplicante_Idiomas" ManuallyRouted="false" />

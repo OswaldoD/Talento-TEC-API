@@ -14,11 +14,21 @@ namespace TalentoTECDataAccess
     
     public partial class CuentasUsuario
     {
-        public int FK_ID_USUARIO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CuentasUsuario()
+        {
+            this.Aplicantes = new HashSet<Aplicante>();
+            this.Empresas = new HashSet<Empresa>();
+        }
+    
+        public int ID_CUENTA_USUARIO { get; set; }
         public string NOMBRE_USUARIO { get; set; }
         public string PASSWORD_USUARIO { get; set; }
         public string TIPO_CUENTA { get; set; }
     
-        public virtual Empresa Empresa { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Aplicante> Aplicantes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Empresa> Empresas { get; set; }
     }
 }

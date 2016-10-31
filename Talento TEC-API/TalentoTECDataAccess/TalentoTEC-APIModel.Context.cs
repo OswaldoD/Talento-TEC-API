@@ -31,6 +31,7 @@ namespace TalentoTECDataAccess
         public virtual DbSet<Aplicante> Aplicantes { get; set; }
         public virtual DbSet<CarrerasProfesionale> CarrerasProfesionales { get; set; }
         public virtual DbSet<CoordinadoresEscuela> CoordinadoresEscuelas { get; set; }
+        public virtual DbSet<CuentasUsuario> CuentasUsuarios { get; set; }
         public virtual DbSet<Empresa> Empresas { get; set; }
         public virtual DbSet<GradoEstudioFormal> GradoEstudioFormals { get; set; }
         public virtual DbSet<Idioma> Idiomas { get; set; }
@@ -45,11 +46,24 @@ namespace TalentoTECDataAccess
         public virtual DbSet<TipoOferta> TipoOfertas { get; set; }
         public virtual DbSet<AplicanteXOferta> AplicanteXOfertas { get; set; }
         public virtual DbSet<CapacitacionesXAplicante> CapacitacionesXAplicantes { get; set; }
-        public virtual DbSet<CuentasUsuario> CuentasUsuarios { get; set; }
         public virtual DbSet<EducacionFormalXAplicante> EducacionFormalXAplicantes { get; set; }
         public virtual DbSet<ExperienciaLaboralXAplicante> ExperienciaLaboralXAplicantes { get; set; }
         public virtual DbSet<IdiomaXAplicante> IdiomaXAplicantes { get; set; }
         public virtual DbSet<ReferenciasXAplicante> ReferenciasXAplicantes { get; set; }
+    
+        [DbFunction("TalentoTECEntities", "split")]
+        public virtual IQueryable<split_Result> split(string delimited, string delimiter)
+        {
+            var delimitedParameter = delimited != null ?
+                new ObjectParameter("delimited", delimited) :
+                new ObjectParameter("delimited", typeof(string));
+    
+            var delimiterParameter = delimiter != null ?
+                new ObjectParameter("delimiter", delimiter) :
+                new ObjectParameter("delimiter", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<split_Result>("[TalentoTECEntities].[split](@delimited, @delimiter)", delimitedParameter, delimiterParameter);
+        }
     
         public virtual ObjectResult<Nullable<int>> ActualizarEmpresa(Nullable<int> iDEmpresa, string nombreEmpresa, string cedulaJuridica, string direccion, string provincia, string nombrePais, string telefonoEmpresa, string emailEmpresa, string uRL_Empresa, string nombreContactoEmpresa, string emailContacto, string puestoContacto, string telefonoContacto, string descripcionActividades, string nombreUsuario, string passwordUsuario, string nombreSectores)
         {
@@ -124,6 +138,137 @@ namespace TalentoTECDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("ActualizarEmpresa", iDEmpresaParameter, nombreEmpresaParameter, cedulaJuridicaParameter, direccionParameter, provinciaParameter, nombrePaisParameter, telefonoEmpresaParameter, emailEmpresaParameter, uRL_EmpresaParameter, nombreContactoEmpresaParameter, emailContactoParameter, puestoContactoParameter, telefonoContactoParameter, descripcionActividadesParameter, nombreUsuarioParameter, passwordUsuarioParameter, nombreSectoresParameter);
         }
     
+        public virtual ObjectResult<Nullable<int>> AgregarAplicante(string primerApellido, string segundoApellido, string nombre, string fechaNacimiento, string paisNacimiento, string nacionalidad, string tipoIdentificacion, string identificacion, string genero, string carne, string paisResidencia, string provincia, string direccionExacta, string telefono, string email, string password, string infoTitulos, string infoIdiomas, string infoExperienciaLaboral, string infoCapacitaciones, string conocimientos, string infoReferencias, string tipoAplicante)
+        {
+            var primerApellidoParameter = primerApellido != null ?
+                new ObjectParameter("PrimerApellido", primerApellido) :
+                new ObjectParameter("PrimerApellido", typeof(string));
+    
+            var segundoApellidoParameter = segundoApellido != null ?
+                new ObjectParameter("SegundoApellido", segundoApellido) :
+                new ObjectParameter("SegundoApellido", typeof(string));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var fechaNacimientoParameter = fechaNacimiento != null ?
+                new ObjectParameter("FechaNacimiento", fechaNacimiento) :
+                new ObjectParameter("FechaNacimiento", typeof(string));
+    
+            var paisNacimientoParameter = paisNacimiento != null ?
+                new ObjectParameter("PaisNacimiento", paisNacimiento) :
+                new ObjectParameter("PaisNacimiento", typeof(string));
+    
+            var nacionalidadParameter = nacionalidad != null ?
+                new ObjectParameter("Nacionalidad", nacionalidad) :
+                new ObjectParameter("Nacionalidad", typeof(string));
+    
+            var tipoIdentificacionParameter = tipoIdentificacion != null ?
+                new ObjectParameter("TipoIdentificacion", tipoIdentificacion) :
+                new ObjectParameter("TipoIdentificacion", typeof(string));
+    
+            var identificacionParameter = identificacion != null ?
+                new ObjectParameter("Identificacion", identificacion) :
+                new ObjectParameter("Identificacion", typeof(string));
+    
+            var generoParameter = genero != null ?
+                new ObjectParameter("Genero", genero) :
+                new ObjectParameter("Genero", typeof(string));
+    
+            var carneParameter = carne != null ?
+                new ObjectParameter("Carne", carne) :
+                new ObjectParameter("Carne", typeof(string));
+    
+            var paisResidenciaParameter = paisResidencia != null ?
+                new ObjectParameter("PaisResidencia", paisResidencia) :
+                new ObjectParameter("PaisResidencia", typeof(string));
+    
+            var provinciaParameter = provincia != null ?
+                new ObjectParameter("Provincia", provincia) :
+                new ObjectParameter("Provincia", typeof(string));
+    
+            var direccionExactaParameter = direccionExacta != null ?
+                new ObjectParameter("DireccionExacta", direccionExacta) :
+                new ObjectParameter("DireccionExacta", typeof(string));
+    
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            var infoTitulosParameter = infoTitulos != null ?
+                new ObjectParameter("infoTitulos", infoTitulos) :
+                new ObjectParameter("infoTitulos", typeof(string));
+    
+            var infoIdiomasParameter = infoIdiomas != null ?
+                new ObjectParameter("infoIdiomas", infoIdiomas) :
+                new ObjectParameter("infoIdiomas", typeof(string));
+    
+            var infoExperienciaLaboralParameter = infoExperienciaLaboral != null ?
+                new ObjectParameter("infoExperienciaLaboral", infoExperienciaLaboral) :
+                new ObjectParameter("infoExperienciaLaboral", typeof(string));
+    
+            var infoCapacitacionesParameter = infoCapacitaciones != null ?
+                new ObjectParameter("infoCapacitaciones", infoCapacitaciones) :
+                new ObjectParameter("infoCapacitaciones", typeof(string));
+    
+            var conocimientosParameter = conocimientos != null ?
+                new ObjectParameter("Conocimientos", conocimientos) :
+                new ObjectParameter("Conocimientos", typeof(string));
+    
+            var infoReferenciasParameter = infoReferencias != null ?
+                new ObjectParameter("infoReferencias", infoReferencias) :
+                new ObjectParameter("infoReferencias", typeof(string));
+    
+            var tipoAplicanteParameter = tipoAplicante != null ?
+                new ObjectParameter("TipoAplicante", tipoAplicante) :
+                new ObjectParameter("TipoAplicante", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("AgregarAplicante", primerApellidoParameter, segundoApellidoParameter, nombreParameter, fechaNacimientoParameter, paisNacimientoParameter, nacionalidadParameter, tipoIdentificacionParameter, identificacionParameter, generoParameter, carneParameter, paisResidenciaParameter, provinciaParameter, direccionExactaParameter, telefonoParameter, emailParameter, passwordParameter, infoTitulosParameter, infoIdiomasParameter, infoExperienciaLaboralParameter, infoCapacitacionesParameter, conocimientosParameter, infoReferenciasParameter, tipoAplicanteParameter);
+        }
+    
+        public virtual int AplicarOferta(Nullable<int> iDOferta, Nullable<int> iDAplicante)
+        {
+            var iDOfertaParameter = iDOferta.HasValue ?
+                new ObjectParameter("IDOferta", iDOferta) :
+                new ObjectParameter("IDOferta", typeof(int));
+    
+            var iDAplicanteParameter = iDAplicante.HasValue ?
+                new ObjectParameter("IDAplicante", iDAplicante) :
+                new ObjectParameter("IDAplicante", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AplicarOferta", iDOfertaParameter, iDAplicanteParameter);
+        }
+    
+        public virtual ObjectResult<string> BuscarOfertas(Nullable<int> iDAplicante, string tipoCuenta, string carreraSeleccionada, Nullable<int> tipoBusqueda)
+        {
+            var iDAplicanteParameter = iDAplicante.HasValue ?
+                new ObjectParameter("IDAplicante", iDAplicante) :
+                new ObjectParameter("IDAplicante", typeof(int));
+    
+            var tipoCuentaParameter = tipoCuenta != null ?
+                new ObjectParameter("TipoCuenta", tipoCuenta) :
+                new ObjectParameter("TipoCuenta", typeof(string));
+    
+            var carreraSeleccionadaParameter = carreraSeleccionada != null ?
+                new ObjectParameter("carreraSeleccionada", carreraSeleccionada) :
+                new ObjectParameter("carreraSeleccionada", typeof(string));
+    
+            var tipoBusquedaParameter = tipoBusqueda.HasValue ?
+                new ObjectParameter("TipoBusqueda", tipoBusqueda) :
+                new ObjectParameter("TipoBusqueda", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BuscarOfertas", iDAplicanteParameter, tipoCuentaParameter, carreraSeleccionadaParameter, tipoBusquedaParameter);
+        }
+    
         public virtual int CambiarEstadoEmpresa(Nullable<int> iDEmpresa, string nuevoEstado)
         {
             var iDEmpresaParameter = iDEmpresa.HasValue ?
@@ -148,6 +293,19 @@ namespace TalentoTECDataAccess
                 new ObjectParameter("NuevoEstado", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambiarEstadoOferta", iDOfertaParameter, nuevoEstadoParameter);
+        }
+    
+        public virtual int EliminarAplicacionOferta(Nullable<int> iDOferta, Nullable<int> iDAplicante)
+        {
+            var iDOfertaParameter = iDOferta.HasValue ?
+                new ObjectParameter("IDOferta", iDOferta) :
+                new ObjectParameter("IDOferta", typeof(int));
+    
+            var iDAplicanteParameter = iDAplicante.HasValue ?
+                new ObjectParameter("IDAplicante", iDAplicante) :
+                new ObjectParameter("IDAplicante", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EliminarAplicacionOferta", iDOfertaParameter, iDAplicanteParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> Insertar_Empresa(string nombreEmpresa, string cedulaJuridica, string direccion, string provincia, string nombrePais, string telefonoEmpresa, string emailEmpresa, string uRL_Empresa, string nombreContactoEmpresa, string emailContacto, string puestoContacto, string telefonoContacto, string descripcionActividades, string nombreUsuario, string passwordUsuario, string nombreSectores)
@@ -288,6 +446,71 @@ namespace TalentoTECDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Insertar_OfertasLaborales_Result>("Insertar_OfertasLaborales", iDEmpresaParameter, nombrePuestoParameter, descripcionPuestoParameter, requisitosPuestoParameter, montoSalarioParameter, nombreTipoMonedaParameter, fechaInicioOfertaParameter, fechaFinalOfertaParameter, nombreTipoOfertaParameter, nombreContactoParameter, emailContactoParameter, telefonoContactoParameter, estadoOfertaParameter, estadoConfidencialidadParameter, cantidadPlazasParameter, carrerasProfesionalesParameter);
         }
     
+        public virtual int InsertarCapacitacionesXAplicante(Nullable<int> iDAplicante, string infoCapacitaciones)
+        {
+            var iDAplicanteParameter = iDAplicante.HasValue ?
+                new ObjectParameter("IDAplicante", iDAplicante) :
+                new ObjectParameter("IDAplicante", typeof(int));
+    
+            var infoCapacitacionesParameter = infoCapacitaciones != null ?
+                new ObjectParameter("infoCapacitaciones", infoCapacitaciones) :
+                new ObjectParameter("infoCapacitaciones", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarCapacitacionesXAplicante", iDAplicanteParameter, infoCapacitacionesParameter);
+        }
+    
+        public virtual int InsertarEducacionFormalXAplicante(Nullable<int> iDAplicante, string infoTitulos)
+        {
+            var iDAplicanteParameter = iDAplicante.HasValue ?
+                new ObjectParameter("IDAplicante", iDAplicante) :
+                new ObjectParameter("IDAplicante", typeof(int));
+    
+            var infoTitulosParameter = infoTitulos != null ?
+                new ObjectParameter("infoTitulos", infoTitulos) :
+                new ObjectParameter("infoTitulos", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarEducacionFormalXAplicante", iDAplicanteParameter, infoTitulosParameter);
+        }
+    
+        public virtual int InsertarExperienciaLaboralXAplicante(Nullable<int> iDAplicante, string infoExperienciaLaboral)
+        {
+            var iDAplicanteParameter = iDAplicante.HasValue ?
+                new ObjectParameter("IDAplicante", iDAplicante) :
+                new ObjectParameter("IDAplicante", typeof(int));
+    
+            var infoExperienciaLaboralParameter = infoExperienciaLaboral != null ?
+                new ObjectParameter("infoExperienciaLaboral", infoExperienciaLaboral) :
+                new ObjectParameter("infoExperienciaLaboral", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarExperienciaLaboralXAplicante", iDAplicanteParameter, infoExperienciaLaboralParameter);
+        }
+    
+        public virtual int InsertarIdiomaXAplicante(Nullable<int> iDAplicante, string infoIdiomas)
+        {
+            var iDAplicanteParameter = iDAplicante.HasValue ?
+                new ObjectParameter("IDAplicante", iDAplicante) :
+                new ObjectParameter("IDAplicante", typeof(int));
+    
+            var infoIdiomasParameter = infoIdiomas != null ?
+                new ObjectParameter("infoIdiomas", infoIdiomas) :
+                new ObjectParameter("infoIdiomas", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarIdiomaXAplicante", iDAplicanteParameter, infoIdiomasParameter);
+        }
+    
+        public virtual int InsertarReferenciasXAplicante(Nullable<int> iDAplicante, string infoReferencias)
+        {
+            var iDAplicanteParameter = iDAplicante.HasValue ?
+                new ObjectParameter("IDAplicante", iDAplicante) :
+                new ObjectParameter("IDAplicante", typeof(int));
+    
+            var infoReferenciasParameter = infoReferencias != null ?
+                new ObjectParameter("infoReferencias", infoReferencias) :
+                new ObjectParameter("infoReferencias", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarReferenciasXAplicante", iDAplicanteParameter, infoReferenciasParameter);
+        }
+    
         public virtual ObjectResult<ObtenerDatosEmpresa_Result> ObtenerDatosEmpresa(Nullable<int> iDEmpresa)
         {
             var iDEmpresaParameter = iDEmpresa.HasValue ?
@@ -326,6 +549,24 @@ namespace TalentoTECDataAccess
                 new ObjectParameter("nombreEspecialidad", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("ObtenerIDCarreraProfesional", nombreCarreraParameter, nombreEspecialidadParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> ObtenerIDIdioma(string nombreIdioma)
+        {
+            var nombreIdiomaParameter = nombreIdioma != null ?
+                new ObjectParameter("nombreIdioma", nombreIdioma) :
+                new ObjectParameter("nombreIdioma", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("ObtenerIDIdioma", nombreIdiomaParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> ObtenerIDNacionalidad(string nombreNacionalidad)
+        {
+            var nombreNacionalidadParameter = nombreNacionalidad != null ?
+                new ObjectParameter("nombreNacionalidad", nombreNacionalidad) :
+                new ObjectParameter("nombreNacionalidad", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("ObtenerIDNacionalidad", nombreNacionalidadParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> ObtenerIDPais(string nombrePais)
@@ -383,13 +624,28 @@ namespace TalentoTECDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("ObtenerListaEscuelas");
         }
     
-        public virtual ObjectResult<string> ObtenerListaEspecialidades(string nombreCarrera)
+        public virtual ObjectResult<string> ObtenerListaEspecialidadesXCarrera(string nombreCarrera)
         {
             var nombreCarreraParameter = nombreCarrera != null ?
                 new ObjectParameter("nombreCarrera", nombreCarrera) :
                 new ObjectParameter("nombreCarrera", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("ObtenerListaEspecialidades", nombreCarreraParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("ObtenerListaEspecialidadesXCarrera", nombreCarreraParameter);
+        }
+    
+        public virtual ObjectResult<string> ObtenerListaIdiomas()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("ObtenerListaIdiomas");
+        }
+    
+        public virtual ObjectResult<string> ObtenerListaNacionalidades()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("ObtenerListaNacionalidades");
+        }
+    
+        public virtual ObjectResult<string> ObtenerListaPaises()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("ObtenerListaPaises");
         }
     
         public virtual ObjectResult<string> ObtenerListaSectoresProductivos()

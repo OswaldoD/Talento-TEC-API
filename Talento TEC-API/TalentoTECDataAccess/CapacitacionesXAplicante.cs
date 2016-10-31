@@ -18,7 +18,7 @@ namespace TalentoTECDataAccess
         public string NOMBRE_ACTIVIDAD { get; set; }
         public string NOMBRE_INSTITUCION { get; set; }
         public int FK_ID_PAIS_CURSO { get; set; }
-        public int ANNO_CAPACITACION { get; set; }
+        public string ANNO_CAPACITACION { get; set; }
     
         public virtual Aplicante Aplicante { get; set; }
         public virtual Pais Pais { get; set; }

@@ -16,9 +16,10 @@ namespace TalentoTECDataAccess
     {
         public int FK_ID_OFERTA { get; set; }
         public int FK_ID_APLICANTE { get; set; }
-        public System.DateTime FECHA_APLICACION { get; set; }
+        public string FECHA_APLICACION { get; set; }
         public string ESTADO { get; set; }
     
+        public virtual Aplicante Aplicante { get; set; }
         public virtual OfertasLaborale OfertasLaborale { get; set; }
     }
 }

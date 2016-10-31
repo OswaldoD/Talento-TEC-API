@@ -24,7 +24,7 @@
           <Property Name="APELLIDO1" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="APELLIDO2" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="NOMBRE" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="FECHA_NACIMIENTO" Type="datetime" Nullable="false" />
+          <Property Name="FECHA_NACIMIENTO" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="FK_ID_PAIS_NACIMIENTO" Type="int" Nullable="false" />
           <Property Name="FK_ID_NACIONALIDAD" Type="int" Nullable="false" />
           <Property Name="FK_ID_PAIS_RESIDENCIA" Type="int" Nullable="false" />
@@ -33,9 +33,11 @@
           <Property Name="SEXO" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="TELEFONO" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="CORREO_ELECTRONICO" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="NUMERO_CARNE" Type="int" Nullable="false" />
+          <Property Name="NUMERO_CARNE" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="FK_ID_TIPO_APLICANTE" Type="int" Nullable="false" />
+          <Property Name="ESTADO_APLICANTE" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="DESCRIPCION_CONOCIMIENTOS" Type="varchar" MaxLength="1024" />
+          <Property Name="FK_ID_CUENTA_USUARIO" Type="int" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'TalentoTEC.dbo.AplicanteXOferta' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -48,7 +50,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.AplicanteXOferta' no tiene de
           </Key>
           <Property Name="FK_ID_OFERTA" Type="int" Nullable="false" />
           <Property Name="FK_ID_APLICANTE" Type="int" Nullable="false" />
-          <Property Name="FECHA_APLICACION" Type="datetime" Nullable="false" />
+          <Property Name="FECHA_APLICACION" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="ESTADO" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
@@ -65,7 +67,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.CapacitacionesXAplicante' no 
           <Property Name="NOMBRE_ACTIVIDAD" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="NOMBRE_INSTITUCION" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FK_ID_PAIS_CURSO" Type="int" Nullable="false" />
-          <Property Name="ANNO_CAPACITACION" Type="int" Nullable="false" />
+          <Property Name="ANNO_CAPACITACION" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'TalentoTEC.dbo.CarreraProfesionalXOferta' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -95,16 +97,11 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.CarreraProfesionalXOferta' no
           <Property Name="EMAIL_COORDINADOR" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="TELEFONO_COORDINADOR" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'TalentoTEC.dbo.CuentasUsuarios' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="CuentasUsuarios">
           <Key>
-            <PropertyRef Name="FK_ID_USUARIO" />
-            <PropertyRef Name="NOMBRE_USUARIO" />
-            <PropertyRef Name="PASSWORD_USUARIO" />
-            <PropertyRef Name="TIPO_CUENTA" />
+            <PropertyRef Name="ID_CUENTA_USUARIO" />
           </Key>
-          <Property Name="FK_ID_USUARIO" Type="int" Nullable="false" />
+          <Property Name="ID_CUENTA_USUARIO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NOMBRE_USUARIO" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="PASSWORD_USUARIO" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="TIPO_CUENTA" Type="varchar" MaxLength="11" Nullable="false" />
@@ -146,6 +143,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.EducacionFormalXAplicante' no
           <Property Name="TELEFONO_CONTACTO_EMPRESA" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="DESC_ACTIVIDADES_EMPRESA" Type="varchar" MaxLength="1024" Nullable="false" />
           <Property Name="ESTADO_EMPRESA" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FK_ID_CUENTA_USUARIO" Type="int" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'TalentoTEC.dbo.ExperienciaLaboralXAplicante' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -161,8 +159,8 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.ExperienciaLaboralXAplicante'
           <Property Name="FK_ID_APLICANTE" Type="int" Nullable="false" />
           <Property Name="NOMBRE_EMPRESA" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="NOMBRE_PUESTO" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ANNO_DESDE" Type="int" Nullable="false" />
-          <Property Name="ANNO_HASTA" Type="int" Nullable="false" />
+          <Property Name="ANNO_DESDE" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ANNO_HASTA" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="FK_ID_PAIS_TRABAJO" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="GradoEstudioFormal">
@@ -170,7 +168,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.ExperienciaLaboralXAplicante'
             <PropertyRef Name="ID_GRADO" />
           </Key>
           <Property Name="ID_GRADO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NOMBRE_GRADO" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="NOMBRE_GRADO" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="Idiomas">
           <Key>
@@ -336,6 +334,18 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Aplicantes_CuentasUsuarios">
+          <End Role="CuentasUsuarios" Type="Self.CuentasUsuarios" Multiplicity="0..1" />
+          <End Role="Aplicantes" Type="Self.Aplicantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CuentasUsuarios">
+              <PropertyRef Name="ID_CUENTA_USUARIO" />
+            </Principal>
+            <Dependent Role="Aplicantes">
+              <PropertyRef Name="FK_ID_CUENTA_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Aplicantes_TipoAplicante">
           <End Role="TipoAplicante" Type="Self.TipoAplicante" Multiplicity="1" />
           <End Role="Aplicantes" Type="Self.Aplicantes" Multiplicity="*" />
@@ -420,18 +430,6 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CuentasUsuarios_Empresas">
-          <End Role="Empresas" Type="Self.Empresas" Multiplicity="1" />
-          <End Role="CuentasUsuarios" Type="Self.CuentasUsuarios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empresas">
-              <PropertyRef Name="ID_EMPRESA" />
-            </Principal>
-            <Dependent Role="CuentasUsuarios">
-              <PropertyRef Name="FK_ID_USUARIO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_EducacionFormalXAplicante_Aplicantes">
           <End Role="Aplicantes" Type="Self.Aplicantes" Multiplicity="1" />
           <End Role="EducacionFormalXAplicante" Type="Self.EducacionFormalXAplicante" Multiplicity="*" />
@@ -468,15 +466,15 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Empresas_Paises">
-          <End Role="Paises" Type="Self.Paises" Multiplicity="1" />
+        <Association Name="FK_Empresas_CuentasUsuarios">
+          <End Role="CuentasUsuarios" Type="Self.CuentasUsuarios" Multiplicity="0..1" />
           <End Role="Empresas" Type="Self.Empresas" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Paises">
-              <PropertyRef Name="ID_PAIS" />
+            <Principal Role="CuentasUsuarios">
+              <PropertyRef Name="ID_CUENTA_USUARIO" />
             </Principal>
             <Dependent Role="Empresas">
-              <PropertyRef Name="FK_ID_PAIS" />
+              <PropertyRef Name="FK_ID_CUENTA_USUARIO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -636,6 +634,20 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FKAplicanteXoferta_Aplicantes">
+          <End Role="Aplicantes" Type="Self.Aplicantes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AplicanteXOferta" Type="Self.AplicanteXOferta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aplicantes">
+              <PropertyRef Name="ID_APLICANTE" />
+            </Principal>
+            <Dependent Role="AplicanteXOferta">
+              <PropertyRef Name="FK_ID_APLICANTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="ActualizarEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IDEmpresa" Type="int" Mode="In" />
           <Parameter Name="nombreEmpresa" Type="varchar" Mode="In" />
@@ -655,6 +667,41 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Parameter Name="passwordUsuario" Type="varchar" Mode="In" />
           <Parameter Name="nombreSectores" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="AgregarAplicante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PrimerApellido" Type="varchar" Mode="In" />
+          <Parameter Name="SegundoApellido" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="FechaNacimiento" Type="varchar" Mode="In" />
+          <Parameter Name="PaisNacimiento" Type="varchar" Mode="In" />
+          <Parameter Name="Nacionalidad" Type="varchar" Mode="In" />
+          <Parameter Name="TipoIdentificacion" Type="varchar" Mode="In" />
+          <Parameter Name="Identificacion" Type="varchar" Mode="In" />
+          <Parameter Name="Genero" Type="varchar" Mode="In" />
+          <Parameter Name="Carne" Type="varchar" Mode="In" />
+          <Parameter Name="PaisResidencia" Type="varchar" Mode="In" />
+          <Parameter Name="Provincia" Type="varchar" Mode="In" />
+          <Parameter Name="DireccionExacta" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="infoTitulos" Type="varchar(max)" Mode="In" />
+          <Parameter Name="infoIdiomas" Type="varchar(max)" Mode="In" />
+          <Parameter Name="infoExperienciaLaboral" Type="varchar(max)" Mode="In" />
+          <Parameter Name="infoCapacitaciones" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Conocimientos" Type="varchar" Mode="In" />
+          <Parameter Name="infoReferencias" Type="varchar(max)" Mode="In" />
+          <Parameter Name="TipoAplicante" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="AplicarOferta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDOferta" Type="int" Mode="In" />
+          <Parameter Name="IDAplicante" Type="int" Mode="In" />
+        </Function>
+        <Function Name="BuscarOfertas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDAplicante" Type="int" Mode="In" />
+          <Parameter Name="TipoCuenta" Type="varchar" Mode="In" />
+          <Parameter Name="carreraSeleccionada" Type="varchar" Mode="In" />
+          <Parameter Name="TipoBusqueda" Type="int" Mode="In" />
+        </Function>
         <Function Name="CambiarEstadoEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IDEmpresa" Type="int" Mode="In" />
           <Parameter Name="NuevoEstado" Type="varchar" Mode="In" />
@@ -662,6 +709,10 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
         <Function Name="CambiarEstadoOferta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IDOferta" Type="int" Mode="In" />
           <Parameter Name="NuevoEstado" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="EliminarAplicacionOferta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDOferta" Type="int" Mode="In" />
+          <Parameter Name="IDAplicante" Type="int" Mode="In" />
         </Function>
         <Function Name="Insertar_Empresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nombreEmpresa" Type="varchar" Mode="In" />
@@ -699,6 +750,26 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Parameter Name="cantidadPlazas" Type="int" Mode="In" />
           <Parameter Name="carrerasProfesionales" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="InsertarCapacitacionesXAplicante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDAplicante" Type="int" Mode="In" />
+          <Parameter Name="infoCapacitaciones" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="InsertarEducacionFormalXAplicante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDAplicante" Type="int" Mode="In" />
+          <Parameter Name="infoTitulos" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="InsertarExperienciaLaboralXAplicante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDAplicante" Type="int" Mode="In" />
+          <Parameter Name="infoExperienciaLaboral" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="InsertarIdiomaXAplicante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDAplicante" Type="int" Mode="In" />
+          <Parameter Name="infoIdiomas" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="InsertarReferenciasXAplicante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDAplicante" Type="int" Mode="In" />
+          <Parameter Name="infoReferencias" Type="varchar(max)" Mode="In" />
+        </Function>
         <Function Name="ObtenerDatosEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IDEmpresa" Type="int" Mode="In" />
         </Function>
@@ -711,6 +782,12 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
         <Function Name="ObtenerIDCarreraProfesional" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nombreCarrera" Type="varchar" Mode="In" />
           <Parameter Name="nombreEspecialidad" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ObtenerIDIdioma" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombreIdioma" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ObtenerIDNacionalidad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombreNacionalidad" Type="varchar" Mode="In" />
         </Function>
         <Function Name="ObtenerIDPais" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nombrePais" Type="varchar" Mode="In" />
@@ -729,9 +806,12 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Parameter Name="nombreEscuela" Type="varchar" Mode="In" />
         </Function>
         <Function Name="ObtenerListaEscuelas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="ObtenerListaEspecialidades" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ObtenerListaEspecialidadesXCarrera" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nombreCarrera" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="ObtenerListaIdiomas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ObtenerListaNacionalidades" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ObtenerListaPaises" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ObtenerListaSectoresProductivos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="ObtenerNombreUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID_Usuario" Type="int" Mode="In" />
@@ -739,6 +819,18 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
         </Function>
         <Function Name="ObtenerOfertasXEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID_Empresa" Type="int" Mode="In" />
+        </Function>
+        <Function Name="split" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="delimited" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="delimiter" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="id" Type="int" Nullable="false" />
+                <Property Name="val" Type="nvarchar(max)" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
         </Function>
         <Function Name="Verificacion_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre_Usuario" Type="varchar" Mode="In" />
@@ -753,6 +845,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <EntitySet Name="Aplicantes" EntityType="Self.Aplicantes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CarrerasProfesionales" EntityType="Self.CarrerasProfesionales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CoordinadoresEscuelas" EntityType="Self.CoordinadoresEscuelas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CuentasUsuarios" EntityType="Self.CuentasUsuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empresas" EntityType="Self.Empresas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GradoEstudioFormal" EntityType="Self.GradoEstudioFormal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Idiomas" EntityType="Self.Idiomas" Schema="dbo" store:Type="Tables" />
@@ -787,14 +880,6 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
     [CarreraProfesionalXOferta].[FK_ID_OFERTA] AS [FK_ID_OFERTA], 
     [CarreraProfesionalXOferta].[FK_ID_CARRERA] AS [FK_ID_CARRERA]
     FROM [dbo].[CarreraProfesionalXOferta] AS [CarreraProfesionalXOferta]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="CuentasUsuarios" EntityType="Self.CuentasUsuarios" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [CuentasUsuarios].[FK_ID_USUARIO] AS [FK_ID_USUARIO], 
-    [CuentasUsuarios].[NOMBRE_USUARIO] AS [NOMBRE_USUARIO], 
-    [CuentasUsuarios].[PASSWORD_USUARIO] AS [PASSWORD_USUARIO], 
-    [CuentasUsuarios].[TIPO_CUENTA] AS [TIPO_CUENTA]
-    FROM [dbo].[CuentasUsuarios] AS [CuentasUsuarios]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="EducacionFormalXAplicante" EntityType="Self.EducacionFormalXAplicante" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -853,6 +938,10 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <End Role="Paises" EntitySet="Paises" />
             <End Role="Aplicantes" EntitySet="Aplicantes" />
           </AssociationSet>
+          <AssociationSet Name="FK_Aplicantes_CuentasUsuarios" Association="Self.FK_Aplicantes_CuentasUsuarios">
+            <End Role="CuentasUsuarios" EntitySet="CuentasUsuarios" />
+            <End Role="Aplicantes" EntitySet="Aplicantes" />
+          </AssociationSet>
           <AssociationSet Name="FK_Aplicantes_TipoAplicante" Association="Self.FK_Aplicantes_TipoAplicante">
             <End Role="TipoAplicante" EntitySet="TipoAplicante" />
             <End Role="Aplicantes" EntitySet="Aplicantes" />
@@ -881,10 +970,6 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <End Role="OfertasLaborales" EntitySet="OfertasLaborales" />
             <End Role="CarreraProfesionalXOferta" EntitySet="CarreraProfesionalXOferta" />
           </AssociationSet>
-          <AssociationSet Name="FK_CuentasUsuarios_Empresas" Association="Self.FK_CuentasUsuarios_Empresas">
-            <End Role="Empresas" EntitySet="Empresas" />
-            <End Role="CuentasUsuarios" EntitySet="CuentasUsuarios" />
-          </AssociationSet>
           <AssociationSet Name="FK_EducacionFormalXAplicante_Aplicantes" Association="Self.FK_EducacionFormalXAplicante_Aplicantes">
             <End Role="Aplicantes" EntitySet="Aplicantes" />
             <End Role="EducacionFormalXAplicante" EntitySet="EducacionFormalXAplicante" />
@@ -897,8 +982,8 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <End Role="Paises" EntitySet="Paises" />
             <End Role="EducacionFormalXAplicante" EntitySet="EducacionFormalXAplicante" />
           </AssociationSet>
-          <AssociationSet Name="FK_Empresas_Paises" Association="Self.FK_Empresas_Paises">
-            <End Role="Paises" EntitySet="Paises" />
+          <AssociationSet Name="FK_Empresas_CuentasUsuarios" Association="Self.FK_Empresas_CuentasUsuarios">
+            <End Role="CuentasUsuarios" EntitySet="CuentasUsuarios" />
             <End Role="Empresas" EntitySet="Empresas" />
           </AssociationSet>
           <AssociationSet Name="FK_ExperienciaLaboralXAplicante_Aplicantes" Association="Self.FK_ExperienciaLaboralXAplicante_Aplicantes">
@@ -953,12 +1038,20 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <End Role="SectoresProductivos" EntitySet="SectoresProductivos" />
             <End Role="SectorProductivoXEmpresa" EntitySet="SectorProductivoXEmpresa" />
           </AssociationSet>
+          <AssociationSet Name="FKAplicanteXoferta_Aplicantes" Association="Self.FKAplicanteXoferta_Aplicantes">
+            <End Role="Aplicantes" EntitySet="Aplicantes" />
+            <End Role="AplicanteXOferta" EntitySet="AplicanteXOferta" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TalentoTECModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="split_Result">
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="val" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </ComplexType>
         <EntityType Name="Administrador">
           <Key>
             <PropertyRef Name="ID_ADMINISTRADOR" />
@@ -978,7 +1071,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Property Name="APELLIDO1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="APELLIDO2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NOMBRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FECHA_NACIMIENTO" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FECHA_NACIMIENTO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FK_ID_PAIS_NACIMIENTO" Type="Int32" Nullable="false" />
           <Property Name="FK_ID_NACIONALIDAD" Type="Int32" Nullable="false" />
           <Property Name="FK_ID_PAIS_RESIDENCIA" Type="Int32" Nullable="false" />
@@ -987,12 +1080,15 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Property Name="SEXO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TELEFONO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CORREO_ELECTRONICO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NUMERO_CARNE" Type="Int32" Nullable="false" />
+          <Property Name="NUMERO_CARNE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FK_ID_TIPO_APLICANTE" Type="Int32" Nullable="false" />
+          <Property Name="ESTADO_APLICANTE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DESCRIPCION_CONOCIMIENTOS" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="FK_ID_CUENTA_USUARIO" Type="Int32" />
           <NavigationProperty Name="Nacionalidade" Relationship="Self.Aplicantes_Nacionalidades" FromRole="Aplicantes" ToRole="Nacionalidades" />
           <NavigationProperty Name="Pais" Relationship="Self.Aplicantes_Paises_Nacimiento_" FromRole="Aplicantes" ToRole="Paises" />
           <NavigationProperty Name="Pais1" Relationship="Self.Aplicantes_Paises_Residencia_" FromRole="Aplicantes" ToRole="Paises" />
+          <NavigationProperty Name="CuentasUsuario" Relationship="Self.FK_Aplicantes_CuentasUsuarios" FromRole="Aplicantes" ToRole="CuentasUsuarios" />
           <NavigationProperty Name="TipoAplicante" Relationship="Self.FK_Aplicantes_TipoAplicante" FromRole="Aplicantes" ToRole="TipoAplicante" />
           <NavigationProperty Name="TipoIdentificacion" Relationship="Self.FK_Aplicantes_TipoIdentificacion" FromRole="Aplicantes" ToRole="TipoIdentificacion" />
           <NavigationProperty Name="CapacitacionesXAplicantes" Relationship="Self.FK_CapacitacionesXAplicante_Aplicantes" FromRole="Aplicantes" ToRole="CapacitacionesXAplicante" />
@@ -1000,6 +1096,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <NavigationProperty Name="ExperienciaLaboralXAplicantes" Relationship="Self.FK_ExperienciaLaboralXAplicante_Aplicantes" FromRole="Aplicantes" ToRole="ExperienciaLaboralXAplicante" />
           <NavigationProperty Name="IdiomaXAplicantes" Relationship="Self.FK_IdiomaXAplicante_Aplicantes" FromRole="Aplicantes" ToRole="IdiomaXAplicante" />
           <NavigationProperty Name="ReferenciasXAplicantes" Relationship="Self.FK_ReferenciasXAplicante_Aplicantes" FromRole="Aplicantes" ToRole="ReferenciasXAplicante" />
+          <NavigationProperty Name="AplicanteXOfertas" Relationship="Self.FKAplicanteXoferta_Aplicantes" FromRole="Aplicantes" ToRole="AplicanteXOferta" />
         </EntityType>
         <EntityType Name="CarrerasProfesionale">
           <Key>
@@ -1020,6 +1117,17 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Property Name="EMAIL_COORDINADOR" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TELEFONO_COORDINADOR" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
+        <EntityType Name="CuentasUsuario">
+          <Key>
+            <PropertyRef Name="ID_CUENTA_USUARIO" />
+          </Key>
+          <Property Name="ID_CUENTA_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRE_USUARIO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PASSWORD_USUARIO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TIPO_CUENTA" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Aplicantes" Relationship="Self.FK_Aplicantes_CuentasUsuarios" FromRole="CuentasUsuarios" ToRole="Aplicantes" />
+          <NavigationProperty Name="Empresas" Relationship="Self.FK_Empresas_CuentasUsuarios" FromRole="CuentasUsuarios" ToRole="Empresas" />
+        </EntityType>
         <EntityType Name="Empresa">
           <Key>
             <PropertyRef Name="ID_EMPRESA" />
@@ -1039,8 +1147,8 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Property Name="TELEFONO_CONTACTO_EMPRESA" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DESC_ACTIVIDADES_EMPRESA" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ESTADO_EMPRESA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="CuentasUsuarios" Relationship="Self.FK_CuentasUsuarios_Empresas" FromRole="Empresas" ToRole="CuentasUsuarios" />
-          <NavigationProperty Name="Pais" Relationship="Self.FK_Empresas_Paises" FromRole="Empresas" ToRole="Paises" />
+          <Property Name="FK_ID_CUENTA_USUARIO" Type="Int32" />
+          <NavigationProperty Name="CuentasUsuario" Relationship="Self.FK_Empresas_CuentasUsuarios" FromRole="Empresas" ToRole="CuentasUsuarios" />
           <NavigationProperty Name="OfertasLaborales" Relationship="Self.FK_OfertasLaborales_Empresas1" FromRole="Empresas" ToRole="OfertasLaborales" />
           <NavigationProperty Name="SectoresProductivos" Relationship="Self.SectorProductivoXEmpresa" FromRole="Empresas" ToRole="SectoresProductivos" />
         </EntityType>
@@ -1049,7 +1157,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <PropertyRef Name="ID_GRADO" />
           </Key>
           <Property Name="ID_GRADO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NOMBRE_GRADO" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE_GRADO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="EducacionFormalXAplicantes" Relationship="Self.FK_EducacionFormalXAplicante_GradoEstudioFormal" FromRole="GradoEstudioFormal" ToRole="EducacionFormalXAplicante" />
         </EntityType>
         <EntityType Name="Idioma">
@@ -1112,7 +1220,6 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Property Name="NOMBRE_PAIS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Aplicantes" Relationship="Self.Aplicantes_Paises_Nacimiento_" FromRole="Paises" ToRole="Aplicantes" />
           <NavigationProperty Name="Aplicantes1" Relationship="Self.Aplicantes_Paises_Residencia_" FromRole="Paises" ToRole="Aplicantes" />
-          <NavigationProperty Name="Empresas" Relationship="Self.FK_Empresas_Paises" FromRole="Paises" ToRole="Empresas" />
           <NavigationProperty Name="CapacitacionesXAplicantes" Relationship="Self.FK_CapacitacionesXAplicante_Paises" FromRole="Paises" ToRole="CapacitacionesXAplicante" />
           <NavigationProperty Name="EducacionFormalXAplicantes" Relationship="Self.FK_EducacionFormalXAplicante_Paises" FromRole="Paises" ToRole="EducacionFormalXAplicante" />
           <NavigationProperty Name="ExperienciaLaboralXAplicantes" Relationship="Self.FK_ExperienciaLaboralXAplicante_Paises" FromRole="Paises" ToRole="ExperienciaLaboralXAplicante" />
@@ -1166,8 +1273,9 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           </Key>
           <Property Name="FK_ID_OFERTA" Type="Int32" Nullable="false" />
           <Property Name="FK_ID_APLICANTE" Type="Int32" Nullable="false" />
-          <Property Name="FECHA_APLICACION" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FECHA_APLICACION" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ESTADO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Aplicante" Relationship="Self.FKAplicanteXoferta_Aplicantes" FromRole="AplicanteXOferta" ToRole="Aplicantes" />
           <NavigationProperty Name="OfertasLaborale" Relationship="Self.FK_AplicanteXOferta_OfertasLaborales" FromRole="AplicanteXOferta" ToRole="OfertasLaborales" />
         </EntityType>
         <EntityType Name="CapacitacionesXAplicante">
@@ -1182,22 +1290,9 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Property Name="NOMBRE_ACTIVIDAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NOMBRE_INSTITUCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FK_ID_PAIS_CURSO" Type="Int32" Nullable="false" />
-          <Property Name="ANNO_CAPACITACION" Type="Int32" Nullable="false" />
+          <Property Name="ANNO_CAPACITACION" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Aplicante" Relationship="Self.FK_CapacitacionesXAplicante_Aplicantes" FromRole="CapacitacionesXAplicante" ToRole="Aplicantes" />
           <NavigationProperty Name="Pais" Relationship="Self.FK_CapacitacionesXAplicante_Paises" FromRole="CapacitacionesXAplicante" ToRole="Paises" />
-        </EntityType>
-        <EntityType Name="CuentasUsuario">
-          <Key>
-            <PropertyRef Name="FK_ID_USUARIO" />
-            <PropertyRef Name="NOMBRE_USUARIO" />
-            <PropertyRef Name="PASSWORD_USUARIO" />
-            <PropertyRef Name="TIPO_CUENTA" />
-          </Key>
-          <Property Name="FK_ID_USUARIO" Type="Int32" Nullable="false" />
-          <Property Name="NOMBRE_USUARIO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PASSWORD_USUARIO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TIPO_CUENTA" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Empresa" Relationship="Self.FK_CuentasUsuarios_Empresas" FromRole="CuentasUsuarios" ToRole="Empresas" />
         </EntityType>
         <EntityType Name="EducacionFormalXAplicante">
           <Key>
@@ -1230,8 +1325,8 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Property Name="FK_ID_APLICANTE" Type="Int32" Nullable="false" />
           <Property Name="NOMBRE_EMPRESA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NOMBRE_PUESTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ANNO_DESDE" Type="Int32" Nullable="false" />
-          <Property Name="ANNO_HASTA" Type="Int32" Nullable="false" />
+          <Property Name="ANNO_DESDE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ANNO_HASTA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FK_ID_PAIS_TRABAJO" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Aplicante" Relationship="Self.FK_ExperienciaLaboralXAplicante_Aplicantes" FromRole="ExperienciaLaboralXAplicante" ToRole="Aplicantes" />
           <NavigationProperty Name="Pais" Relationship="Self.FK_ExperienciaLaboralXAplicante_Paises" FromRole="ExperienciaLaboralXAplicante" ToRole="Paises" />
@@ -1305,6 +1400,18 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             </Principal>
             <Dependent Role="Aplicantes">
               <PropertyRef Name="FK_ID_PAIS_RESIDENCIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Aplicantes_CuentasUsuarios">
+          <End Role="CuentasUsuarios" Type="Self.CuentasUsuario" Multiplicity="0..1" />
+          <End Role="Aplicantes" Type="Self.Aplicante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CuentasUsuarios">
+              <PropertyRef Name="ID_CUENTA_USUARIO" />
+            </Principal>
+            <Dependent Role="Aplicantes">
+              <PropertyRef Name="FK_ID_CUENTA_USUARIO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1392,27 +1499,29 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CuentasUsuarios_Empresas">
-          <End Role="Empresas" Type="Self.Empresa" Multiplicity="1" />
-          <End Role="CuentasUsuarios" Type="Self.CuentasUsuario" Multiplicity="*" />
+        <Association Name="FKAplicanteXoferta_Aplicantes">
+          <End Role="Aplicantes" Type="Self.Aplicante" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AplicanteXOferta" Type="Self.AplicanteXOferta" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Empresas">
-              <PropertyRef Name="ID_EMPRESA" />
+            <Principal Role="Aplicantes">
+              <PropertyRef Name="ID_APLICANTE" />
             </Principal>
-            <Dependent Role="CuentasUsuarios">
-              <PropertyRef Name="FK_ID_USUARIO" />
+            <Dependent Role="AplicanteXOferta">
+              <PropertyRef Name="FK_ID_APLICANTE" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Empresas_Paises">
-          <End Role="Paises" Type="Self.Pais" Multiplicity="1" />
+        <Association Name="FK_Empresas_CuentasUsuarios">
+          <End Role="CuentasUsuarios" Type="Self.CuentasUsuario" Multiplicity="0..1" />
           <End Role="Empresas" Type="Self.Empresa" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Paises">
-              <PropertyRef Name="ID_PAIS" />
+            <Principal Role="CuentasUsuarios">
+              <PropertyRef Name="ID_CUENTA_USUARIO" />
             </Principal>
             <Dependent Role="Empresas">
-              <PropertyRef Name="FK_ID_PAIS" />
+              <PropertyRef Name="FK_ID_CUENTA_USUARIO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1573,6 +1682,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <EntitySet Name="Aplicantes" EntityType="Self.Aplicante" />
           <EntitySet Name="CarrerasProfesionales" EntityType="Self.CarrerasProfesionale" />
           <EntitySet Name="CoordinadoresEscuelas" EntityType="Self.CoordinadoresEscuela" />
+          <EntitySet Name="CuentasUsuarios" EntityType="Self.CuentasUsuario" />
           <EntitySet Name="Empresas" EntityType="Self.Empresa" />
           <EntitySet Name="GradoEstudioFormals" EntityType="Self.GradoEstudioFormal" />
           <EntitySet Name="Idiomas" EntityType="Self.Idioma" />
@@ -1587,7 +1697,6 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <EntitySet Name="TipoOfertas" EntityType="Self.TipoOferta" />
           <EntitySet Name="AplicanteXOfertas" EntityType="Self.AplicanteXOferta" />
           <EntitySet Name="CapacitacionesXAplicantes" EntityType="Self.CapacitacionesXAplicante" />
-          <EntitySet Name="CuentasUsuarios" EntityType="Self.CuentasUsuario" />
           <EntitySet Name="EducacionFormalXAplicantes" EntityType="Self.EducacionFormalXAplicante" />
           <EntitySet Name="ExperienciaLaboralXAplicantes" EntityType="Self.ExperienciaLaboralXAplicante" />
           <EntitySet Name="IdiomaXAplicantes" EntityType="Self.IdiomaXAplicante" />
@@ -1602,6 +1711,10 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           </AssociationSet>
           <AssociationSet Name="Aplicantes_Paises_Residencia_" Association="Self.Aplicantes_Paises_Residencia_">
             <End Role="Paises" EntitySet="Paises" />
+            <End Role="Aplicantes" EntitySet="Aplicantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Aplicantes_CuentasUsuarios" Association="Self.FK_Aplicantes_CuentasUsuarios">
+            <End Role="CuentasUsuarios" EntitySet="CuentasUsuarios" />
             <End Role="Aplicantes" EntitySet="Aplicantes" />
           </AssociationSet>
           <AssociationSet Name="FK_Aplicantes_TipoAplicante" Association="Self.FK_Aplicantes_TipoAplicante">
@@ -1632,12 +1745,12 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <End Role="Aplicantes" EntitySet="Aplicantes" />
             <End Role="ReferenciasXAplicante" EntitySet="ReferenciasXAplicantes" />
           </AssociationSet>
-          <AssociationSet Name="FK_CuentasUsuarios_Empresas" Association="Self.FK_CuentasUsuarios_Empresas">
-            <End Role="Empresas" EntitySet="Empresas" />
-            <End Role="CuentasUsuarios" EntitySet="CuentasUsuarios" />
+          <AssociationSet Name="FKAplicanteXoferta_Aplicantes" Association="Self.FKAplicanteXoferta_Aplicantes">
+            <End Role="Aplicantes" EntitySet="Aplicantes" />
+            <End Role="AplicanteXOferta" EntitySet="AplicanteXOfertas" />
           </AssociationSet>
-          <AssociationSet Name="FK_Empresas_Paises" Association="Self.FK_Empresas_Paises">
-            <End Role="Paises" EntitySet="Paises" />
+          <AssociationSet Name="FK_Empresas_CuentasUsuarios" Association="Self.FK_Empresas_CuentasUsuarios">
+            <End Role="CuentasUsuarios" EntitySet="CuentasUsuarios" />
             <End Role="Empresas" EntitySet="Empresas" />
           </AssociationSet>
           <AssociationSet Name="FK_OfertasLaborales_Empresas1" Association="Self.FK_OfertasLaborales_Empresas1">
@@ -1696,6 +1809,10 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <End Role="Empresas" EntitySet="Empresas" />
             <End Role="SectoresProductivos" EntitySet="SectoresProductivos" />
           </AssociationSet>
+          <FunctionImport Name="split" IsComposable="true" ReturnType="Collection(TalentoTECModel.split_Result)">
+            <Parameter Name="delimited" Mode="In" Type="String" />
+            <Parameter Name="delimiter" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="ActualizarEmpresa" ReturnType="Collection(Int32)">
             <Parameter Name="IDEmpresa" Mode="In" Type="Int32" />
             <Parameter Name="nombreEmpresa" Mode="In" Type="String" />
@@ -1715,6 +1832,41 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <Parameter Name="passwordUsuario" Mode="In" Type="String" />
             <Parameter Name="nombreSectores" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="AgregarAplicante" ReturnType="Collection(Int32)">
+            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
+            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="FechaNacimiento" Mode="In" Type="String" />
+            <Parameter Name="PaisNacimiento" Mode="In" Type="String" />
+            <Parameter Name="Nacionalidad" Mode="In" Type="String" />
+            <Parameter Name="TipoIdentificacion" Mode="In" Type="String" />
+            <Parameter Name="Identificacion" Mode="In" Type="String" />
+            <Parameter Name="Genero" Mode="In" Type="String" />
+            <Parameter Name="Carne" Mode="In" Type="String" />
+            <Parameter Name="PaisResidencia" Mode="In" Type="String" />
+            <Parameter Name="Provincia" Mode="In" Type="String" />
+            <Parameter Name="DireccionExacta" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="infoTitulos" Mode="In" Type="String" />
+            <Parameter Name="infoIdiomas" Mode="In" Type="String" />
+            <Parameter Name="infoExperienciaLaboral" Mode="In" Type="String" />
+            <Parameter Name="infoCapacitaciones" Mode="In" Type="String" />
+            <Parameter Name="Conocimientos" Mode="In" Type="String" />
+            <Parameter Name="infoReferencias" Mode="In" Type="String" />
+            <Parameter Name="TipoAplicante" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AplicarOferta">
+            <Parameter Name="IDOferta" Mode="In" Type="Int32" />
+            <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="BuscarOfertas" ReturnType="Collection(String)">
+            <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+            <Parameter Name="TipoCuenta" Mode="In" Type="String" />
+            <Parameter Name="carreraSeleccionada" Mode="In" Type="String" />
+            <Parameter Name="TipoBusqueda" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="CambiarEstadoEmpresa">
             <Parameter Name="IDEmpresa" Mode="In" Type="Int32" />
             <Parameter Name="NuevoEstado" Mode="In" Type="String" />
@@ -1722,6 +1874,10 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <FunctionImport Name="CambiarEstadoOferta">
             <Parameter Name="IDOferta" Mode="In" Type="Int32" />
             <Parameter Name="NuevoEstado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="EliminarAplicacionOferta">
+            <Parameter Name="IDOferta" Mode="In" Type="Int32" />
+            <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Insertar_Empresa" ReturnType="Collection(Int32)">
             <Parameter Name="nombreEmpresa" Mode="In" Type="String" />
@@ -1759,6 +1915,26 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <Parameter Name="cantidadPlazas" Mode="In" Type="Int32" />
             <Parameter Name="carrerasProfesionales" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="InsertarCapacitacionesXAplicante">
+            <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+            <Parameter Name="infoCapacitaciones" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertarEducacionFormalXAplicante">
+            <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+            <Parameter Name="infoTitulos" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertarExperienciaLaboralXAplicante">
+            <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+            <Parameter Name="infoExperienciaLaboral" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertarIdiomaXAplicante">
+            <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+            <Parameter Name="infoIdiomas" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertarReferenciasXAplicante">
+            <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+            <Parameter Name="infoReferencias" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="ObtenerDatosEmpresa" ReturnType="Collection(TalentoTECModel.ObtenerDatosEmpresa_Result)">
             <Parameter Name="IDEmpresa" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1771,6 +1947,12 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <FunctionImport Name="ObtenerIDCarreraProfesional" ReturnType="Collection(Int32)">
             <Parameter Name="nombreCarrera" Mode="In" Type="String" />
             <Parameter Name="nombreEspecialidad" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ObtenerIDIdioma" ReturnType="Collection(Int32)">
+            <Parameter Name="nombreIdioma" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ObtenerIDNacionalidad" ReturnType="Collection(Int32)">
+            <Parameter Name="nombreNacionalidad" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ObtenerIDPais" ReturnType="Collection(Int32)">
             <Parameter Name="nombrePais" Mode="In" Type="String" />
@@ -1789,9 +1971,12 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <Parameter Name="nombreEscuela" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ObtenerListaEscuelas" ReturnType="Collection(String)" />
-          <FunctionImport Name="ObtenerListaEspecialidades" ReturnType="Collection(String)">
+          <FunctionImport Name="ObtenerListaEspecialidadesXCarrera" ReturnType="Collection(String)">
             <Parameter Name="nombreCarrera" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="ObtenerListaIdiomas" ReturnType="Collection(String)" />
+          <FunctionImport Name="ObtenerListaNacionalidades" ReturnType="Collection(String)" />
+          <FunctionImport Name="ObtenerListaPaises" ReturnType="Collection(String)" />
           <FunctionImport Name="ObtenerListaSectoresProductivos" ReturnType="Collection(String)" />
           <FunctionImport Name="ObtenerNombreUsuario" ReturnType="Collection(TalentoTECModel.ObtenerNombreUsuario_Result)">
             <Parameter Name="ID_Usuario" Mode="In" Type="Int32" />
@@ -1857,7 +2042,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Property Type="String" Name="TelefonoCoordinador" Nullable="false" MaxLength="15" />
         </ComplexType>
         <ComplexType Name="ObtenerNombreUsuario_Result">
-          <Property Type="Int32" Name="ID" Nullable="true" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="nombreEmpresa" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="ObtenerOfertasXEmpresa_Result">
@@ -1904,7 +2089,9 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
                 <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />
                 <ScalarProperty Name="NUMERO_CARNE" ColumnName="NUMERO_CARNE" />
                 <ScalarProperty Name="FK_ID_TIPO_APLICANTE" ColumnName="FK_ID_TIPO_APLICANTE" />
+                <ScalarProperty Name="ESTADO_APLICANTE" ColumnName="ESTADO_APLICANTE" />
                 <ScalarProperty Name="DESCRIPCION_CONOCIMIENTOS" ColumnName="DESCRIPCION_CONOCIMIENTOS" />
+                <ScalarProperty Name="FK_ID_CUENTA_USUARIO" ColumnName="FK_ID_CUENTA_USUARIO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1928,6 +2115,16 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CuentasUsuarios">
+            <EntityTypeMapping TypeName="TalentoTECModel.CuentasUsuario">
+              <MappingFragment StoreEntitySet="CuentasUsuarios">
+                <ScalarProperty Name="ID_CUENTA_USUARIO" ColumnName="ID_CUENTA_USUARIO" />
+                <ScalarProperty Name="NOMBRE_USUARIO" ColumnName="NOMBRE_USUARIO" />
+                <ScalarProperty Name="PASSWORD_USUARIO" ColumnName="PASSWORD_USUARIO" />
+                <ScalarProperty Name="TIPO_CUENTA" ColumnName="TIPO_CUENTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Empresas">
             <EntityTypeMapping TypeName="TalentoTECModel.Empresa">
               <MappingFragment StoreEntitySet="Empresas">
@@ -1946,6 +2143,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
                 <ScalarProperty Name="TELEFONO_CONTACTO_EMPRESA" ColumnName="TELEFONO_CONTACTO_EMPRESA" />
                 <ScalarProperty Name="DESC_ACTIVIDADES_EMPRESA" ColumnName="DESC_ACTIVIDADES_EMPRESA" />
                 <ScalarProperty Name="ESTADO_EMPRESA" ColumnName="ESTADO_EMPRESA" />
+                <ScalarProperty Name="FK_ID_CUENTA_USUARIO" ColumnName="FK_ID_CUENTA_USUARIO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2072,16 +2270,6 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CuentasUsuarios">
-            <EntityTypeMapping TypeName="TalentoTECModel.CuentasUsuario">
-              <MappingFragment StoreEntitySet="CuentasUsuarios">
-                <ScalarProperty Name="FK_ID_USUARIO" ColumnName="FK_ID_USUARIO" />
-                <ScalarProperty Name="NOMBRE_USUARIO" ColumnName="NOMBRE_USUARIO" />
-                <ScalarProperty Name="PASSWORD_USUARIO" ColumnName="PASSWORD_USUARIO" />
-                <ScalarProperty Name="TIPO_CUENTA" ColumnName="TIPO_CUENTA" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="EducacionFormalXAplicantes">
             <EntityTypeMapping TypeName="TalentoTECModel.EducacionFormalXAplicante">
               <MappingFragment StoreEntitySet="EducacionFormalXAplicante">
@@ -2145,9 +2333,21 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
               <ScalarProperty Name="ID_SECTOR_PRODUCTIVO" ColumnName="FK_ID_SECTOR_PRODUCTIVO" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionName="TalentoTECModel.Store.split" FunctionImportName="split">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TalentoTECModel.split_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="val" ColumnName="val" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ActualizarEmpresa" FunctionName="TalentoTECModel.Store.ActualizarEmpresa" />
+          <FunctionImportMapping FunctionImportName="AgregarAplicante" FunctionName="TalentoTECModel.Store.AgregarAplicante" />
+          <FunctionImportMapping FunctionImportName="AplicarOferta" FunctionName="TalentoTECModel.Store.AplicarOferta" />
+          <FunctionImportMapping FunctionImportName="BuscarOfertas" FunctionName="TalentoTECModel.Store.BuscarOfertas" />
           <FunctionImportMapping FunctionImportName="CambiarEstadoEmpresa" FunctionName="TalentoTECModel.Store.CambiarEstadoEmpresa" />
           <FunctionImportMapping FunctionImportName="CambiarEstadoOferta" FunctionName="TalentoTECModel.Store.CambiarEstadoOferta" />
+          <FunctionImportMapping FunctionImportName="EliminarAplicacionOferta" FunctionName="TalentoTECModel.Store.EliminarAplicacionOferta" />
           <FunctionImportMapping FunctionImportName="Insertar_Empresa" FunctionName="TalentoTECModel.Store.Insertar_Empresa" />
           <FunctionImportMapping FunctionImportName="Insertar_OfertasLaborales" FunctionName="TalentoTECModel.Store.Insertar_OfertasLaborales">
             <ResultMapping>
@@ -2157,6 +2357,11 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="InsertarCapacitacionesXAplicante" FunctionName="TalentoTECModel.Store.InsertarCapacitacionesXAplicante" />
+          <FunctionImportMapping FunctionImportName="InsertarEducacionFormalXAplicante" FunctionName="TalentoTECModel.Store.InsertarEducacionFormalXAplicante" />
+          <FunctionImportMapping FunctionImportName="InsertarExperienciaLaboralXAplicante" FunctionName="TalentoTECModel.Store.InsertarExperienciaLaboralXAplicante" />
+          <FunctionImportMapping FunctionImportName="InsertarIdiomaXAplicante" FunctionName="TalentoTECModel.Store.InsertarIdiomaXAplicante" />
+          <FunctionImportMapping FunctionImportName="InsertarReferenciasXAplicante" FunctionName="TalentoTECModel.Store.InsertarReferenciasXAplicante" />
           <FunctionImportMapping FunctionImportName="ObtenerDatosEmpresa" FunctionName="TalentoTECModel.Store.ObtenerDatosEmpresa">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TalentoTECModel.ObtenerDatosEmpresa_Result">
@@ -2208,6 +2413,8 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ObtenerIDCarreraProfesional" FunctionName="TalentoTECModel.Store.ObtenerIDCarreraProfesional" />
+          <FunctionImportMapping FunctionImportName="ObtenerIDIdioma" FunctionName="TalentoTECModel.Store.ObtenerIDIdioma" />
+          <FunctionImportMapping FunctionImportName="ObtenerIDNacionalidad" FunctionName="TalentoTECModel.Store.ObtenerIDNacionalidad" />
           <FunctionImportMapping FunctionImportName="ObtenerIDPais" FunctionName="TalentoTECModel.Store.ObtenerIDPais" />
           <FunctionImportMapping FunctionImportName="ObtenerIDSectorProductivo" FunctionName="TalentoTECModel.Store.ObtenerIDSectorProductivo" />
           <FunctionImportMapping FunctionImportName="ObtenerIDTipoMoneda" FunctionName="TalentoTECModel.Store.ObtenerIDTipoMoneda" />
@@ -2223,7 +2430,10 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ObtenerListaEscuelas" FunctionName="TalentoTECModel.Store.ObtenerListaEscuelas" />
-          <FunctionImportMapping FunctionImportName="ObtenerListaEspecialidades" FunctionName="TalentoTECModel.Store.ObtenerListaEspecialidades" />
+          <FunctionImportMapping FunctionImportName="ObtenerListaEspecialidadesXCarrera" FunctionName="TalentoTECModel.Store.ObtenerListaEspecialidadesXCarrera" />
+          <FunctionImportMapping FunctionImportName="ObtenerListaIdiomas" FunctionName="TalentoTECModel.Store.ObtenerListaIdiomas" />
+          <FunctionImportMapping FunctionImportName="ObtenerListaNacionalidades" FunctionName="TalentoTECModel.Store.ObtenerListaNacionalidades" />
+          <FunctionImportMapping FunctionImportName="ObtenerListaPaises" FunctionName="TalentoTECModel.Store.ObtenerListaPaises" />
           <FunctionImportMapping FunctionImportName="ObtenerListaSectoresProductivos" FunctionName="TalentoTECModel.Store.ObtenerListaSectoresProductivos" />
           <FunctionImportMapping FunctionImportName="ObtenerNombreUsuario" FunctionName="TalentoTECModel.Store.ObtenerNombreUsuario">
             <ResultMapping>

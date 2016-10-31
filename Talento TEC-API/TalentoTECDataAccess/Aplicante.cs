@@ -22,6 +22,7 @@ namespace TalentoTECDataAccess
             this.ExperienciaLaboralXAplicantes = new HashSet<ExperienciaLaboralXAplicante>();
             this.IdiomaXAplicantes = new HashSet<IdiomaXAplicante>();
             this.ReferenciasXAplicantes = new HashSet<ReferenciasXAplicante>();
+            this.AplicanteXOfertas = new HashSet<AplicanteXOferta>();
         }
     
         public int ID_APLICANTE { get; set; }
@@ -30,7 +31,7 @@ namespace TalentoTECDataAccess
         public string APELLIDO1 { get; set; }
         public string APELLIDO2 { get; set; }
         public string NOMBRE { get; set; }
-        public System.DateTime FECHA_NACIMIENTO { get; set; }
+        public string FECHA_NACIMIENTO { get; set; }
         public int FK_ID_PAIS_NACIMIENTO { get; set; }
         public int FK_ID_NACIONALIDAD { get; set; }
         public int FK_ID_PAIS_RESIDENCIA { get; set; }
@@ -39,13 +40,16 @@ namespace TalentoTECDataAccess
         public string SEXO { get; set; }
         public string TELEFONO { get; set; }
         public string CORREO_ELECTRONICO { get; set; }
-        public int NUMERO_CARNE { get; set; }
+        public string NUMERO_CARNE { get; set; }
         public int FK_ID_TIPO_APLICANTE { get; set; }
+        public string ESTADO_APLICANTE { get; set; }
         public string DESCRIPCION_CONOCIMIENTOS { get; set; }
+        public Nullable<int> FK_ID_CUENTA_USUARIO { get; set; }
     
         public virtual Nacionalidade Nacionalidade { get; set; }
         public virtual Pais Pais { get; set; }
         public virtual Pais Pais1 { get; set; }
+        public virtual CuentasUsuario CuentasUsuario { get; set; }
         public virtual TipoAplicante TipoAplicante { get; set; }
         public virtual TipoIdentificacion TipoIdentificacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -58,5 +62,7 @@ namespace TalentoTECDataAccess
         public virtual ICollection<IdiomaXAplicante> IdiomaXAplicantes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReferenciasXAplicante> ReferenciasXAplicantes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AplicanteXOferta> AplicanteXOfertas { get; set; }
     }
 }

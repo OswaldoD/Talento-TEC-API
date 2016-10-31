@@ -11,9 +11,9 @@ namespace TalentoTECDataAccess
 {
     using System;
     
-    public partial class ObtenerNombreUsuario_Result
+    public partial class split_Result
     {
-        public int ID { get; set; }
-        public string nombreEmpresa { get; set; }
+        public int id { get; set; }
+        public string val { get; set; }
     }
 }

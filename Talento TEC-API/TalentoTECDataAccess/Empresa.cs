@@ -17,7 +17,6 @@ namespace TalentoTECDataAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Empresa()
         {
-            this.CuentasUsuarios = new HashSet<CuentasUsuario>();
             this.OfertasLaborales = new HashSet<OfertasLaborale>();
             this.SectoresProductivos = new HashSet<SectoresProductivo>();
         }
@@ -37,10 +36,9 @@ namespace TalentoTECDataAccess
         public string TELEFONO_CONTACTO_EMPRESA { get; set; }
         public string DESC_ACTIVIDADES_EMPRESA { get; set; }
         public string ESTADO_EMPRESA { get; set; }
+        public Nullable<int> FK_ID_CUENTA_USUARIO { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CuentasUsuario> CuentasUsuarios { get; set; }
-        public virtual Pais Pais { get; set; }
+        public virtual CuentasUsuario CuentasUsuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OfertasLaborale> OfertasLaborales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

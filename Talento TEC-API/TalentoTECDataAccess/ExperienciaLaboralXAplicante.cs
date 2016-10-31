@@ -17,8 +17,8 @@ namespace TalentoTECDataAccess
         public int FK_ID_APLICANTE { get; set; }
         public string NOMBRE_EMPRESA { get; set; }
         public string NOMBRE_PUESTO { get; set; }
-        public int ANNO_DESDE { get; set; }
-        public int ANNO_HASTA { get; set; }
+        public string ANNO_DESDE { get; set; }
+        public string ANNO_HASTA { get; set; }
         public int FK_ID_PAIS_TRABAJO { get; set; }
     
         public virtual Aplicante Aplicante { get; set; }

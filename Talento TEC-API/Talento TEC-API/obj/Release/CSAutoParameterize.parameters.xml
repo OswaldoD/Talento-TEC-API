@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
-  <parameter name="TalentoTECDataAccess.TalentoTECEntities-Web.config Connection String" description="TalentoTECDataAccess.TalentoTECEntities Connection String used in web.config by the application to access the database." defaultValue="TalentoTECDataAccess.TalentoTECEntities_ConnectionString" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\Oswaldo\\Source\\Repos\\Talento-TEC-API\\Talento\ TEC-API\\Talento\ TEC-API\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='TalentoTECDataAccess.TalentoTECEntities']/@connectionString" />
+  <parameter name="TalentoTECEntities-Web.config Connection String" description="TalentoTECEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/TalentoTEC-APIModel.csdl|res://*/TalentoTEC-APIModel.ssdl|res://*/TalentoTEC-APIModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=talentotec2016.database.windows.net;initial catalog=TalentoTEC;persist security info=True;user id=TalentoTEC;password=bolsaEmpleoTEC2016;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Oswaldo\\Source\\Repos\\Talento-TEC-API\\Talento\ TEC-API\\Talento\ TEC-API\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='TalentoTECEntities']/@connectionString" />
   </parameter>
 </parameters>

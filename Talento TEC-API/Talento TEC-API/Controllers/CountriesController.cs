@@ -8,31 +8,26 @@ using TalentoTECDataAccess;
 
 namespace Talento_TEC_API.Controllers
 {
-    public class Productive_SectorsController : ApiController
+    public class CountriesController : ApiController
     {
         public HttpResponseMessage Get()
         {
-            /* Método que obtiene la lista de carreras */
-            /*{"user":"any", "password":"any2"}*/
             try
             {
                 using (TalentoTECEntities connect = new TalentoTECEntities())
                 {
                     connect.Configuration.ProxyCreationEnabled = false;
 
-                    var item = connect.ObtenerListaSectoresProductivos().ToList();
+                    var item = connect.ObtenerListaPaises().ToList();
+
                     if (item.Count > 0)
                     {
                         return Request.CreateResponse(HttpStatusCode.OK, item);
-
                     }
                     else
                     {
                         return Request.CreateResponse(HttpStatusCode.NotFound, item);
                     }
-                    /*para cuando inserte*/
-                    /* var message = Request.CreateResponse(HttpStatusCode.Created, parametros);
-                    message.Headers.Location = new Uri(Request.RequestUri + parametros.username);*/
                 }
             }
             catch (Exception error)

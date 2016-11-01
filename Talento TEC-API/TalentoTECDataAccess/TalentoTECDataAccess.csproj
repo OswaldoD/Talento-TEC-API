@@ -81,6 +81,9 @@
     <Compile Include="ExperienciaLaboralXAplicante.cs">
       <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="FechasImportante.cs">
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="GradoEstudioFormal.cs">
       <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
@@ -99,6 +102,9 @@
     <Compile Include="NivelDominioIdioma.cs">
       <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ObtenerDatosAplicante_Result.cs">
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ObtenerDatosEmpresa_Result.cs">
       <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
@@ -106,6 +112,9 @@
       <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ObtenerEmpresasXEstado_Result.cs">
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ObtenerFechasImportantes_Result.cs">
       <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ObtenerListaCoordinadoresXEscuela_Result.cs">
@@ -161,6 +170,9 @@
       <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Verificacion_Login_Result.cs">
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VerificarLoginAdministrador_Result.cs">
       <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

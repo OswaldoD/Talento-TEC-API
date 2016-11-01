@@ -197,12 +197,14 @@
     <Compile Include="Controllers\Add_EnterpriseController.cs" />
     <Compile Include="Controllers\Add_GraduateController.cs" />
     <Compile Include="Controllers\Add_OfferController.cs" />
+    <Compile Include="Controllers\Apply_OfferController.cs" />
     <Compile Include="Controllers\Change_State_EnterpriseController.cs" />
     <Compile Include="Controllers\Change_State_OfferController.cs" />
     <Compile Include="Controllers\CoordinatorsController.cs" />
     <Compile Include="Controllers\Get_EnterpriseController.cs" />
     <Compile Include="Controllers\Get_Offer_EnterpriseController.cs" />
     <Compile Include="Controllers\LoginAdminController.cs" />
+    <Compile Include="Controllers\Not_Apply_OfferController.cs" />
     <Compile Include="Controllers\Productive_SectorsController.cs" />
     <Compile Include="Controllers\SchoolsController.cs" />
     <Compile Include="Controllers\SpecialtiesController.cs" />
@@ -226,6 +228,7 @@
     <Compile Include="Models\empresa\InsertarOfertaLaboral.cs" />
     <Compile Include="Models\graduado\NewGraduate.cs" />
     <Compile Include="Models\InformacionCuenta.cs" />
+    <Compile Include="Models\oferta\AplicarOferta.cs" />
     <Compile Include="Models\VerificaLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

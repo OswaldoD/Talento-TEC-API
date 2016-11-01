@@ -104,6 +104,14 @@
     <NavigationProperty Name="OfertasLaborales" Relationship="Self.FK_OfertasLaborales_Empresas1" FromRole="Empresas" ToRole="OfertasLaborales" />
     <NavigationProperty Name="SectoresProductivos" Relationship="Self.SectorProductivoXEmpresa" FromRole="Empresas" ToRole="SectoresProductivos" />
   </EntityType>
+  <EntityType Name="FechasImportante">
+    <Key>
+      <PropertyRef Name="ID_FECHA_IMPORTANTE" />
+    </Key>
+    <Property Name="ID_FECHA_IMPORTANTE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FECHA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NOMBRE_ACTIVIDAD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
   <EntityType Name="GradoEstudioFormal">
     <Key>
       <PropertyRef Name="ID_GRADO" />
@@ -636,6 +644,7 @@
     <EntitySet Name="CoordinadoresEscuelas" EntityType="Self.CoordinadoresEscuela" />
     <EntitySet Name="CuentasUsuarios" EntityType="Self.CuentasUsuario" />
     <EntitySet Name="Empresas" EntityType="Self.Empresa" />
+    <EntitySet Name="FechasImportantes" EntityType="Self.FechasImportante" />
     <EntitySet Name="GradoEstudioFormals" EntityType="Self.GradoEstudioFormal" />
     <EntitySet Name="Idiomas" EntityType="Self.Idioma" />
     <EntitySet Name="Nacionalidades" EntityType="Self.Nacionalidade" />
@@ -765,6 +774,40 @@
       <Parameter Name="delimited" Mode="In" Type="String" />
       <Parameter Name="delimiter" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="ActualizarAplicante" ReturnType="Collection(Int32)">
+      <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+      <Parameter Name="PrimerApellido" Mode="In" Type="String" />
+      <Parameter Name="SegundoApellido" Mode="In" Type="String" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="FechaNacimiento" Mode="In" Type="String" />
+      <Parameter Name="PaisNacimiento" Mode="In" Type="String" />
+      <Parameter Name="Nacionalidad" Mode="In" Type="String" />
+      <Parameter Name="TipoIdentificacion" Mode="In" Type="String" />
+      <Parameter Name="Identificacion" Mode="In" Type="String" />
+      <Parameter Name="Genero" Mode="In" Type="String" />
+      <Parameter Name="Carne" Mode="In" Type="String" />
+      <Parameter Name="PaisResidencia" Mode="In" Type="String" />
+      <Parameter Name="Provincia" Mode="In" Type="String" />
+      <Parameter Name="DireccionExacta" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="infoTitulos" Mode="In" Type="String" />
+      <Parameter Name="infoIdiomas" Mode="In" Type="String" />
+      <Parameter Name="infoExperienciaLaboral" Mode="In" Type="String" />
+      <Parameter Name="infoCapacitaciones" Mode="In" Type="String" />
+      <Parameter Name="Conocimientos" Mode="In" Type="String" />
+      <Parameter Name="infoReferencias" Mode="In" Type="String" />
+      <Parameter Name="TipoAplicante" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ActualizarCapacitacionesXAplicante">
+      <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+      <Parameter Name="infoCapacitaciones" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ActualizarEducacionFormalXAplicante">
+      <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+      <Parameter Name="infoTitulos" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="ActualizarEmpresa" ReturnType="Collection(Int32)">
       <Parameter Name="IDEmpresa" Mode="In" Type="Int32" />
       <Parameter Name="nombreEmpresa" Mode="In" Type="String" />
@@ -783,6 +826,18 @@
       <Parameter Name="nombreUsuario" Mode="In" Type="String" />
       <Parameter Name="passwordUsuario" Mode="In" Type="String" />
       <Parameter Name="nombreSectores" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ActualizarExperienciaLaboralXAplicante">
+      <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+      <Parameter Name="infoExperienciaLaboral" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ActualizarIdiomaXAplicante">
+      <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+      <Parameter Name="infoIdiomas" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ActualizarReferenciasXAplicante">
+      <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+      <Parameter Name="infoReferencias" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="AgregarAplicante" ReturnType="Collection(Int32)">
       <Parameter Name="PrimerApellido" Mode="In" Type="String" />
@@ -809,7 +864,11 @@
       <Parameter Name="infoReferencias" Mode="In" Type="String" />
       <Parameter Name="TipoAplicante" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="AplicarOferta">
+    <FunctionImport Name="AgregarFechaImportante">
+      <Parameter Name="Fecha" Mode="In" Type="String" />
+      <Parameter Name="NombreActividad" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="AplicarOferta" ReturnType="Collection(Int32)">
       <Parameter Name="IDOferta" Mode="In" Type="Int32" />
       <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -830,6 +889,9 @@
     <FunctionImport Name="EliminarAplicacionOferta">
       <Parameter Name="IDOferta" Mode="In" Type="Int32" />
       <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="EliminarFechaImportante">
+      <Parameter Name="IDFecha" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="Insertar_Empresa" ReturnType="Collection(Int32)">
       <Parameter Name="nombreEmpresa" Mode="In" Type="String" />
@@ -887,6 +949,14 @@
       <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
       <Parameter Name="infoReferencias" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="ModificarFechaImportante">
+      <Parameter Name="IDFecha" Mode="In" Type="Int32" />
+      <Parameter Name="Fecha" Mode="In" Type="String" />
+      <Parameter Name="NombreActividad" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ObtenerDatosAplicante" ReturnType="Collection(TalentoTECModel.ObtenerDatosAplicante_Result)">
+      <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="ObtenerDatosEmpresa" ReturnType="Collection(TalentoTECModel.ObtenerDatosEmpresa_Result)">
       <Parameter Name="IDEmpresa" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -896,6 +966,7 @@
     <FunctionImport Name="ObtenerEmpresasXEstado" ReturnType="Collection(TalentoTECModel.ObtenerEmpresasXEstado_Result)">
       <Parameter Name="nombreEstado" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="ObtenerFechasImportantes" ReturnType="Collection(TalentoTECModel.ObtenerFechasImportantes_Result)" />
     <FunctionImport Name="ObtenerIDCarreraProfesional" ReturnType="Collection(Int32)">
       <Parameter Name="nombreCarrera" Mode="In" Type="String" />
       <Parameter Name="nombreEspecialidad" Mode="In" Type="String" />
@@ -941,7 +1012,7 @@
       <Parameter Name="Nombre_Usuario" Mode="In" Type="String" />
       <Parameter Name="Password_Usuario" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="VerificarLoginAdministrador" ReturnType="Collection(Int32)">
+    <FunctionImport Name="VerificarLoginAdministrador" ReturnType="Collection(TalentoTECModel.VerificarLoginAdministrador_Result)">
       <Parameter Name="Nombre_Usuario" Mode="In" Type="String" />
       <Parameter Name="Password_Usuario" Mode="In" Type="String" />
     </FunctionImport>
@@ -949,6 +1020,25 @@
   <ComplexType Name="Insertar_OfertasLaborales_Result">
     <Property Type="Int32" Name="FK_ID_OFERTA" Nullable="false" />
     <Property Type="Int32" Name="FK_ID_CARRERA" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="ObtenerDatosAplicante_Result">
+    <Property Type="String" Name="PrimerApellido" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="SegundoApellido" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="FechaNacimiento" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="PaisNacimiento" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Nacionalidad" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="TipoIdentificacion" Nullable="false" MaxLength="25" />
+    <Property Type="Int32" Name="Identificacion" Nullable="false" />
+    <Property Type="String" Name="Genero" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Carne" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="PaisResidencia" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Provincia" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="DireccionExacta" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Telefono" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Correo" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Contrasena" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Conocimientos" Nullable="true" MaxLength="1024" />
   </ComplexType>
   <ComplexType Name="ObtenerDatosEmpresa_Result">
     <Property Type="String" Name="NombreEmpresa" Nullable="false" MaxLength="50" />
@@ -988,6 +1078,11 @@
     <Property Type="Int32" Name="ID" Nullable="false" />
     <Property Type="String" Name="NombreEmpresa" Nullable="false" MaxLength="50" />
   </ComplexType>
+  <ComplexType Name="ObtenerFechasImportantes_Result">
+    <Property Type="Int32" Name="IDOferta" Nullable="false" />
+    <Property Type="String" Name="NombreActividad" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="FechaActividad" Nullable="false" MaxLength="20" />
+  </ComplexType>
   <ComplexType Name="ObtenerListaCoordinadoresXEscuela_Result">
     <Property Type="String" Name="NombreCoordinador" Nullable="false" MaxLength="100" />
     <Property Type="String" Name="EmailCoordinador" Nullable="false" MaxLength="100" />
@@ -1002,7 +1097,11 @@
     <Property Type="String" Name="Nombre_Puesto" Nullable="false" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="Verificacion_Login_Result">
-    <Property Type="Int32" Name="ID_Usuario" Nullable="false" />
-    <Property Type="String" Name="Tipo_Cuenta" Nullable="false" MaxLength="11" />
+    <Property Type="Int32" Name="ID_Administrador" Nullable="false" />
+    <Property Type="String" Name="Tipo_Cuenta" Nullable="false" MaxLength="15" />
+  </ComplexType>
+  <ComplexType Name="VerificarLoginAdministrador_Result">
+    <Property Type="Int32" Name="ID_Administrador" Nullable="false" />
+    <Property Type="String" Name="Tipo_Cuenta" Nullable="false" MaxLength="15" />
   </ComplexType>
 </Schema>

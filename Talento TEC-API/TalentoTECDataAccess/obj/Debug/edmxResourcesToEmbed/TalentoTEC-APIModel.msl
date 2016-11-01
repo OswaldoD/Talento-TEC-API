@@ -89,6 +89,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="FechasImportantes">
+      <EntityTypeMapping TypeName="TalentoTECModel.FechasImportante">
+        <MappingFragment StoreEntitySet="FechasImportantes">
+          <ScalarProperty Name="ID_FECHA_IMPORTANTE" ColumnName="ID_FECHA_IMPORTANTE" />
+          <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+          <ScalarProperty Name="NOMBRE_ACTIVIDAD" ColumnName="NOMBRE_ACTIVIDAD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="GradoEstudioFormals">
       <EntityTypeMapping TypeName="TalentoTECModel.GradoEstudioFormal">
         <MappingFragment StoreEntitySet="GradoEstudioFormal">
@@ -283,13 +292,21 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ActualizarAplicante" FunctionName="TalentoTECModel.Store.ActualizarAplicante" />
+    <FunctionImportMapping FunctionImportName="ActualizarCapacitacionesXAplicante" FunctionName="TalentoTECModel.Store.ActualizarCapacitacionesXAplicante" />
+    <FunctionImportMapping FunctionImportName="ActualizarEducacionFormalXAplicante" FunctionName="TalentoTECModel.Store.ActualizarEducacionFormalXAplicante" />
     <FunctionImportMapping FunctionImportName="ActualizarEmpresa" FunctionName="TalentoTECModel.Store.ActualizarEmpresa" />
+    <FunctionImportMapping FunctionImportName="ActualizarExperienciaLaboralXAplicante" FunctionName="TalentoTECModel.Store.ActualizarExperienciaLaboralXAplicante" />
+    <FunctionImportMapping FunctionImportName="ActualizarIdiomaXAplicante" FunctionName="TalentoTECModel.Store.ActualizarIdiomaXAplicante" />
+    <FunctionImportMapping FunctionImportName="ActualizarReferenciasXAplicante" FunctionName="TalentoTECModel.Store.ActualizarReferenciasXAplicante" />
     <FunctionImportMapping FunctionImportName="AgregarAplicante" FunctionName="TalentoTECModel.Store.AgregarAplicante" />
+    <FunctionImportMapping FunctionImportName="AgregarFechaImportante" FunctionName="TalentoTECModel.Store.AgregarFechaImportante" />
     <FunctionImportMapping FunctionImportName="AplicarOferta" FunctionName="TalentoTECModel.Store.AplicarOferta" />
     <FunctionImportMapping FunctionImportName="BuscarOfertas" FunctionName="TalentoTECModel.Store.BuscarOfertas" />
     <FunctionImportMapping FunctionImportName="CambiarEstadoEmpresa" FunctionName="TalentoTECModel.Store.CambiarEstadoEmpresa" />
     <FunctionImportMapping FunctionImportName="CambiarEstadoOferta" FunctionName="TalentoTECModel.Store.CambiarEstadoOferta" />
     <FunctionImportMapping FunctionImportName="EliminarAplicacionOferta" FunctionName="TalentoTECModel.Store.EliminarAplicacionOferta" />
+    <FunctionImportMapping FunctionImportName="EliminarFechaImportante" FunctionName="TalentoTECModel.Store.EliminarFechaImportante" />
     <FunctionImportMapping FunctionImportName="Insertar_Empresa" FunctionName="TalentoTECModel.Store.Insertar_Empresa" />
     <FunctionImportMapping FunctionImportName="Insertar_OfertasLaborales" FunctionName="TalentoTECModel.Store.Insertar_OfertasLaborales">
       <ResultMapping>
@@ -304,6 +321,30 @@
     <FunctionImportMapping FunctionImportName="InsertarExperienciaLaboralXAplicante" FunctionName="TalentoTECModel.Store.InsertarExperienciaLaboralXAplicante" />
     <FunctionImportMapping FunctionImportName="InsertarIdiomaXAplicante" FunctionName="TalentoTECModel.Store.InsertarIdiomaXAplicante" />
     <FunctionImportMapping FunctionImportName="InsertarReferenciasXAplicante" FunctionName="TalentoTECModel.Store.InsertarReferenciasXAplicante" />
+    <FunctionImportMapping FunctionImportName="ModificarFechaImportante" FunctionName="TalentoTECModel.Store.ModificarFechaImportante" />
+    <FunctionImportMapping FunctionImportName="ObtenerDatosAplicante" FunctionName="TalentoTECModel.Store.ObtenerDatosAplicante">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TalentoTECModel.ObtenerDatosAplicante_Result">
+          <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+          <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="PaisNacimiento" ColumnName="PaisNacimiento" />
+          <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+          <ScalarProperty Name="TipoIdentificacion" ColumnName="TipoIdentificacion" />
+          <ScalarProperty Name="Identificacion" ColumnName="Identificacion" />
+          <ScalarProperty Name="Genero" ColumnName="Genero" />
+          <ScalarProperty Name="Carne" ColumnName="Carne" />
+          <ScalarProperty Name="PaisResidencia" ColumnName="PaisResidencia" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+          <ScalarProperty Name="DireccionExacta" ColumnName="DireccionExacta" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+          <ScalarProperty Name="Conocimientos" ColumnName="Conocimientos" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="ObtenerDatosEmpresa" FunctionName="TalentoTECModel.Store.ObtenerDatosEmpresa">
       <ResultMapping>
         <ComplexTypeMapping TypeName="TalentoTECModel.ObtenerDatosEmpresa_Result">
@@ -354,6 +395,15 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ObtenerFechasImportantes" FunctionName="TalentoTECModel.Store.ObtenerFechasImportantes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TalentoTECModel.ObtenerFechasImportantes_Result">
+          <ScalarProperty Name="IDOferta" ColumnName="IDOferta" />
+          <ScalarProperty Name="NombreActividad" ColumnName="NombreActividad" />
+          <ScalarProperty Name="FechaActividad" ColumnName="FechaActividad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="ObtenerIDCarreraProfesional" FunctionName="TalentoTECModel.Store.ObtenerIDCarreraProfesional" />
     <FunctionImportMapping FunctionImportName="ObtenerIDIdioma" FunctionName="TalentoTECModel.Store.ObtenerIDIdioma" />
     <FunctionImportMapping FunctionImportName="ObtenerIDNacionalidad" FunctionName="TalentoTECModel.Store.ObtenerIDNacionalidad" />
@@ -396,11 +446,18 @@
     <FunctionImportMapping FunctionImportName="Verificacion_Login" FunctionName="TalentoTECModel.Store.Verificacion_Login">
       <ResultMapping>
         <ComplexTypeMapping TypeName="TalentoTECModel.Verificacion_Login_Result">
-          <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+          <ScalarProperty Name="ID_Administrador" ColumnName="ID_Administrador" />
           <ScalarProperty Name="Tipo_Cuenta" ColumnName="Tipo_Cuenta" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="VerificarLoginAdministrador" FunctionName="TalentoTECModel.Store.VerificarLoginAdministrador" />
+    <FunctionImportMapping FunctionImportName="VerificarLoginAdministrador" FunctionName="TalentoTECModel.Store.VerificarLoginAdministrador">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TalentoTECModel.VerificarLoginAdministrador_Result">
+          <ScalarProperty Name="ID_Administrador" ColumnName="ID_Administrador" />
+          <ScalarProperty Name="Tipo_Cuenta" ColumnName="Tipo_Cuenta" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

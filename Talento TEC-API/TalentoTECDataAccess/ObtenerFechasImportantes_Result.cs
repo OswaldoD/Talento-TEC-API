@@ -11,9 +11,10 @@ namespace TalentoTECDataAccess
 {
     using System;
     
-    public partial class Verificacion_Login_Result
+    public partial class ObtenerFechasImportantes_Result
     {
-        public int ID_Administrador { get; set; }
-        public string Tipo_Cuenta { get; set; }
+        public int IDOferta { get; set; }
+        public string NombreActividad { get; set; }
+        public string FechaActividad { get; set; }
     }
 }

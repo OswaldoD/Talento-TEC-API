@@ -1983,7 +1983,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <Parameter Name="infoReferencias" Mode="In" Type="String" />
             <Parameter Name="TipoAplicante" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="AgregarFechaImportante">
+          <FunctionImport Name="AgregarFechaImportante" ReturnType="Collection(String)">
             <Parameter Name="Fecha" Mode="In" Type="String" />
             <Parameter Name="NombreActividad" Mode="In" Type="String" />
           </FunctionImport>
@@ -2009,7 +2009,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <Parameter Name="IDOferta" Mode="In" Type="Int32" />
             <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="EliminarFechaImportante">
+          <FunctionImport Name="EliminarFechaImportante" ReturnType="Collection(Int32)">
             <Parameter Name="IDFecha" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Insertar_Empresa" ReturnType="Collection(Int32)">
@@ -2068,7 +2068,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
             <Parameter Name="infoReferencias" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="ModificarFechaImportante">
+          <FunctionImport Name="ModificarFechaImportante" ReturnType="Collection(String)">
             <Parameter Name="IDFecha" Mode="In" Type="Int32" />
             <Parameter Name="Fecha" Mode="In" Type="String" />
             <Parameter Name="NombreActividad" Mode="In" Type="String" />

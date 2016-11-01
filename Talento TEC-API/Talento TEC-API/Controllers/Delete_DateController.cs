@@ -4,14 +4,15 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Talento_TEC_API.Models.admin;
 using TalentoTECDataAccess;
+using Talento_TEC_API.Models.admin;
+
 
 namespace Talento_TEC_API.Controllers
 {
-    public class Modify_DateController : ApiController
+    public class Delete_DateController : ApiController
     {
-        public HttpResponseMessage Post([FromBody] ModificarFecha fecha)
+        public HttpResponseMessage Post([FromBody] EliminarFecha fecha)
         {
             try
             {
@@ -19,9 +20,9 @@ namespace Talento_TEC_API.Controllers
                 {
                     connect.Configuration.ProxyCreationEnabled = false;
 
-                    var item = connect.ModificarFechaImportante(fecha.idFecha, fecha.fecha, fecha.nombreActividad).ToList();
+                    var item = connect.EliminarFechaImportante(fecha.idFecha).ToString();
 
-                    if(item.Count > 0)
+                    if(item.Equals("1"))
                     {
                         return Request.CreateResponse(HttpStatusCode.OK, item);
                     }

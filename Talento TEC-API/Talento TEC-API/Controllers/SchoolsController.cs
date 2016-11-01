@@ -21,8 +21,8 @@ namespace Talento_TEC_API.Controllers
                 {
                     connect.Configuration.ProxyCreationEnabled = false;
 
-                    var item = connect.ObtenerListaEscuelas().ToString();
-                    if (item != null)
+                    var item = connect.ObtenerListaEscuelas().ToList();
+                    if (item.Count > 0)
                     {
                         return Request.CreateResponse(HttpStatusCode.OK, item);
 

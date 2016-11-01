@@ -402,7 +402,7 @@ namespace TalentoTECDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("AgregarAplicante", primerApellidoParameter, segundoApellidoParameter, nombreParameter, fechaNacimientoParameter, paisNacimientoParameter, nacionalidadParameter, tipoIdentificacionParameter, identificacionParameter, generoParameter, carneParameter, paisResidenciaParameter, provinciaParameter, direccionExactaParameter, telefonoParameter, emailParameter, passwordParameter, infoTitulosParameter, infoIdiomasParameter, infoExperienciaLaboralParameter, infoCapacitacionesParameter, conocimientosParameter, infoReferenciasParameter, tipoAplicanteParameter);
         }
     
-        public virtual int AgregarFechaImportante(string fecha, string nombreActividad)
+        public virtual ObjectResult<string> AgregarFechaImportante(string fecha, string nombreActividad)
         {
             var fechaParameter = fecha != null ?
                 new ObjectParameter("Fecha", fecha) :
@@ -412,7 +412,7 @@ namespace TalentoTECDataAccess
                 new ObjectParameter("NombreActividad", nombreActividad) :
                 new ObjectParameter("NombreActividad", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AgregarFechaImportante", fechaParameter, nombreActividadParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("AgregarFechaImportante", fechaParameter, nombreActividadParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> AplicarOferta(Nullable<int> iDOferta, Nullable<int> iDAplicante)
@@ -488,13 +488,13 @@ namespace TalentoTECDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EliminarAplicacionOferta", iDOfertaParameter, iDAplicanteParameter);
         }
     
-        public virtual int EliminarFechaImportante(Nullable<int> iDFecha)
+        public virtual ObjectResult<Nullable<int>> EliminarFechaImportante(Nullable<int> iDFecha)
         {
             var iDFechaParameter = iDFecha.HasValue ?
                 new ObjectParameter("IDFecha", iDFecha) :
                 new ObjectParameter("IDFecha", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("EliminarFechaImportante", iDFechaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("EliminarFechaImportante", iDFechaParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> Insertar_Empresa(string nombreEmpresa, string cedulaJuridica, string direccion, string provincia, string nombrePais, string telefonoEmpresa, string emailEmpresa, string uRL_Empresa, string nombreContactoEmpresa, string emailContacto, string puestoContacto, string telefonoContacto, string descripcionActividades, string nombreUsuario, string passwordUsuario, string nombreSectores)
@@ -700,7 +700,7 @@ namespace TalentoTECDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarReferenciasXAplicante", iDAplicanteParameter, infoReferenciasParameter);
         }
     
-        public virtual int ModificarFechaImportante(Nullable<int> iDFecha, string fecha, string nombreActividad)
+        public virtual ObjectResult<string> ModificarFechaImportante(Nullable<int> iDFecha, string fecha, string nombreActividad)
         {
             var iDFechaParameter = iDFecha.HasValue ?
                 new ObjectParameter("IDFecha", iDFecha) :
@@ -714,7 +714,7 @@ namespace TalentoTECDataAccess
                 new ObjectParameter("NombreActividad", nombreActividad) :
                 new ObjectParameter("NombreActividad", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModificarFechaImportante", iDFechaParameter, fechaParameter, nombreActividadParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("ModificarFechaImportante", iDFechaParameter, fechaParameter, nombreActividadParameter);
         }
     
         public virtual ObjectResult<ObtenerDatosAplicante_Result> ObtenerDatosAplicante(Nullable<int> iDAplicante)

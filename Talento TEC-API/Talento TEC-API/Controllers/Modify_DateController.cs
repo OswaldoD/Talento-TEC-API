@@ -4,14 +4,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Talento_TEC_API.Models.oferta;
+using Talento_TEC_API.Models.admin;
 using TalentoTECDataAccess;
 
 namespace Talento_TEC_API.Controllers
 {
-    public class Apply_OfferController : ApiController
+    public class Modify_DateController : ApiController
     {
-        public HttpResponseMessage Post([FromBody] AplicarOferta oferta)
+        public HttpResponseMessage Post([FromBody] ModificarFecha fecha)
         {
             try
             {
@@ -19,12 +19,11 @@ namespace Talento_TEC_API.Controllers
                 {
                     connect.Configuration.ProxyCreationEnabled = false;
 
-                    var item = connect.AplicarOferta(oferta.IDOferta, oferta.IDAplicante).ToList();
+                    var item = connect.ModificarFechaImportante(fecha.idFecha, fecha.fecha, fecha.nombreActividad).ToString();
 
-                    if (item != null)
+                    if(item != null)
                     {
                         return Request.CreateResponse(HttpStatusCode.OK, item);
-
                     }
                     else
                     {

@@ -4,31 +4,32 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Talento_TEC_API.Models.oferta;
 using TalentoTECDataAccess;
+using Talento_TEC_API.Models.oferta;
 
 namespace Talento_TEC_API.Controllers
 {
-    public class Apply_OfferController : ApiController
+    public class Index_OffersController : ApiController
     {
-        public HttpResponseMessage Post([FromBody] AplicarOferta oferta)
+        public HttpResponseMessage Post([FromBody] IndexOferta oferta)
         {
             try
             {
                 using (TalentoTECEntities connect = new TalentoTECEntities())
                 {
                     connect.Configuration.ProxyCreationEnabled = false;
+                    var item = connect.BuscarOfertas(oferta.idAplicante, 
+                                                     oferta.tipoCuenta, 
+                                                     oferta.carreraSeleccionada, 
+                                                     oferta.tipoBusqueda).ToList();
 
-                    var item = connect.AplicarOferta(oferta.IDOferta, oferta.IDAplicante).ToList();
-
-                    if (item != null)
+                    if(item.Count > 0)
                     {
                         return Request.CreateResponse(HttpStatusCode.OK, item);
-
                     }
                     else
                     {
-                        return Request.CreateResponse(HttpStatusCode.NotFound, item);
+                        return Request.CreateResponse(HttpStatusCode.NotFound, item);   
                     }
                 }
             }
@@ -36,6 +37,8 @@ namespace Talento_TEC_API.Controllers
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, error);
             }
+
         }
+
     }
 }

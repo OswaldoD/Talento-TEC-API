@@ -11,12 +11,6 @@ namespace Talento_TEC_API.Controllers
 {
     public class Get_Offer_EnterpriseController : ApiController
     {
-        // GET: api/Get_Offer_Enterprise
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         // GET: api/Get_Offer_Enterprise/5
         public HttpResponseMessage Get(int id)
         {
@@ -75,17 +69,6 @@ namespace Talento_TEC_API.Controllers
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, error);
             }
-
-        }
-
-        // PUT: api/Get_Offer_Enterprise/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Get_Offer_Enterprise/5
-        public void Delete(int id)
-        {
         }
     }
 }

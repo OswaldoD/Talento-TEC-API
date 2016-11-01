@@ -11,18 +11,6 @@ namespace Talento_TEC_API.Controllers
 {
     public class Change_State_OfferController : ApiController
     {
-        // GET: api/Change_State_Offer
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET: api/Change_State_Offer/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         // POST: api/Change_State_Offer
         public HttpResponseMessage Post([FromBody]EstadoOferta parametros)
         {
@@ -51,16 +39,6 @@ namespace Talento_TEC_API.Controllers
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, error);
             }
-        }
-
-        // PUT: api/Change_State_Offer/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Change_State_Offer/5
-        public void Delete(int id)
-        {
         }
     }
 }

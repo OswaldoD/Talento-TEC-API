@@ -40,7 +40,6 @@ namespace Talento_TEC_API.Controllers.empresa
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, error);
             }
-
         }
     }
 }

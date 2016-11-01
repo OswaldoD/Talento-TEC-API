@@ -6,8 +6,6 @@ using System.Net.Http;
 using System.Web.Http;
 using TalentoTECDataAccess;
 
-
-
 namespace Talento_TEC_API.Controllers
 {
     public class Productive_SectorsController : ApiController
@@ -41,7 +39,6 @@ namespace Talento_TEC_API.Controllers
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, error);
             }
-
         }
     }
 }

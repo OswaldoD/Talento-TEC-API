@@ -157,6 +157,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\empresa\" />
     <Folder Include="Controllers\talentotec\" />
+    <Folder Include="Views\Add_Graduate\" />
     <Folder Include="Views\LoginAdmin\" />
   </ItemGroup>
   <ItemGroup>
@@ -194,6 +195,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\Add_EnterpriseController.cs" />
+    <Compile Include="Controllers\Add_GraduateController.cs" />
     <Compile Include="Controllers\Add_OfferController.cs" />
     <Compile Include="Controllers\Change_State_EnterpriseController.cs" />
     <Compile Include="Controllers\Change_State_OfferController.cs" />
@@ -222,6 +224,7 @@
     <Compile Include="Models\empresa\InfoEmpresa.cs" />
     <Compile Include="Models\empresa\ActualizaEmpresa.cs" />
     <Compile Include="Models\empresa\InsertarOfertaLaboral.cs" />
+    <Compile Include="Models\graduado\NewGraduate.cs" />
     <Compile Include="Models\InformacionCuenta.cs" />
     <Compile Include="Models\VerificaLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

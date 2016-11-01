@@ -11,11 +11,6 @@ namespace Talento_TEC_API.Controllers
 {
     public class Login_InfoController : ApiController
     {
-        public void Get()
-        {
-
-        }
-
         public HttpResponseMessage Post([FromBody] InformacionCuenta cuenta)
         {
             /* Método que obtiene la información de la cuenta */
@@ -45,8 +40,6 @@ namespace Talento_TEC_API.Controllers
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, error);
             }
-
         }
-
     }
 }

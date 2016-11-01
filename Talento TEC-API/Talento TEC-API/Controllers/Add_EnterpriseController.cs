@@ -11,10 +11,6 @@ namespace Talento_TEC_API.Controllers
 {
     public class Add_EnterpriseController : ApiController
     {
-        public void Get()
-        {
-
-        }
         public HttpResponseMessage Post([FromBody] InfoEmpresa empresa )
         {
             /* Método que obtiene la información de la cuenta */
@@ -61,7 +57,6 @@ namespace Talento_TEC_API.Controllers
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, error);
             }
-
         }
     }
 }

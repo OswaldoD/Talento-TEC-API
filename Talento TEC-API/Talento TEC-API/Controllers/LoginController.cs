@@ -45,7 +45,7 @@ namespace Talento_TEC_API.Controllers
                     login.Configuration.ProxyCreationEnabled = false;
                     var item = login.Verificacion_Login(parametros.username, parametros.password).ToList();
 
-                    if (item != null )
+                    if (item.Count > 0)
                     {
                         return Request.CreateResponse(HttpStatusCode.OK, item);
 

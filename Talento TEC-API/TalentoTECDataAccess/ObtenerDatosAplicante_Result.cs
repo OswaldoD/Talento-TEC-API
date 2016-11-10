@@ -20,7 +20,7 @@ namespace TalentoTECDataAccess
         public string PaisNacimiento { get; set; }
         public string Nacionalidad { get; set; }
         public string TipoIdentificacion { get; set; }
-        public int Identificacion { get; set; }
+        public string Identificacion { get; set; }
         public string Genero { get; set; }
         public string Carne { get; set; }
         public string PaisResidencia { get; set; }

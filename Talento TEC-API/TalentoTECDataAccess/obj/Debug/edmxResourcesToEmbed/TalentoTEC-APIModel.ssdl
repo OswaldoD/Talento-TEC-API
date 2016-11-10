@@ -14,7 +14,7 @@
       <PropertyRef Name="ID_APLICANTE" />
     </Key>
     <Property Name="ID_APLICANTE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="IDENTIFICACION" Type="int" Nullable="false" />
+    <Property Name="IDENTIFICACION" Type="varchar" MaxLength="25" Nullable="false" />
     <Property Name="FK_ID_TIPO_IDENTIFICACION" Type="int" Nullable="false" />
     <Property Name="APELLIDO1" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="APELLIDO2" Type="varchar" MaxLength="20" Nullable="false" />

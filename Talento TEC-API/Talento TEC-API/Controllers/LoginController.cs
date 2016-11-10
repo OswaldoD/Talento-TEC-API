@@ -43,9 +43,9 @@ namespace Talento_TEC_API.Controllers
                 using (TalentoTECEntities login = new TalentoTECEntities())
                 {
                     login.Configuration.ProxyCreationEnabled = false;
-
                     var item = login.Verificacion_Login(parametros.username, parametros.password).ToList();
-                    if (item.Count > 0 )
+
+                    if (item != null )
                     {
                         return Request.CreateResponse(HttpStatusCode.OK, item);
 

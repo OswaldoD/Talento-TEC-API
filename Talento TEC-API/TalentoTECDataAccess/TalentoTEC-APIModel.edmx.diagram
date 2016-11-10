@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c62f089db6fb4558adfd2644d4d1b48d" Name="Diagram1">
+      <Diagram DiagramId="9210a29c8fb34812a0e7fa663c111e03" Name="Diagram1">
         <EntityTypeShape EntityType="TalentoTECModel.Administrador" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TalentoTECModel.Aplicante" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="TalentoTECModel.CarrerasProfesionale" Width="1.5" PointX="0.75" PointY="21.625" IsExpanded="true" />

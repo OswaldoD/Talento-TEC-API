@@ -18,7 +18,7 @@
       <PropertyRef Name="ID_APLICANTE" />
     </Key>
     <Property Name="ID_APLICANTE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="IDENTIFICACION" Type="Int32" Nullable="false" />
+    <Property Name="IDENTIFICACION" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="FK_ID_TIPO_IDENTIFICACION" Type="Int32" Nullable="false" />
     <Property Name="APELLIDO1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="APELLIDO2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
@@ -929,23 +929,23 @@
       <Parameter Name="cantidadPlazas" Mode="In" Type="Int32" />
       <Parameter Name="carrerasProfesionales" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="InsertarCapacitacionesXAplicante">
+    <FunctionImport Name="InsertarCapacitacionesXAplicante" ReturnType="Collection(String)">
       <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
       <Parameter Name="infoCapacitaciones" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="InsertarEducacionFormalXAplicante">
+    <FunctionImport Name="InsertarEducacionFormalXAplicante" ReturnType="Collection(String)">
       <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
       <Parameter Name="infoTitulos" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="InsertarExperienciaLaboralXAplicante">
+    <FunctionImport Name="InsertarExperienciaLaboralXAplicante" ReturnType="Collection(Int32)">
       <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
       <Parameter Name="infoExperienciaLaboral" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="InsertarIdiomaXAplicante">
+    <FunctionImport Name="InsertarIdiomaXAplicante" ReturnType="Collection(String)">
       <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
       <Parameter Name="infoIdiomas" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="InsertarReferenciasXAplicante">
+    <FunctionImport Name="InsertarReferenciasXAplicante" ReturnType="Collection(String)">
       <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
       <Parameter Name="infoReferencias" Mode="In" Type="String" />
     </FunctionImport>
@@ -1029,7 +1029,7 @@
     <Property Type="String" Name="PaisNacimiento" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="Nacionalidad" Nullable="false" MaxLength="30" />
     <Property Type="String" Name="TipoIdentificacion" Nullable="false" MaxLength="25" />
-    <Property Type="Int32" Name="Identificacion" Nullable="false" />
+    <Property Type="String" Name="Identificacion" Nullable="false" MaxLength="25" />
     <Property Type="String" Name="Genero" Nullable="false" MaxLength="20" />
     <Property Type="String" Name="Carne" Nullable="false" MaxLength="20" />
     <Property Type="String" Name="PaisResidencia" Nullable="false" MaxLength="50" />
@@ -1097,11 +1097,11 @@
     <Property Type="String" Name="Nombre_Puesto" Nullable="false" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="Verificacion_Login_Result">
-    <Property Type="Int32" Name="ID_Administrador" Nullable="false" />
+    <Property Type="Int32" Name="ID_Usuario" Nullable="false" />
     <Property Type="String" Name="Tipo_Cuenta" Nullable="false" MaxLength="15" />
   </ComplexType>
   <ComplexType Name="VerificarLoginAdministrador_Result">
-    <Property Type="Int32" Name="ID_Administrador" Nullable="false" />
+    <Property Type="Int32" Name="ID_Usuario" Nullable="false" />
     <Property Type="String" Name="Tipo_Cuenta" Nullable="false" MaxLength="15" />
   </ComplexType>
 </Schema>

@@ -26,7 +26,7 @@ namespace TalentoTECDataAccess
         }
     
         public int ID_APLICANTE { get; set; }
-        public int IDENTIFICACION { get; set; }
+        public string IDENTIFICACION { get; set; }
         public int FK_ID_TIPO_IDENTIFICACION { get; set; }
         public string APELLIDO1 { get; set; }
         public string APELLIDO2 { get; set; }

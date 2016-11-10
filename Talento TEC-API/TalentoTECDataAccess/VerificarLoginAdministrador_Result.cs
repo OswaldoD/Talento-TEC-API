@@ -13,7 +13,7 @@ namespace TalentoTECDataAccess
     
     public partial class VerificarLoginAdministrador_Result
     {
-        public int ID_Administrador { get; set; }
+        public int ID_Usuario { get; set; }
         public string Tipo_Cuenta { get; set; }
     }
 }

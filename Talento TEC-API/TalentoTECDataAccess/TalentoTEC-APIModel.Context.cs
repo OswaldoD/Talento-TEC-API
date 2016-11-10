@@ -635,7 +635,7 @@ namespace TalentoTECDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Insertar_OfertasLaborales_Result>("Insertar_OfertasLaborales", iDEmpresaParameter, nombrePuestoParameter, descripcionPuestoParameter, requisitosPuestoParameter, montoSalarioParameter, nombreTipoMonedaParameter, fechaInicioOfertaParameter, fechaFinalOfertaParameter, nombreTipoOfertaParameter, nombreContactoParameter, emailContactoParameter, telefonoContactoParameter, estadoOfertaParameter, estadoConfidencialidadParameter, cantidadPlazasParameter, carrerasProfesionalesParameter);
         }
     
-        public virtual int InsertarCapacitacionesXAplicante(Nullable<int> iDAplicante, string infoCapacitaciones)
+        public virtual ObjectResult<string> InsertarCapacitacionesXAplicante(Nullable<int> iDAplicante, string infoCapacitaciones)
         {
             var iDAplicanteParameter = iDAplicante.HasValue ?
                 new ObjectParameter("IDAplicante", iDAplicante) :
@@ -645,10 +645,10 @@ namespace TalentoTECDataAccess
                 new ObjectParameter("infoCapacitaciones", infoCapacitaciones) :
                 new ObjectParameter("infoCapacitaciones", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarCapacitacionesXAplicante", iDAplicanteParameter, infoCapacitacionesParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("InsertarCapacitacionesXAplicante", iDAplicanteParameter, infoCapacitacionesParameter);
         }
     
-        public virtual int InsertarEducacionFormalXAplicante(Nullable<int> iDAplicante, string infoTitulos)
+        public virtual ObjectResult<string> InsertarEducacionFormalXAplicante(Nullable<int> iDAplicante, string infoTitulos)
         {
             var iDAplicanteParameter = iDAplicante.HasValue ?
                 new ObjectParameter("IDAplicante", iDAplicante) :
@@ -658,10 +658,10 @@ namespace TalentoTECDataAccess
                 new ObjectParameter("infoTitulos", infoTitulos) :
                 new ObjectParameter("infoTitulos", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarEducacionFormalXAplicante", iDAplicanteParameter, infoTitulosParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("InsertarEducacionFormalXAplicante", iDAplicanteParameter, infoTitulosParameter);
         }
     
-        public virtual int InsertarExperienciaLaboralXAplicante(Nullable<int> iDAplicante, string infoExperienciaLaboral)
+        public virtual ObjectResult<Nullable<int>> InsertarExperienciaLaboralXAplicante(Nullable<int> iDAplicante, string infoExperienciaLaboral)
         {
             var iDAplicanteParameter = iDAplicante.HasValue ?
                 new ObjectParameter("IDAplicante", iDAplicante) :
@@ -671,10 +671,10 @@ namespace TalentoTECDataAccess
                 new ObjectParameter("infoExperienciaLaboral", infoExperienciaLaboral) :
                 new ObjectParameter("infoExperienciaLaboral", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarExperienciaLaboralXAplicante", iDAplicanteParameter, infoExperienciaLaboralParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("InsertarExperienciaLaboralXAplicante", iDAplicanteParameter, infoExperienciaLaboralParameter);
         }
     
-        public virtual int InsertarIdiomaXAplicante(Nullable<int> iDAplicante, string infoIdiomas)
+        public virtual ObjectResult<string> InsertarIdiomaXAplicante(Nullable<int> iDAplicante, string infoIdiomas)
         {
             var iDAplicanteParameter = iDAplicante.HasValue ?
                 new ObjectParameter("IDAplicante", iDAplicante) :
@@ -684,10 +684,10 @@ namespace TalentoTECDataAccess
                 new ObjectParameter("infoIdiomas", infoIdiomas) :
                 new ObjectParameter("infoIdiomas", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarIdiomaXAplicante", iDAplicanteParameter, infoIdiomasParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("InsertarIdiomaXAplicante", iDAplicanteParameter, infoIdiomasParameter);
         }
     
-        public virtual int InsertarReferenciasXAplicante(Nullable<int> iDAplicante, string infoReferencias)
+        public virtual ObjectResult<string> InsertarReferenciasXAplicante(Nullable<int> iDAplicante, string infoReferencias)
         {
             var iDAplicanteParameter = iDAplicante.HasValue ?
                 new ObjectParameter("IDAplicante", iDAplicante) :
@@ -697,7 +697,7 @@ namespace TalentoTECDataAccess
                 new ObjectParameter("infoReferencias", infoReferencias) :
                 new ObjectParameter("infoReferencias", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarReferenciasXAplicante", iDAplicanteParameter, infoReferenciasParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("InsertarReferenciasXAplicante", iDAplicanteParameter, infoReferenciasParameter);
         }
     
         public virtual ObjectResult<string> ModificarFechaImportante(Nullable<int> iDFecha, string fecha, string nombreActividad)

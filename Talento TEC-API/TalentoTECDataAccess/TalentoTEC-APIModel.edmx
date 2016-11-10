@@ -19,7 +19,7 @@
             <PropertyRef Name="ID_APLICANTE" />
           </Key>
           <Property Name="ID_APLICANTE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IDENTIFICACION" Type="int" Nullable="false" />
+          <Property Name="IDENTIFICACION" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="FK_ID_TIPO_IDENTIFICACION" Type="int" Nullable="false" />
           <Property Name="APELLIDO1" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="APELLIDO2" Type="varchar" MaxLength="20" Nullable="false" />
@@ -1137,7 +1137,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <PropertyRef Name="ID_APLICANTE" />
           </Key>
           <Property Name="ID_APLICANTE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IDENTIFICACION" Type="Int32" Nullable="false" />
+          <Property Name="IDENTIFICACION" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FK_ID_TIPO_IDENTIFICACION" Type="Int32" Nullable="false" />
           <Property Name="APELLIDO1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="APELLIDO2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
@@ -2048,23 +2048,23 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <Parameter Name="cantidadPlazas" Mode="In" Type="Int32" />
             <Parameter Name="carrerasProfesionales" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="InsertarCapacitacionesXAplicante">
+          <FunctionImport Name="InsertarCapacitacionesXAplicante" ReturnType="Collection(String)">
             <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
             <Parameter Name="infoCapacitaciones" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="InsertarEducacionFormalXAplicante">
+          <FunctionImport Name="InsertarEducacionFormalXAplicante" ReturnType="Collection(String)">
             <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
             <Parameter Name="infoTitulos" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="InsertarExperienciaLaboralXAplicante">
+          <FunctionImport Name="InsertarExperienciaLaboralXAplicante" ReturnType="Collection(Int32)">
             <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
             <Parameter Name="infoExperienciaLaboral" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="InsertarIdiomaXAplicante">
+          <FunctionImport Name="InsertarIdiomaXAplicante" ReturnType="Collection(String)">
             <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
             <Parameter Name="infoIdiomas" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="InsertarReferenciasXAplicante">
+          <FunctionImport Name="InsertarReferenciasXAplicante" ReturnType="Collection(String)">
             <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
             <Parameter Name="infoReferencias" Mode="In" Type="String" />
           </FunctionImport>
@@ -2148,7 +2148,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Property Type="String" Name="PaisNacimiento" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Nacionalidad" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="TipoIdentificacion" Nullable="false" MaxLength="25" />
-          <Property Type="Int32" Name="Identificacion" Nullable="false" />
+          <Property Type="String" Name="Identificacion" Nullable="false" MaxLength="25" />
           <Property Type="String" Name="Genero" Nullable="false" MaxLength="20" />
           <Property Type="String" Name="Carne" Nullable="false" MaxLength="20" />
           <Property Type="String" Name="PaisResidencia" Nullable="false" MaxLength="50" />
@@ -2216,11 +2216,11 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Property Type="String" Name="Nombre_Puesto" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="Verificacion_Login_Result">
-          <Property Type="Int32" Name="ID_Administrador" Nullable="false" />
+          <Property Type="Int32" Name="ID_Usuario" Nullable="false" />
           <Property Type="String" Name="Tipo_Cuenta" Nullable="false" MaxLength="15" />
         </ComplexType>
         <ComplexType Name="VerificarLoginAdministrador_Result">
-          <Property Type="Int32" Name="ID_Administrador" Nullable="false" />
+          <Property Type="Int32" Name="ID_Usuario" Nullable="false" />
           <Property Type="String" Name="Tipo_Cuenta" Nullable="false" MaxLength="15" />
         </ComplexType>
       </Schema>
@@ -2674,7 +2674,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <FunctionImportMapping FunctionImportName="Verificacion_Login" FunctionName="TalentoTECModel.Store.Verificacion_Login">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TalentoTECModel.Verificacion_Login_Result">
-                <ScalarProperty Name="ID_Administrador" ColumnName="ID_Administrador" />
+                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
                 <ScalarProperty Name="Tipo_Cuenta" ColumnName="Tipo_Cuenta" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -2682,7 +2682,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <FunctionImportMapping FunctionImportName="VerificarLoginAdministrador" FunctionName="TalentoTECModel.Store.VerificarLoginAdministrador">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TalentoTECModel.VerificarLoginAdministrador_Result">
-                <ScalarProperty Name="ID_Administrador" ColumnName="ID_Administrador" />
+                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
                 <ScalarProperty Name="Tipo_Cuenta" ColumnName="Tipo_Cuenta" />
               </ComplexTypeMapping>
             </ResultMapping>

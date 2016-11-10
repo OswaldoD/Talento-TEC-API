@@ -446,7 +446,7 @@
     <FunctionImportMapping FunctionImportName="Verificacion_Login" FunctionName="TalentoTECModel.Store.Verificacion_Login">
       <ResultMapping>
         <ComplexTypeMapping TypeName="TalentoTECModel.Verificacion_Login_Result">
-          <ScalarProperty Name="ID_Administrador" ColumnName="ID_Administrador" />
+          <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
           <ScalarProperty Name="Tipo_Cuenta" ColumnName="Tipo_Cuenta" />
         </ComplexTypeMapping>
       </ResultMapping>
@@ -454,7 +454,7 @@
     <FunctionImportMapping FunctionImportName="VerificarLoginAdministrador" FunctionName="TalentoTECModel.Store.VerificarLoginAdministrador">
       <ResultMapping>
         <ComplexTypeMapping TypeName="TalentoTECModel.VerificarLoginAdministrador_Result">
-          <ScalarProperty Name="ID_Administrador" ColumnName="ID_Administrador" />
+          <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
           <ScalarProperty Name="Tipo_Cuenta" ColumnName="Tipo_Cuenta" />
         </ComplexTypeMapping>
       </ResultMapping>

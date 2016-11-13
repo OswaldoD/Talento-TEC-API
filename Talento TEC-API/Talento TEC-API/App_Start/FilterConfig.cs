@@ -9,5 +9,6 @@ namespace Talento_TEC_API
         {
             filters.Add(new HandleErrorAttribute());
         }
+
     }
 }

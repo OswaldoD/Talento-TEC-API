@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Talento_TEC_API
 {
@@ -21,6 +22,20 @@ namespace Talento_TEC_API
             );
 
             config.Formatters.Remove(config.Formatters.XmlFormatter);
+
+            EnableCrossSiteRequests(config);
+
+
+        }
+
+    private static void EnableCrossSiteRequests(HttpConfiguration config)
+        {
+            var cors = new EnableCorsAttribute(
+                origins: "*",
+                headers: "*",
+                methods: "*"
+            );
+            config.EnableCors(cors);
         }
     }
 }

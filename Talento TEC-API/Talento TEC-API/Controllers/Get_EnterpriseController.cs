@@ -11,6 +11,7 @@ namespace Talento_TEC_API.Controllers.empresa
 {
     public class Get_EnterpriseController : ApiController
     {
+        
         public HttpResponseMessage Get(int id)
         {
             /* Método que obtiene la información de una empresa */

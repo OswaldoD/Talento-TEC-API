@@ -100,3 +100,6 @@ C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\Talento TEC-API\bi
 C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\Talento TEC-API\obj\Debug\Talento TEC-API.csprojResolveAssemblyReference.cache
 C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\Talento TEC-API\obj\Debug\Talento TEC-API.dll
 C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\Talento TEC-API\obj\Debug\Talento TEC-API.pdb
+C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\Talento TEC-API\bin\System.Web.Cors.dll
+C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\Talento TEC-API\bin\System.Web.Http.Cors.dll
+C:\Users\Oswaldo\Source\Repos\Talento-TEC-API\Talento TEC-API\Talento TEC-API\bin\System.Web.Http.Cors.xml

@@ -247,6 +247,7 @@
     <Compile Include="Models\InformacionCuenta.cs" />
     <Compile Include="Models\oferta\AplicarOferta.cs" />
     <Compile Include="Models\oferta\IndexOferta.cs" />
+    <Compile Include="Models\talentotec\school.cs" />
     <Compile Include="Models\VerificaLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

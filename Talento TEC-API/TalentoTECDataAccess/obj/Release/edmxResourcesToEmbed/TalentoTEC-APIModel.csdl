@@ -1086,7 +1086,7 @@
   </ComplexType>
   <ComplexType Name="ObtenerNombreUsuario_Result">
     <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="nombreEmpresa" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="NombreUsuario" Nullable="false" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="ObtenerOfertasXEmpresa_Result">
     <Property Type="Int32" Name="ID_Oferta" Nullable="false" />

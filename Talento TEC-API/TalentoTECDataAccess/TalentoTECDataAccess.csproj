@@ -52,151 +52,151 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administrador.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Aplicante.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AplicanteXOferta.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CapacitacionesXAplicante.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CarrerasProfesionale.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CoordinadoresEscuela.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CuentasUsuario.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EducacionFormalXAplicante.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Empresa.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ExperienciaLaboralXAplicante.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="FechasImportante.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="GradoEstudioFormal.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Idioma.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="IdiomaXAplicante.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Insertar_OfertasLaborales_Result.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Nacionalidade.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="NivelDominioIdioma.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ObtenerDatosAplicante_Result.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ObtenerDatosEmpresa_Result.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ObtenerDatosOfertas_Result.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ObtenerEmpresasXEstado_Result.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ObtenerFechasImportantes_Result.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ObtenerListaCoordinadoresXEscuela_Result.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ObtenerNombreUsuario_Result.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ObtenerOfertasXEmpresa_Result.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="OfertasLaborale.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Pais.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReferenciasXAplicante.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SectoresProductivo.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Talento TEC-APIModel.Context.cs">
+    <Compile Include="TalentoTEC-APIModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Talento TEC-APIModel.Context.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Talento TEC-APIModel.cs">
+    <Compile Include="TalentoTEC-APIModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Talento TEC-APIModel.Designer.cs">
+    <Compile Include="TalentoTEC-APIModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Talento TEC-APIModel.edmx</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="TipoAplicante.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoIdentificacion.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoMoneda.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoOferta.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Verificacion_Login_Result.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
     <Compile Include="VerificarLoginAdministrador_Result.cs">
-      <DependentUpon>Talento TEC-APIModel.tt</DependentUpon>
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="Talento TEC-APIModel.edmx">
+    <EntityDeploy Include="TalentoTEC-APIModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Talento TEC-APIModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>TalentoTEC-APIModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Talento TEC-APIModel.edmx.diagram">
-      <DependentUpon>Talento TEC-APIModel.edmx</DependentUpon>
+    <None Include="TalentoTEC-APIModel.edmx.diagram">
+      <DependentUpon>TalentoTEC-APIModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Talento TEC-APIModel.Context.tt">
+    <Content Include="TalentoTEC-APIModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Talento TEC-APIModel.edmx</DependentUpon>
-      <LastGenOutput>Talento TEC-APIModel.Context.cs</LastGenOutput>
+      <DependentUpon>TalentoTEC-APIModel.edmx</DependentUpon>
+      <LastGenOutput>TalentoTEC-APIModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Talento TEC-APIModel.tt">
+    <Content Include="TalentoTEC-APIModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Talento TEC-APIModel.edmx</DependentUpon>
-      <LastGenOutput>Talento TEC-APIModel.cs</LastGenOutput>
+      <DependentUpon>TalentoTEC-APIModel.edmx</DependentUpon>
+      <LastGenOutput>TalentoTEC-APIModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

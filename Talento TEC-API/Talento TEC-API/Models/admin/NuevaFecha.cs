@@ -10,5 +10,7 @@ namespace Talento_TEC_API.Models.admin
         public string fecha { get; set; }
 
         public string nombreActividad { get; set; }
+
+        public string descripcion { get; set; }
     }
 }

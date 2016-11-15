@@ -17,5 +17,6 @@ namespace TalentoTECDataAccess
         public int ID_FECHA_IMPORTANTE { get; set; }
         public string FECHA { get; set; }
         public string NOMBRE_ACTIVIDAD { get; set; }
+        public string DESCRIPCION { get; set; }
     }
 }

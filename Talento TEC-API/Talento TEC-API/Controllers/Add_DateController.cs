@@ -19,7 +19,7 @@ namespace Talento_TEC_API.Controllers
                 {
                     connect.Configuration.ProxyCreationEnabled = false;
 
-                    var item = connect.AgregarFechaImportante(fecha.fecha, fecha.nombreActividad).ToList();
+                    var item = connect.AgregarFechaImportante(fecha.fecha, fecha.nombreActividad, fecha.descripcion).ToList();
 
                     if (item.Count > 0)
                     {

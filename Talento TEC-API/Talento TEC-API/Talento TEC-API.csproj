@@ -211,6 +211,7 @@
     <Compile Include="Controllers\CoordinatorsController.cs" />
     <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\Delete_DateController.cs" />
+    <Compile Include="Controllers\GetImportantDatesController.cs" />
     <Compile Include="Controllers\Get_EnterpriseController.cs" />
     <Compile Include="Controllers\Get_Offer_EnterpriseController.cs" />
     <Compile Include="Controllers\Index_OffersController.cs" />

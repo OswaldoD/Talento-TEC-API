@@ -4,14 +4,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Talento_TEC_API.Models.admin;
 using TalentoTECDataAccess;
 
 namespace Talento_TEC_API.Controllers
 {
-    public class Modify_DateController : ApiController
+    public class GetImportantDatesController : ApiController
     {
-        public HttpResponseMessage Post([FromBody] ModificarFecha fecha)
+        public HttpResponseMessage Get()
         {
             try
             {
@@ -19,16 +18,19 @@ namespace Talento_TEC_API.Controllers
                 {
                     connect.Configuration.ProxyCreationEnabled = false;
 
-                    var item = connect.ModificarFechaImportante(fecha.idFecha, fecha.fecha, fecha.nombreActividad, fecha.descripcion).ToList();
-
-                    if(item.Count > 0)
+                    var item = connect.ObtenerFechasImportantes().ToList(); //sp de BD
+                    if (item != null)
                     {
                         return Request.CreateResponse(HttpStatusCode.OK, item);
+
                     }
                     else
                     {
                         return Request.CreateResponse(HttpStatusCode.NotFound, item);
                     }
+                    /*para cuando inserte*/
+                    /* var message = Request.CreateResponse(HttpStatusCode.Created, parametros);
+                    message.Headers.Location = new Uri(Request.RequestUri + parametros.username);*/
                 }
             }
             catch (Exception error)
@@ -36,5 +38,7 @@ namespace Talento_TEC_API.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, error);
             }
         }
+
+
     }
 }

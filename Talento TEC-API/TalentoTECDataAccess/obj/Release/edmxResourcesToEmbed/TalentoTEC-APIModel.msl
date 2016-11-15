@@ -95,6 +95,7 @@
           <ScalarProperty Name="ID_FECHA_IMPORTANTE" ColumnName="ID_FECHA_IMPORTANTE" />
           <ScalarProperty Name="FECHA" ColumnName="FECHA" />
           <ScalarProperty Name="NOMBRE_ACTIVIDAD" ColumnName="NOMBRE_ACTIVIDAD" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -284,14 +285,6 @@
         <ScalarProperty Name="ID_SECTOR_PRODUCTIVO" ColumnName="FK_ID_SECTOR_PRODUCTIVO" />
       </EndProperty>
     </AssociationSetMapping>
-    <FunctionImportMapping FunctionName="TalentoTECModel.Store.split" FunctionImportName="split">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="TalentoTECModel.split_Result">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="val" ColumnName="val" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="ActualizarAplicante" FunctionName="TalentoTECModel.Store.ActualizarAplicante" />
     <FunctionImportMapping FunctionImportName="ActualizarCapacitacionesXAplicante" FunctionName="TalentoTECModel.Store.ActualizarCapacitacionesXAplicante" />
     <FunctionImportMapping FunctionImportName="ActualizarEducacionFormalXAplicante" FunctionName="TalentoTECModel.Store.ActualizarEducacionFormalXAplicante" />
@@ -398,9 +391,10 @@
     <FunctionImportMapping FunctionImportName="ObtenerFechasImportantes" FunctionName="TalentoTECModel.Store.ObtenerFechasImportantes">
       <ResultMapping>
         <ComplexTypeMapping TypeName="TalentoTECModel.ObtenerFechasImportantes_Result">
-          <ScalarProperty Name="IDOferta" ColumnName="IDOferta" />
+          <ScalarProperty Name="IDFecha" ColumnName="IDFecha" />
           <ScalarProperty Name="NombreActividad" ColumnName="NombreActividad" />
           <ScalarProperty Name="FechaActividad" ColumnName="FechaActividad" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

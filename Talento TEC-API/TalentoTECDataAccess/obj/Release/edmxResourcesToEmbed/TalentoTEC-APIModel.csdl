@@ -1,9 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="TalentoTECModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <ComplexType Name="split_Result">
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="val" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </ComplexType>
   <EntityType Name="Administrador">
     <Key>
       <PropertyRef Name="ID_ADMINISTRADOR" />
@@ -111,6 +107,7 @@
     <Property Name="ID_FECHA_IMPORTANTE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="FECHA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="NOMBRE_ACTIVIDAD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
   <EntityType Name="GradoEstudioFormal">
     <Key>
@@ -266,7 +263,7 @@
     <Property Name="FK_ID_APLICANTE" Type="Int32" Nullable="false" />
     <Property Name="NOMBRE_INSTITUCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="FK_ID_PAIS_ESTUDIO" Type="Int32" Nullable="false" />
-    <Property Name="ANNO_GRADUACION" Type="Int32" Nullable="false" />
+    <Property Name="ANNO_GRADUACION" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="NOMBRE_TITULO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="FK_ID_GRADO" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Aplicante" Relationship="Self.FK_EducacionFormalXAplicante_Aplicantes" FromRole="EducacionFormalXAplicante" ToRole="Aplicantes" />
@@ -770,10 +767,6 @@
       <End Role="Empresas" EntitySet="Empresas" />
       <End Role="SectoresProductivos" EntitySet="SectoresProductivos" />
     </AssociationSet>
-    <FunctionImport Name="split" IsComposable="true" ReturnType="Collection(TalentoTECModel.split_Result)">
-      <Parameter Name="delimited" Mode="In" Type="String" />
-      <Parameter Name="delimiter" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="ActualizarAplicante" ReturnType="Collection(Int32)">
       <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
       <Parameter Name="PrimerApellido" Mode="In" Type="String" />
@@ -867,6 +860,7 @@
     <FunctionImport Name="AgregarFechaImportante" ReturnType="Collection(String)">
       <Parameter Name="Fecha" Mode="In" Type="String" />
       <Parameter Name="NombreActividad" Mode="In" Type="String" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="AplicarOferta" ReturnType="Collection(Int32)">
       <Parameter Name="IDOferta" Mode="In" Type="Int32" />
@@ -953,6 +947,7 @@
       <Parameter Name="IDFecha" Mode="In" Type="Int32" />
       <Parameter Name="Fecha" Mode="In" Type="String" />
       <Parameter Name="NombreActividad" Mode="In" Type="String" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="ObtenerDatosAplicante" ReturnType="Collection(TalentoTECModel.ObtenerDatosAplicante_Result)">
       <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
@@ -1079,9 +1074,10 @@
     <Property Type="String" Name="NombreEmpresa" Nullable="false" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="ObtenerFechasImportantes_Result">
-    <Property Type="Int32" Name="IDOferta" Nullable="false" />
+    <Property Type="Int32" Name="IDFecha" Nullable="false" />
     <Property Type="String" Name="NombreActividad" Nullable="false" MaxLength="100" />
     <Property Type="String" Name="FechaActividad" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="1024" />
   </ComplexType>
   <ComplexType Name="ObtenerListaCoordinadoresXEscuela_Result">
     <Property Type="String" Name="NombreCoordinador" Nullable="false" MaxLength="100" />

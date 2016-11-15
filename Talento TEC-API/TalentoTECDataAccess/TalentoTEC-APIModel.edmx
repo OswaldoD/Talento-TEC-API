@@ -170,6 +170,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.ExperienciaLaboralXAplicante'
           <Property Name="ID_FECHA_IMPORTANTE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FECHA" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="NOMBRE_ACTIVIDAD" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="1024" Nullable="false" />
         </EntityType>
         <EntityType Name="GradoEstudioFormal">
           <Key>
@@ -749,6 +750,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
         <Function Name="AgregarFechaImportante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Fecha" Type="varchar" Mode="In" />
           <Parameter Name="NombreActividad" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
         </Function>
         <Function Name="AplicarOferta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IDOferta" Type="int" Mode="In" />
@@ -835,6 +837,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Parameter Name="IDFecha" Type="int" Mode="In" />
           <Parameter Name="Fecha" Type="varchar" Mode="In" />
           <Parameter Name="NombreActividad" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
         </Function>
         <Function Name="ObtenerDatosAplicante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IDAplicante" Type="int" Mode="In" />
@@ -1214,6 +1217,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Property Name="ID_FECHA_IMPORTANTE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FECHA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NOMBRE_ACTIVIDAD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="GradoEstudioFormal">
           <Key>
@@ -1966,6 +1970,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <FunctionImport Name="AgregarFechaImportante" ReturnType="Collection(String)">
             <Parameter Name="Fecha" Mode="In" Type="String" />
             <Parameter Name="NombreActividad" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="AplicarOferta" ReturnType="Collection(Int32)">
             <Parameter Name="IDOferta" Mode="In" Type="Int32" />
@@ -2052,6 +2057,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <Parameter Name="IDFecha" Mode="In" Type="Int32" />
             <Parameter Name="Fecha" Mode="In" Type="String" />
             <Parameter Name="NombreActividad" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ObtenerDatosAplicante" ReturnType="Collection(TalentoTECModel.ObtenerDatosAplicante_Result)">
             <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
@@ -2178,9 +2184,10 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Property Type="String" Name="NombreEmpresa" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="ObtenerFechasImportantes_Result">
-          <Property Type="Int32" Name="IDOferta" Nullable="false" />
+          <Property Type="Int32" Name="IDFecha" Nullable="false" />
           <Property Type="String" Name="NombreActividad" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="FechaActividad" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="1024" />
         </ComplexType>
         <ComplexType Name="ObtenerListaCoordinadoresXEscuela_Result">
           <Property Type="String" Name="NombreCoordinador" Nullable="false" MaxLength="100" />
@@ -2303,6 +2310,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
                 <ScalarProperty Name="ID_FECHA_IMPORTANTE" ColumnName="ID_FECHA_IMPORTANTE" />
                 <ScalarProperty Name="FECHA" ColumnName="FECHA" />
                 <ScalarProperty Name="NOMBRE_ACTIVIDAD" ColumnName="NOMBRE_ACTIVIDAD" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2598,9 +2606,10 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <FunctionImportMapping FunctionImportName="ObtenerFechasImportantes" FunctionName="TalentoTECModel.Store.ObtenerFechasImportantes">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TalentoTECModel.ObtenerFechasImportantes_Result">
-                <ScalarProperty Name="IDOferta" ColumnName="IDOferta" />
+                <ScalarProperty Name="IDFecha" ColumnName="IDFecha" />
                 <ScalarProperty Name="NombreActividad" ColumnName="NombreActividad" />
                 <ScalarProperty Name="FechaActividad" ColumnName="FechaActividad" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

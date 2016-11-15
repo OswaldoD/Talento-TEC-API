@@ -388,7 +388,7 @@ namespace TalentoTECDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("AgregarAplicante", primerApellidoParameter, segundoApellidoParameter, nombreParameter, fechaNacimientoParameter, paisNacimientoParameter, nacionalidadParameter, tipoIdentificacionParameter, identificacionParameter, generoParameter, carneParameter, paisResidenciaParameter, provinciaParameter, direccionExactaParameter, telefonoParameter, emailParameter, passwordParameter, infoTitulosParameter, infoIdiomasParameter, infoExperienciaLaboralParameter, infoCapacitacionesParameter, conocimientosParameter, infoReferenciasParameter, tipoAplicanteParameter);
         }
     
-        public virtual ObjectResult<string> AgregarFechaImportante(string fecha, string nombreActividad)
+        public virtual ObjectResult<string> AgregarFechaImportante(string fecha, string nombreActividad, string descripcion)
         {
             var fechaParameter = fecha != null ?
                 new ObjectParameter("Fecha", fecha) :
@@ -398,7 +398,11 @@ namespace TalentoTECDataAccess
                 new ObjectParameter("NombreActividad", nombreActividad) :
                 new ObjectParameter("NombreActividad", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("AgregarFechaImportante", fechaParameter, nombreActividadParameter);
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("AgregarFechaImportante", fechaParameter, nombreActividadParameter, descripcionParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> AplicarOferta(Nullable<int> iDOferta, Nullable<int> iDAplicante)
@@ -686,7 +690,7 @@ namespace TalentoTECDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("InsertarReferenciasXAplicante", iDAplicanteParameter, infoReferenciasParameter);
         }
     
-        public virtual ObjectResult<string> ModificarFechaImportante(Nullable<int> iDFecha, string fecha, string nombreActividad)
+        public virtual ObjectResult<string> ModificarFechaImportante(Nullable<int> iDFecha, string fecha, string nombreActividad, string descripcion)
         {
             var iDFechaParameter = iDFecha.HasValue ?
                 new ObjectParameter("IDFecha", iDFecha) :
@@ -700,7 +704,11 @@ namespace TalentoTECDataAccess
                 new ObjectParameter("NombreActividad", nombreActividad) :
                 new ObjectParameter("NombreActividad", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("ModificarFechaImportante", iDFechaParameter, fechaParameter, nombreActividadParameter);
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("ModificarFechaImportante", iDFechaParameter, fechaParameter, nombreActividadParameter, descripcionParameter);
         }
     
         public virtual ObjectResult<ObtenerDatosAplicante_Result> ObtenerDatosAplicante(Nullable<int> iDAplicante)

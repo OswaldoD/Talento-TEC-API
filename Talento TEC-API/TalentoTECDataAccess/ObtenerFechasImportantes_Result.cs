@@ -13,8 +13,9 @@ namespace TalentoTECDataAccess
     
     public partial class ObtenerFechasImportantes_Result
     {
-        public int IDOferta { get; set; }
+        public int IDFecha { get; set; }
         public string NombreActividad { get; set; }
         public string FechaActividad { get; set; }
+        public string Descripcion { get; set; }
     }
 }

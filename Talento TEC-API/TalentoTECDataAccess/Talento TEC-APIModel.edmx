@@ -120,7 +120,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.EducacionFormalXAplicante' no
           <Property Name="FK_ID_APLICANTE" Type="int" Nullable="false" />
           <Property Name="NOMBRE_INSTITUCION" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FK_ID_PAIS_ESTUDIO" Type="int" Nullable="false" />
-          <Property Name="ANNO_GRADUACION" Type="int" Nullable="false" />
+          <Property Name="ANNO_GRADUACION" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="NOMBRE_TITULO" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FK_ID_GRADO" Type="int" Nullable="false" />
         </EntityType>
@@ -890,18 +890,6 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
         <Function Name="ObtenerOfertasXEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID_Empresa" Type="int" Mode="In" />
         </Function>
-        <Function Name="split" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="delimited" Type="nvarchar(max)" Mode="In" />
-          <Parameter Name="delimiter" Type="nvarchar" Mode="In" />
-          <ReturnType>
-            <CollectionType>
-              <RowType>
-                <Property Name="id" Type="int" Nullable="false" />
-                <Property Name="val" Type="nvarchar(max)" />
-              </RowType>
-            </CollectionType>
-          </ReturnType>
-        </Function>
         <Function Name="Verificacion_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre_Usuario" Type="varchar" Mode="In" />
           <Parameter Name="Password_Usuario" Type="varchar" Mode="In" />
@@ -1119,10 +1107,6 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TalentoTECModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <ComplexType Name="split_Result">
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="val" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </ComplexType>
         <EntityType Name="Administrador">
           <Key>
             <PropertyRef Name="ID_ADMINISTRADOR" />
@@ -1385,7 +1369,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Property Name="FK_ID_APLICANTE" Type="Int32" Nullable="false" />
           <Property Name="NOMBRE_INSTITUCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FK_ID_PAIS_ESTUDIO" Type="Int32" Nullable="false" />
-          <Property Name="ANNO_GRADUACION" Type="Int32" Nullable="false" />
+          <Property Name="ANNO_GRADUACION" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NOMBRE_TITULO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FK_ID_GRADO" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Aplicante" Relationship="Self.FK_EducacionFormalXAplicante_Aplicantes" FromRole="EducacionFormalXAplicante" ToRole="Aplicantes" />
@@ -1889,10 +1873,6 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <End Role="Empresas" EntitySet="Empresas" />
             <End Role="SectoresProductivos" EntitySet="SectoresProductivos" />
           </AssociationSet>
-          <FunctionImport Name="split" IsComposable="true" ReturnType="Collection(TalentoTECModel.split_Result)">
-            <Parameter Name="delimited" Mode="In" Type="String" />
-            <Parameter Name="delimiter" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="ActualizarAplicante" ReturnType="Collection(Int32)">
             <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
             <Parameter Name="PrimerApellido" Mode="In" Type="String" />
@@ -2512,14 +2492,6 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
               <ScalarProperty Name="ID_SECTOR_PRODUCTIVO" ColumnName="FK_ID_SECTOR_PRODUCTIVO" />
             </EndProperty>
           </AssociationSetMapping>
-          <FunctionImportMapping FunctionName="TalentoTECModel.Store.split" FunctionImportName="split">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="TalentoTECModel.split_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="val" ColumnName="val" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="ActualizarAplicante" FunctionName="TalentoTECModel.Store.ActualizarAplicante" />
           <FunctionImportMapping FunctionImportName="ActualizarCapacitacionesXAplicante" FunctionName="TalentoTECModel.Store.ActualizarCapacitacionesXAplicante" />
           <FunctionImportMapping FunctionImportName="ActualizarEducacionFormalXAplicante" FunctionName="TalentoTECModel.Store.ActualizarEducacionFormalXAplicante" />

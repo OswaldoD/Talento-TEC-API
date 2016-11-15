@@ -52,20 +52,6 @@ namespace TalentoTECDataAccess
         public virtual DbSet<IdiomaXAplicante> IdiomaXAplicantes { get; set; }
         public virtual DbSet<ReferenciasXAplicante> ReferenciasXAplicantes { get; set; }
     
-        [DbFunction("TalentoTECEntities", "split")]
-        public virtual IQueryable<split_Result> split(string delimited, string delimiter)
-        {
-            var delimitedParameter = delimited != null ?
-                new ObjectParameter("delimited", delimited) :
-                new ObjectParameter("delimited", typeof(string));
-    
-            var delimiterParameter = delimiter != null ?
-                new ObjectParameter("delimiter", delimiter) :
-                new ObjectParameter("delimiter", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<split_Result>("[TalentoTECEntities].[split](@delimited, @delimiter)", delimitedParameter, delimiterParameter);
-        }
-    
         public virtual ObjectResult<Nullable<int>> ActualizarAplicante(Nullable<int> iDAplicante, string primerApellido, string segundoApellido, string nombre, string fechaNacimiento, string paisNacimiento, string nacionalidad, string tipoIdentificacion, string identificacion, string genero, string carne, string paisResidencia, string provincia, string direccionExacta, string telefono, string email, string password, string infoTitulos, string infoIdiomas, string infoExperienciaLaboral, string infoCapacitaciones, string conocimientos, string infoReferencias, string tipoAplicante)
         {
             var iDAplicanteParameter = iDAplicante.HasValue ?

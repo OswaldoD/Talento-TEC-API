@@ -17,7 +17,7 @@ namespace TalentoTECDataAccess
         public int FK_ID_APLICANTE { get; set; }
         public string NOMBRE_INSTITUCION { get; set; }
         public int FK_ID_PAIS_ESTUDIO { get; set; }
-        public int ANNO_GRADUACION { get; set; }
+        public string ANNO_GRADUACION { get; set; }
         public string NOMBRE_TITULO { get; set; }
         public int FK_ID_GRADO { get; set; }
     

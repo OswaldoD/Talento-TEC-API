@@ -227,8 +227,8 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.IdiomaXAplicante' no tiene de
           <Property Name="REQUISITOS_PUESTO" Type="varchar" MaxLength="1024" Nullable="false" />
           <Property Name="MONTO_SALARIO" Type="int" Nullable="false" />
           <Property Name="FK_ID_TIPO_MONEDA" Type="int" Nullable="false" />
-          <Property Name="FECHA_INICIO_OFERTA" Type="datetime" Nullable="false" />
-          <Property Name="FECHA_FINAL_OFERTA" Type="datetime" Nullable="false" />
+          <Property Name="FECHA_INICIO_OFERTA" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="FECHA_FINAL_OFERTA" Type="varchar" MaxLength="11" Nullable="false" />
           <Property Name="FK_ID_TIPO_OFERTA" Type="int" Nullable="false" />
           <Property Name="NOMBRE_CONTACTO_OFERTA" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="EMAIL_CONTACTO_OFERTA" Type="varchar" MaxLength="100" Nullable="false" />
@@ -267,7 +267,8 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.ReferenciasXAplicante' no tie
             <PropertyRef Name="ID_SECTOR_PRODUCTIVO" />
           </Key>
           <Property Name="ID_SECTOR_PRODUCTIVO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NOMBRE_SECTOR_PRODUCTIVO" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="NOMBRE_SECTOR_PRODUCTIVO" Type="varchar(max)" Nullable="false" />
+          <Property Name="DESCRIPCION_SECTOR" Type="varchar(max)" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -770,6 +771,10 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Parameter Name="IDOferta" Type="int" Mode="In" />
           <Parameter Name="NuevoEstado" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="ConusltarEstadoAplicanteXOferta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDAplicante" Type="int" Mode="In" />
+          <Parameter Name="IDOferta" Type="int" Mode="In" />
+        </Function>
         <Function Name="EliminarAplicacionOferta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IDOferta" Type="int" Mode="In" />
           <Parameter Name="IDAplicante" Type="int" Mode="In" />
@@ -1264,8 +1269,8 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Property Name="REQUISITOS_PUESTO" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MONTO_SALARIO" Type="Int32" Nullable="false" />
           <Property Name="FK_ID_TIPO_MONEDA" Type="Int32" Nullable="false" />
-          <Property Name="FECHA_INICIO_OFERTA" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FECHA_FINAL_OFERTA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FECHA_INICIO_OFERTA" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FECHA_FINAL_OFERTA" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="FK_ID_TIPO_OFERTA" Type="Int32" Nullable="false" />
           <Property Name="NOMBRE_CONTACTO_OFERTA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EMAIL_CONTACTO_OFERTA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
@@ -1296,7 +1301,8 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <PropertyRef Name="ID_SECTOR_PRODUCTIVO" />
           </Key>
           <Property Name="ID_SECTOR_PRODUCTIVO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NOMBRE_SECTOR_PRODUCTIVO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE_SECTOR_PRODUCTIVO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPCION_SECTOR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Empresas" Relationship="Self.SectorProductivoXEmpresa" FromRole="SectoresProductivos" ToRole="Empresas" />
         </EntityType>
         <EntityType Name="TipoAplicante">
@@ -1976,7 +1982,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <Parameter Name="IDOferta" Mode="In" Type="Int32" />
             <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="BuscarOfertas" ReturnType="Collection(String)">
+          <FunctionImport Name="BuscarOfertas" ReturnType="Collection(TalentoTECModel.BuscarOfertas_Result)">
             <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
             <Parameter Name="TipoCuenta" Mode="In" Type="String" />
             <Parameter Name="carreraSeleccionada" Mode="In" Type="String" />
@@ -1989,6 +1995,10 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <FunctionImport Name="CambiarEstadoOferta">
             <Parameter Name="IDOferta" Mode="In" Type="Int32" />
             <Parameter Name="NuevoEstado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ConusltarEstadoAplicanteXOferta">
+            <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+            <Parameter Name="IDOferta" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="EliminarAplicacionOferta">
             <Parameter Name="IDOferta" Mode="In" Type="Int32" />
@@ -2122,28 +2132,58 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
             <Parameter Name="Password_Usuario" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="BuscarOfertas_Result">
+          <Property Type="Int32" Name="IDOferta" Nullable="false" />
+          <Property Type="String" Name="NombreEmpresa" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Puesto" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FechaLimite" Nullable="false" MaxLength="11" />
+          <Property Type="String" Name="Estado" Nullable="false" MaxLength="9" />
+        </ComplexType>
         <ComplexType Name="Insertar_OfertasLaborales_Result">
           <Property Type="Int32" Name="FK_ID_OFERTA" Nullable="false" />
           <Property Type="Int32" Name="FK_ID_CARRERA" Nullable="false" />
         </ComplexType>
         <ComplexType Name="ObtenerDatosAplicante_Result">
-          <Property Type="String" Name="PrimerApellido" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="SegundoApellido" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="FechaNacimiento" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="PaisNacimiento" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Nacionalidad" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="TipoIdentificacion" Nullable="false" MaxLength="25" />
-          <Property Type="String" Name="Identificacion" Nullable="false" MaxLength="25" />
-          <Property Type="String" Name="Genero" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="Carne" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="PaisResidencia" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Provincia" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="DireccionExacta" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Telefono" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="Correo" Nullable="false" MaxLength="40" />
-          <Property Type="String" Name="Contrasena" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="PrimerApellido" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="SegundoApellido" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="FechaNacimiento" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="PaisNacimiento" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Nacionalidad" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="TipoIdentificacion" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Identificacion" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="Genero" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Carne" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="PaisResidencia" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Provincia" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="DireccionExacta" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TelefonoAplicante" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Correo" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="Contrasena" Nullable="true" MaxLength="30" />
           <Property Type="String" Name="Conocimientos" Nullable="true" MaxLength="1024" />
+          <Property Type="String" Name="Institucion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PaisEstudio" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NombreTitulo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Grado" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="AnnoGraduacion" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Idioma" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="DominioLectura" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="DominioEscritura" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="DominioOral" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="NombreEmpresa" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Cargo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PaisEmpresa" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AnnoInicio" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="AnnoFin" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="NombreActividad" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NombreInstitucion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Pais" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Anno" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="NombreEmpresaReferente" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NombreReferente" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Puesto" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="Telefono" Nullable="true" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="ObtenerDatosEmpresa_Result">
           <Property Type="String" Name="NombreEmpresa" Nullable="false" MaxLength="50" />
@@ -2159,7 +2199,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Property Type="String" Name="CargoContacto" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="TelefonoContacto" Nullable="false" MaxLength="15" />
           <Property Type="String" Name="DescripcionActividades" Nullable="false" MaxLength="1024" />
-          <Property Type="String" Name="Sectores" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Sectores" Nullable="false" />
           <Property Type="String" Name="Usuario" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="Contrasena" Nullable="false" MaxLength="30" />
         </ComplexType>
@@ -2169,8 +2209,8 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <Property Type="String" Name="RequisitosPuesto" Nullable="false" MaxLength="1024" />
           <Property Type="Int32" Name="MontoSalario" Nullable="false" />
           <Property Type="String" Name="Moneda" Nullable="false" MaxLength="20" />
-          <Property Type="DateTime" Name="FechaInicioOferta" Nullable="false" Precision="23" />
-          <Property Type="DateTime" Name="FechaFinOferta" Nullable="false" Precision="23" />
+          <Property Type="String" Name="FechaInicioOferta" Nullable="false" MaxLength="11" />
+          <Property Type="String" Name="FechaFinOferta" Nullable="false" MaxLength="11" />
           <Property Type="String" Name="TipoOferta" Nullable="false" MaxLength="15" />
           <Property Type="String" Name="NombreContacto" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="EmailContacto" Nullable="false" MaxLength="100" />
@@ -2381,6 +2421,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
               <MappingFragment StoreEntitySet="SectoresProductivos">
                 <ScalarProperty Name="ID_SECTOR_PRODUCTIVO" ColumnName="ID_SECTOR_PRODUCTIVO" />
                 <ScalarProperty Name="NOMBRE_SECTOR_PRODUCTIVO" ColumnName="NOMBRE_SECTOR_PRODUCTIVO" />
+                <ScalarProperty Name="DESCRIPCION_SECTOR" ColumnName="DESCRIPCION_SECTOR" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2510,9 +2551,20 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
           <FunctionImportMapping FunctionImportName="AgregarAplicante" FunctionName="TalentoTECModel.Store.AgregarAplicante" />
           <FunctionImportMapping FunctionImportName="AgregarFechaImportante" FunctionName="TalentoTECModel.Store.AgregarFechaImportante" />
           <FunctionImportMapping FunctionImportName="AplicarOferta" FunctionName="TalentoTECModel.Store.AplicarOferta" />
-          <FunctionImportMapping FunctionImportName="BuscarOfertas" FunctionName="TalentoTECModel.Store.BuscarOfertas" />
+          <FunctionImportMapping FunctionImportName="BuscarOfertas" FunctionName="TalentoTECModel.Store.BuscarOfertas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TalentoTECModel.BuscarOfertas_Result">
+                <ScalarProperty Name="IDOferta" ColumnName="IDOferta" />
+                <ScalarProperty Name="NombreEmpresa" ColumnName="NombreEmpresa" />
+                <ScalarProperty Name="Puesto" ColumnName="Puesto" />
+                <ScalarProperty Name="FechaLimite" ColumnName="FechaLimite" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="CambiarEstadoEmpresa" FunctionName="TalentoTECModel.Store.CambiarEstadoEmpresa" />
           <FunctionImportMapping FunctionImportName="CambiarEstadoOferta" FunctionName="TalentoTECModel.Store.CambiarEstadoOferta" />
+          <FunctionImportMapping FunctionImportName="ConusltarEstadoAplicanteXOferta" FunctionName="TalentoTECModel.Store.ConusltarEstadoAplicanteXOferta" />
           <FunctionImportMapping FunctionImportName="EliminarAplicacionOferta" FunctionName="TalentoTECModel.Store.EliminarAplicacionOferta" />
           <FunctionImportMapping FunctionImportName="EliminarFechaImportante" FunctionName="TalentoTECModel.Store.EliminarFechaImportante" />
           <FunctionImportMapping FunctionImportName="Insertar_Empresa" FunctionName="TalentoTECModel.Store.Insertar_Empresa" />
@@ -2546,10 +2598,33 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
                 <ScalarProperty Name="PaisResidencia" ColumnName="PaisResidencia" />
                 <ScalarProperty Name="Provincia" ColumnName="Provincia" />
                 <ScalarProperty Name="DireccionExacta" ColumnName="DireccionExacta" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="TelefonoAplicante" ColumnName="TelefonoAplicante" />
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
                 <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
                 <ScalarProperty Name="Conocimientos" ColumnName="Conocimientos" />
+                <ScalarProperty Name="Institucion" ColumnName="Institucion" />
+                <ScalarProperty Name="PaisEstudio" ColumnName="PaisEstudio" />
+                <ScalarProperty Name="NombreTitulo" ColumnName="NombreTitulo" />
+                <ScalarProperty Name="Grado" ColumnName="Grado" />
+                <ScalarProperty Name="AnnoGraduacion" ColumnName="AnnoGraduacion" />
+                <ScalarProperty Name="Idioma" ColumnName="Idioma" />
+                <ScalarProperty Name="DominioLectura" ColumnName="DominioLectura" />
+                <ScalarProperty Name="DominioEscritura" ColumnName="DominioEscritura" />
+                <ScalarProperty Name="DominioOral" ColumnName="DominioOral" />
+                <ScalarProperty Name="NombreEmpresa" ColumnName="NombreEmpresa" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="PaisEmpresa" ColumnName="PaisEmpresa" />
+                <ScalarProperty Name="AnnoInicio" ColumnName="AnnoInicio" />
+                <ScalarProperty Name="AnnoFin" ColumnName="AnnoFin" />
+                <ScalarProperty Name="NombreActividad" ColumnName="NombreActividad" />
+                <ScalarProperty Name="NombreInstitucion" ColumnName="NombreInstitucion" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="Anno" ColumnName="Anno" />
+                <ScalarProperty Name="NombreEmpresaReferente" ColumnName="NombreEmpresaReferente" />
+                <ScalarProperty Name="NombreReferente" ColumnName="NombreReferente" />
+                <ScalarProperty Name="Puesto" ColumnName="Puesto" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

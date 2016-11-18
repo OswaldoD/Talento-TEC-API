@@ -418,7 +418,7 @@ namespace TalentoTECDataAccess
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("AplicarOferta", iDOfertaParameter, iDAplicanteParameter);
         }
     
-        public virtual ObjectResult<string> BuscarOfertas(Nullable<int> iDAplicante, string tipoCuenta, string carreraSeleccionada, Nullable<int> tipoBusqueda)
+        public virtual ObjectResult<BuscarOfertas_Result> BuscarOfertas(Nullable<int> iDAplicante, string tipoCuenta, string carreraSeleccionada, Nullable<int> tipoBusqueda)
         {
             var iDAplicanteParameter = iDAplicante.HasValue ?
                 new ObjectParameter("IDAplicante", iDAplicante) :
@@ -436,7 +436,7 @@ namespace TalentoTECDataAccess
                 new ObjectParameter("TipoBusqueda", tipoBusqueda) :
                 new ObjectParameter("TipoBusqueda", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("BuscarOfertas", iDAplicanteParameter, tipoCuentaParameter, carreraSeleccionadaParameter, tipoBusquedaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<BuscarOfertas_Result>("BuscarOfertas", iDAplicanteParameter, tipoCuentaParameter, carreraSeleccionadaParameter, tipoBusquedaParameter);
         }
     
         public virtual int CambiarEstadoEmpresa(Nullable<int> iDEmpresa, string nuevoEstado)
@@ -463,6 +463,19 @@ namespace TalentoTECDataAccess
                 new ObjectParameter("NuevoEstado", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CambiarEstadoOferta", iDOfertaParameter, nuevoEstadoParameter);
+        }
+    
+        public virtual int ConusltarEstadoAplicanteXOferta(Nullable<int> iDAplicante, Nullable<int> iDOferta)
+        {
+            var iDAplicanteParameter = iDAplicante.HasValue ?
+                new ObjectParameter("IDAplicante", iDAplicante) :
+                new ObjectParameter("IDAplicante", typeof(int));
+    
+            var iDOfertaParameter = iDOferta.HasValue ?
+                new ObjectParameter("IDOferta", iDOferta) :
+                new ObjectParameter("IDOferta", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ConusltarEstadoAplicanteXOferta", iDAplicanteParameter, iDOfertaParameter);
         }
     
         public virtual int EliminarAplicacionOferta(Nullable<int> iDOferta, Nullable<int> iDAplicante)

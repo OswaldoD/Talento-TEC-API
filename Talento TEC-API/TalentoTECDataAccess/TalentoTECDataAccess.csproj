@@ -60,6 +60,9 @@
     <Compile Include="AplicanteXOferta.cs">
       <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BuscarOfertas_Result.cs">
+      <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="CapacitacionesXAplicante.cs">
       <DependentUpon>TalentoTEC-APIModel.tt</DependentUpon>
     </Compile>

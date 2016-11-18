@@ -28,8 +28,8 @@ namespace TalentoTECDataAccess
         public string REQUISITOS_PUESTO { get; set; }
         public int MONTO_SALARIO { get; set; }
         public int FK_ID_TIPO_MONEDA { get; set; }
-        public System.DateTime FECHA_INICIO_OFERTA { get; set; }
-        public System.DateTime FECHA_FINAL_OFERTA { get; set; }
+        public string FECHA_INICIO_OFERTA { get; set; }
+        public string FECHA_FINAL_OFERTA { get; set; }
         public int FK_ID_TIPO_OFERTA { get; set; }
         public string NOMBRE_CONTACTO_OFERTA { get; set; }
         public string EMAIL_CONTACTO_OFERTA { get; set; }

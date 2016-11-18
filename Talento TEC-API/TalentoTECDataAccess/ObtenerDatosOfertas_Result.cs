@@ -18,8 +18,8 @@ namespace TalentoTECDataAccess
         public string RequisitosPuesto { get; set; }
         public int MontoSalario { get; set; }
         public string Moneda { get; set; }
-        public System.DateTime FechaInicioOferta { get; set; }
-        public System.DateTime FechaFinOferta { get; set; }
+        public string FechaInicioOferta { get; set; }
+        public string FechaFinOferta { get; set; }
         public string TipoOferta { get; set; }
         public string NombreContacto { get; set; }
         public string EmailContacto { get; set; }

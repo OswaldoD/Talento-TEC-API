@@ -26,9 +26,32 @@ namespace TalentoTECDataAccess
         public string PaisResidencia { get; set; }
         public string Provincia { get; set; }
         public string DireccionExacta { get; set; }
-        public string Telefono { get; set; }
+        public string TelefonoAplicante { get; set; }
         public string Correo { get; set; }
         public string Contrasena { get; set; }
         public string Conocimientos { get; set; }
+        public string Institucion { get; set; }
+        public string PaisEstudio { get; set; }
+        public string NombreTitulo { get; set; }
+        public string Grado { get; set; }
+        public string AnnoGraduacion { get; set; }
+        public string Idioma { get; set; }
+        public string DominioLectura { get; set; }
+        public string DominioEscritura { get; set; }
+        public string DominioOral { get; set; }
+        public string NombreEmpresa { get; set; }
+        public string Cargo { get; set; }
+        public string PaisEmpresa { get; set; }
+        public string AnnoInicio { get; set; }
+        public string AnnoFin { get; set; }
+        public string NombreActividad { get; set; }
+        public string NombreInstitucion { get; set; }
+        public string Pais { get; set; }
+        public string Anno { get; set; }
+        public string NombreEmpresaReferente { get; set; }
+        public string NombreReferente { get; set; }
+        public string Puesto { get; set; }
+        public string Email { get; set; }
+        public string Telefono { get; set; }
     }
 }

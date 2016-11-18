@@ -22,6 +22,7 @@ namespace TalentoTECDataAccess
     
         public int ID_SECTOR_PRODUCTIVO { get; set; }
         public string NOMBRE_SECTOR_PRODUCTIVO { get; set; }
+        public string DESCRIPCION_SECTOR { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Empresa> Empresas { get; set; }

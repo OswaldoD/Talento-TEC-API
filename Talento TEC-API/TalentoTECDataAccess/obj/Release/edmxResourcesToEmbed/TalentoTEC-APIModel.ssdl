@@ -222,8 +222,8 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.IdiomaXAplicante' no tiene de
     <Property Name="REQUISITOS_PUESTO" Type="varchar" MaxLength="1024" Nullable="false" />
     <Property Name="MONTO_SALARIO" Type="int" Nullable="false" />
     <Property Name="FK_ID_TIPO_MONEDA" Type="int" Nullable="false" />
-    <Property Name="FECHA_INICIO_OFERTA" Type="datetime" Nullable="false" />
-    <Property Name="FECHA_FINAL_OFERTA" Type="datetime" Nullable="false" />
+    <Property Name="FECHA_INICIO_OFERTA" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="FECHA_FINAL_OFERTA" Type="varchar" MaxLength="11" Nullable="false" />
     <Property Name="FK_ID_TIPO_OFERTA" Type="int" Nullable="false" />
     <Property Name="NOMBRE_CONTACTO_OFERTA" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="EMAIL_CONTACTO_OFERTA" Type="varchar" MaxLength="100" Nullable="false" />
@@ -262,7 +262,8 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.ReferenciasXAplicante' no tie
       <PropertyRef Name="ID_SECTOR_PRODUCTIVO" />
     </Key>
     <Property Name="ID_SECTOR_PRODUCTIVO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="NOMBRE_SECTOR_PRODUCTIVO" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="NOMBRE_SECTOR_PRODUCTIVO" Type="varchar(max)" Nullable="false" />
+    <Property Name="DESCRIPCION_SECTOR" Type="varchar(max)" />
   </EntityType>
   <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -764,6 +765,10 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
   <Function Name="CambiarEstadoOferta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IDOferta" Type="int" Mode="In" />
     <Parameter Name="NuevoEstado" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="ConusltarEstadoAplicanteXOferta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDAplicante" Type="int" Mode="In" />
+    <Parameter Name="IDOferta" Type="int" Mode="In" />
   </Function>
   <Function Name="EliminarAplicacionOferta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IDOferta" Type="int" Mode="In" />

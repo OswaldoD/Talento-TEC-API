@@ -115,7 +115,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.EducacionFormalXAplicante' no
     <Property Name="FK_ID_APLICANTE" Type="int" Nullable="false" />
     <Property Name="NOMBRE_INSTITUCION" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="FK_ID_PAIS_ESTUDIO" Type="int" Nullable="false" />
-    <Property Name="ANNO_GRADUACION" Type="int" Nullable="false" />
+    <Property Name="ANNO_GRADUACION" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="NOMBRE_TITULO" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="FK_ID_GRADO" Type="int" Nullable="false" />
   </EntityType>
@@ -165,6 +165,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.ExperienciaLaboralXAplicante'
     <Property Name="ID_FECHA_IMPORTANTE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FECHA" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="NOMBRE_ACTIVIDAD" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="varchar" MaxLength="1024" Nullable="false" />
   </EntityType>
   <EntityType Name="GradoEstudioFormal">
     <Key>
@@ -221,8 +222,8 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.IdiomaXAplicante' no tiene de
     <Property Name="REQUISITOS_PUESTO" Type="varchar" MaxLength="1024" Nullable="false" />
     <Property Name="MONTO_SALARIO" Type="int" Nullable="false" />
     <Property Name="FK_ID_TIPO_MONEDA" Type="int" Nullable="false" />
-    <Property Name="FECHA_INICIO_OFERTA" Type="datetime" Nullable="false" />
-    <Property Name="FECHA_FINAL_OFERTA" Type="datetime" Nullable="false" />
+    <Property Name="FECHA_INICIO_OFERTA" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="FECHA_FINAL_OFERTA" Type="varchar" MaxLength="11" Nullable="false" />
     <Property Name="FK_ID_TIPO_OFERTA" Type="int" Nullable="false" />
     <Property Name="NOMBRE_CONTACTO_OFERTA" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="EMAIL_CONTACTO_OFERTA" Type="varchar" MaxLength="100" Nullable="false" />
@@ -261,7 +262,8 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.ReferenciasXAplicante' no tie
       <PropertyRef Name="ID_SECTOR_PRODUCTIVO" />
     </Key>
     <Property Name="ID_SECTOR_PRODUCTIVO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="NOMBRE_SECTOR_PRODUCTIVO" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="NOMBRE_SECTOR_PRODUCTIVO" Type="varchar(max)" Nullable="false" />
+    <Property Name="DESCRIPCION_SECTOR" Type="varchar(max)" />
   </EntityType>
   <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -744,6 +746,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
   <Function Name="AgregarFechaImportante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Fecha" Type="varchar" Mode="In" />
     <Parameter Name="NombreActividad" Type="varchar" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
   </Function>
   <Function Name="AplicarOferta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IDOferta" Type="int" Mode="In" />
@@ -762,6 +765,10 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
   <Function Name="CambiarEstadoOferta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IDOferta" Type="int" Mode="In" />
     <Parameter Name="NuevoEstado" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="ConusltarEstadoAplicanteXOferta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDAplicante" Type="int" Mode="In" />
+    <Parameter Name="IDOferta" Type="int" Mode="In" />
   </Function>
   <Function Name="EliminarAplicacionOferta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IDOferta" Type="int" Mode="In" />
@@ -830,6 +837,7 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
     <Parameter Name="IDFecha" Type="int" Mode="In" />
     <Parameter Name="Fecha" Type="varchar" Mode="In" />
     <Parameter Name="NombreActividad" Type="varchar" Mode="In" />
+    <Parameter Name="Descripcion" Type="varchar" Mode="In" />
   </Function>
   <Function Name="ObtenerDatosAplicante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="IDAplicante" Type="int" Mode="In" />
@@ -884,18 +892,6 @@ advertencia 6002: La tabla o vista 'TalentoTEC.dbo.SectorProductivoXEmpresa' no 
   </Function>
   <Function Name="ObtenerOfertasXEmpresa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ID_Empresa" Type="int" Mode="In" />
-  </Function>
-  <Function Name="split" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="delimited" Type="nvarchar(max)" Mode="In" />
-    <Parameter Name="delimiter" Type="nvarchar" Mode="In" />
-    <ReturnType>
-      <CollectionType>
-        <RowType>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="val" Type="nvarchar(max)" />
-        </RowType>
-      </CollectionType>
-    </ReturnType>
   </Function>
   <Function Name="Verificacion_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Nombre_Usuario" Type="varchar" Mode="In" />

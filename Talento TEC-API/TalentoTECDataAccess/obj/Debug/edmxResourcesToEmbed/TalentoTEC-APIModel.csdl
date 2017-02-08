@@ -1,9 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="TalentoTECModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <ComplexType Name="split_Result">
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="val" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </ComplexType>
   <EntityType Name="Administrador">
     <Key>
       <PropertyRef Name="ID_ADMINISTRADOR" />
@@ -111,6 +107,7 @@
     <Property Name="ID_FECHA_IMPORTANTE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="FECHA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="NOMBRE_ACTIVIDAD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
   <EntityType Name="GradoEstudioFormal">
     <Key>
@@ -157,8 +154,8 @@
     <Property Name="REQUISITOS_PUESTO" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="MONTO_SALARIO" Type="Int32" Nullable="false" />
     <Property Name="FK_ID_TIPO_MONEDA" Type="Int32" Nullable="false" />
-    <Property Name="FECHA_INICIO_OFERTA" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="FECHA_FINAL_OFERTA" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FECHA_INICIO_OFERTA" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FECHA_FINAL_OFERTA" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="FK_ID_TIPO_OFERTA" Type="Int32" Nullable="false" />
     <Property Name="NOMBRE_CONTACTO_OFERTA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="EMAIL_CONTACTO_OFERTA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
@@ -189,7 +186,8 @@
       <PropertyRef Name="ID_SECTOR_PRODUCTIVO" />
     </Key>
     <Property Name="ID_SECTOR_PRODUCTIVO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="NOMBRE_SECTOR_PRODUCTIVO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NOMBRE_SECTOR_PRODUCTIVO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DESCRIPCION_SECTOR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Empresas" Relationship="Self.SectorProductivoXEmpresa" FromRole="SectoresProductivos" ToRole="Empresas" />
   </EntityType>
   <EntityType Name="TipoAplicante">
@@ -266,7 +264,7 @@
     <Property Name="FK_ID_APLICANTE" Type="Int32" Nullable="false" />
     <Property Name="NOMBRE_INSTITUCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="FK_ID_PAIS_ESTUDIO" Type="Int32" Nullable="false" />
-    <Property Name="ANNO_GRADUACION" Type="Int32" Nullable="false" />
+    <Property Name="ANNO_GRADUACION" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="NOMBRE_TITULO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="FK_ID_GRADO" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Aplicante" Relationship="Self.FK_EducacionFormalXAplicante_Aplicantes" FromRole="EducacionFormalXAplicante" ToRole="Aplicantes" />
@@ -770,10 +768,6 @@
       <End Role="Empresas" EntitySet="Empresas" />
       <End Role="SectoresProductivos" EntitySet="SectoresProductivos" />
     </AssociationSet>
-    <FunctionImport Name="split" IsComposable="true" ReturnType="Collection(TalentoTECModel.split_Result)">
-      <Parameter Name="delimited" Mode="In" Type="String" />
-      <Parameter Name="delimiter" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="ActualizarAplicante" ReturnType="Collection(Int32)">
       <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
       <Parameter Name="PrimerApellido" Mode="In" Type="String" />
@@ -867,12 +861,13 @@
     <FunctionImport Name="AgregarFechaImportante" ReturnType="Collection(String)">
       <Parameter Name="Fecha" Mode="In" Type="String" />
       <Parameter Name="NombreActividad" Mode="In" Type="String" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="AplicarOferta" ReturnType="Collection(Int32)">
       <Parameter Name="IDOferta" Mode="In" Type="Int32" />
       <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="BuscarOfertas" ReturnType="Collection(String)">
+    <FunctionImport Name="BuscarOfertas" ReturnType="Collection(TalentoTECModel.BuscarOfertas_Result)">
       <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
       <Parameter Name="TipoCuenta" Mode="In" Type="String" />
       <Parameter Name="carreraSeleccionada" Mode="In" Type="String" />
@@ -885,6 +880,10 @@
     <FunctionImport Name="CambiarEstadoOferta">
       <Parameter Name="IDOferta" Mode="In" Type="Int32" />
       <Parameter Name="NuevoEstado" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ConusltarEstadoAplicanteXOferta">
+      <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
+      <Parameter Name="IDOferta" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="EliminarAplicacionOferta">
       <Parameter Name="IDOferta" Mode="In" Type="Int32" />
@@ -953,6 +952,7 @@
       <Parameter Name="IDFecha" Mode="In" Type="Int32" />
       <Parameter Name="Fecha" Mode="In" Type="String" />
       <Parameter Name="NombreActividad" Mode="In" Type="String" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="ObtenerDatosAplicante" ReturnType="Collection(TalentoTECModel.ObtenerDatosAplicante_Result)">
       <Parameter Name="IDAplicante" Mode="In" Type="Int32" />
@@ -1017,28 +1017,58 @@
       <Parameter Name="Password_Usuario" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="BuscarOfertas_Result">
+    <Property Type="Int32" Name="IDOferta" Nullable="false" />
+    <Property Type="String" Name="NombreEmpresa" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Puesto" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="FechaLimite" Nullable="false" MaxLength="11" />
+    <Property Type="String" Name="Estado" Nullable="false" MaxLength="9" />
+  </ComplexType>
   <ComplexType Name="Insertar_OfertasLaborales_Result">
     <Property Type="Int32" Name="FK_ID_OFERTA" Nullable="false" />
     <Property Type="Int32" Name="FK_ID_CARRERA" Nullable="false" />
   </ComplexType>
   <ComplexType Name="ObtenerDatosAplicante_Result">
-    <Property Type="String" Name="PrimerApellido" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="SegundoApellido" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="FechaNacimiento" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="PaisNacimiento" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="Nacionalidad" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="TipoIdentificacion" Nullable="false" MaxLength="25" />
-    <Property Type="String" Name="Identificacion" Nullable="false" MaxLength="25" />
-    <Property Type="String" Name="Genero" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Carne" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="PaisResidencia" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="Provincia" Nullable="false" MaxLength="30" />
-    <Property Type="String" Name="DireccionExacta" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="Telefono" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="Correo" Nullable="false" MaxLength="40" />
-    <Property Type="String" Name="Contrasena" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="PrimerApellido" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="SegundoApellido" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="FechaNacimiento" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="PaisNacimiento" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Nacionalidad" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="TipoIdentificacion" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="Identificacion" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="Genero" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Carne" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="PaisResidencia" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Provincia" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="DireccionExacta" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TelefonoAplicante" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Correo" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="Contrasena" Nullable="true" MaxLength="30" />
     <Property Type="String" Name="Conocimientos" Nullable="true" MaxLength="1024" />
+    <Property Type="String" Name="Institucion" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PaisEstudio" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NombreTitulo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Grado" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="AnnoGraduacion" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Idioma" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="DominioLectura" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="DominioEscritura" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="DominioOral" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="NombreEmpresa" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Cargo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PaisEmpresa" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="AnnoInicio" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="AnnoFin" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="NombreActividad" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NombreInstitucion" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Pais" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Anno" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="NombreEmpresaReferente" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NombreReferente" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Puesto" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="40" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="20" />
   </ComplexType>
   <ComplexType Name="ObtenerDatosEmpresa_Result">
     <Property Type="String" Name="NombreEmpresa" Nullable="false" MaxLength="50" />
@@ -1054,7 +1084,7 @@
     <Property Type="String" Name="CargoContacto" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="TelefonoContacto" Nullable="false" MaxLength="15" />
     <Property Type="String" Name="DescripcionActividades" Nullable="false" MaxLength="1024" />
-    <Property Type="String" Name="Sectores" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Sectores" Nullable="false" />
     <Property Type="String" Name="Usuario" Nullable="false" MaxLength="30" />
     <Property Type="String" Name="Contrasena" Nullable="false" MaxLength="30" />
   </ComplexType>
@@ -1064,8 +1094,8 @@
     <Property Type="String" Name="RequisitosPuesto" Nullable="false" MaxLength="1024" />
     <Property Type="Int32" Name="MontoSalario" Nullable="false" />
     <Property Type="String" Name="Moneda" Nullable="false" MaxLength="20" />
-    <Property Type="DateTime" Name="FechaInicioOferta" Nullable="false" Precision="23" />
-    <Property Type="DateTime" Name="FechaFinOferta" Nullable="false" Precision="23" />
+    <Property Type="String" Name="FechaInicioOferta" Nullable="false" MaxLength="11" />
+    <Property Type="String" Name="FechaFinOferta" Nullable="false" MaxLength="11" />
     <Property Type="String" Name="TipoOferta" Nullable="false" MaxLength="15" />
     <Property Type="String" Name="NombreContacto" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="EmailContacto" Nullable="false" MaxLength="100" />
@@ -1079,9 +1109,10 @@
     <Property Type="String" Name="NombreEmpresa" Nullable="false" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="ObtenerFechasImportantes_Result">
-    <Property Type="Int32" Name="IDOferta" Nullable="false" />
+    <Property Type="Int32" Name="IDFecha" Nullable="false" />
     <Property Type="String" Name="NombreActividad" Nullable="false" MaxLength="100" />
     <Property Type="String" Name="FechaActividad" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="1024" />
   </ComplexType>
   <ComplexType Name="ObtenerListaCoordinadoresXEscuela_Result">
     <Property Type="String" Name="NombreCoordinador" Nullable="false" MaxLength="100" />
@@ -1090,7 +1121,7 @@
   </ComplexType>
   <ComplexType Name="ObtenerNombreUsuario_Result">
     <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="nombreEmpresa" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="NombreUsuario" Nullable="false" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="ObtenerOfertasXEmpresa_Result">
     <Property Type="Int32" Name="ID_Oferta" Nullable="false" />
